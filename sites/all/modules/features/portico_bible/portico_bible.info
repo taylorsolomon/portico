@@ -1,0 +1,7 @@
+name = Portico Bible
+description = All the bible integrations
+core = 7.x
+package = Portico
+version = 7.x-1.0
+project = portico_bible
+dependencies[] = features

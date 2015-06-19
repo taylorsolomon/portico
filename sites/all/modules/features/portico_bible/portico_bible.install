@@ -1,0 +1,29 @@
+<?php
+/**
+ * Install file for Portico Bible
+ */
+
+function portico_bible_field_schema($field) {
+  switch ($field['type']) {
+    case 'biblesearch':
+      $columns = array(
+        'reference' => array(
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => FALSE,
+        ),
+        'full_passage' => array(
+          'type' => 'text',
+          'size' => 'big',
+          'not null' => FALSE,
+        ),
+      );
+      break;
+  }
+  return array(
+    'columns' => $columns,
+    'indexes' => array(
+      'reference' => array('reference'),
+    ),
+  );
+}

@@ -1,0 +1,137 @@
+<?php
+/**
+ * @file
+ * Code for the Portico Bible feature.
+ */
+
+/**
+ * Implements hook_field_info().
+ */
+function portico_bible_field_info() {
+  return array(
+    'biblesearch' => array(
+      'label' => t('Bible Search Field'),
+      'description' => t('Uses the ESV API to search for Bible verses'),
+      'settings' => array(
+        'index' => NULL,
+        'message' => NULL,
+        ),
+      'instance_settings' => array(
+        'context' => array()
+      ),
+      'default_widget' => 'biblesearch_widget',
+      'default_formatter' => 'biblesearch_formatter',
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function portico_bible_field_widget_info() {
+    return array(
+    'biblesearch_widget' => array(
+      'label' => t('Bible Search'),
+      'field types' => array('biblesearch'),
+      'settings' => array(),
+      'behaviors' => array(
+        'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+        'default value' => FIELD_BEHAVIOR_DEFAULT,
+      ),
+      'weight' => 0,
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function portico_bible_field_formatter_info() {
+  return array(
+    'biblesearch_formatter' => array(
+      'label' => t('Bible Search Format'),
+      'field types' => array('biblesearch'),
+      'settings' => array(
+        'render_context' => FALSE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_form().
+ */
+function portico_bible_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+
+  $element['reference'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Reference'),
+    '#description' => t('Put a Bible reference here'),
+    '#default_value' => empty($items[$delta]['reference']) ? '' : $items[$delta]['reference'],
+  );
+
+  $element['search'] = array(
+    '#type' => 'submit',
+    '#value' => t('Pull Verse'),
+    '#executes_submit_callback' => FALSE,
+    '#limit_validation_errors' => array(),
+    '#ajax' => array(
+      'callback' => 'portico_bible_reference_callback',
+      'wrapper' => 'full-passage',
+      'method' => 'replace',
+    ),
+  );
+
+  $element['full_passage'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Full Passage'),
+    '#description' => t('Full Bible Reference Text'),
+    '#default_value' => empty($items[$delta]['full_passage']) ? '' : $items[$delta]['full_passage'],
+    // // For Ajax
+    '#prefix' => '<div id=\'full-passage\'>',
+    '#suffix' => '</div>',
+  );
+
+  return $element;
+}
+
+function portico_bible_reference_callback($form, &$form_state) {
+  $element = $form_state['triggering_element']['#parents'];
+  if (empty($form_state['values'][$element[0]][$element[1]][$element[2]]['reference'])) {
+    return $form;
+  }
+
+  $url = 'http://www.esvapi.org/v2/rest/passageQuery';
+
+  $r = new HttpRequest($url, HttpRequest::METH_GET);
+
+  $r->addQueryData(array(
+    'key' => 'IP',
+    'include-headings' => 'false',
+    'include-footnotes' => 'false',
+    'include-audio-link' => 'false',
+    'passage' => $form_state['values'][$element[0]][$element[1]][$element[2]]['reference']
+  ));
+
+  try {
+    $r->send();
+    if ($r->getResponseCode() == 200) {
+      $content = $r->getResponseBody();
+    }
+  } catch (HttpException $ex) {
+    drupal_set_message(t($ex), 'error', FALSE);
+  }
+
+  $form[$element[0]][$element[1]][$element[2]]['full_passage']['#value'] = $content;
+  return $form[$element[0]][$element[1]][$element[2]]['full_passage'];
+
+}
+
+function portico_bible_field_is_empty($item, $field) {
+  switch($field['field_name']) {
+    case 'biblesearch':
+      return (empty($item['reference']) && empty($item['full_passage'])) ? TRUE : FALSE;
+  }
+}
+
