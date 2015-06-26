@@ -1,0 +1,107 @@
+.entity-paragraphs-item {
+}
+
+.paragraphs-item-text {
+  max-width: 800px;
+  margin: 0 auto;
+  @include pad(1em);
+
+  @include media($break2) {
+    @include pad(3em);
+  }
+}
+
+
+
+.paragraphs-item-text-and-sidebar {
+  max-width: 800px;
+  margin: 0 auto;
+  @include pad(1em);
+
+  @include media($break2) {
+    max-width: 1200px;
+    @include pad(3em);
+
+    @include row;
+
+    > .field-body {
+      @include pad(0 2em);
+      @include direction-context(right-to-left) {
+        @include span-columns(8);
+      }
+    }
+  }
+
+  .paragraphs-items-field-sidebars {
+
+    @include media($break2) {
+      @include direction-context(right-to-left) {
+        @include span-columns(4);
+      }
+    }
+
+
+    .field-sidebars {
+
+      @include media($sidebar-break) {
+
+        @include span-columns(6);
+        @include pad(2em 2em 0 0);
+
+        &:nth-child(2n) {
+          @include pad(2em 0 0 2em);
+        }
+      }
+
+      @include media($break2) {
+        @include span-columns(12);
+        @include pad(0);
+        border-left: 3px solid $grey;
+
+        &:nth-child(2n) {
+          @include pad(0);
+        }
+
+        + .field-sidebars {
+          padding-top: 1em;
+        }
+      }
+
+      .paragraphs-item-sidebar-text,
+      .paragraphs-item-sidebar-list {
+
+        @include pad(1em);
+        border-top: 1px solid #dedede;
+        font-size: rem(14px);
+        line-height: 2;
+        margin-bottom: 1em;
+
+        @include media($break2) {
+          border-top: none;
+          @include pad(0em 2em);
+        }
+
+        .field-body {
+          margin-bottom: 1em;
+        }
+
+        .field-heading {
+          font-family: $open-sans-condensed;
+          letter-spacing: 1px;
+          line-height: 1;
+          margin-bottom: 0.5em;
+          font-size: rem(18px);
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+
+        .field-link a {
+          @include button;
+        }
+      }
+    }
+  }
+}
+
+
+

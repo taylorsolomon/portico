@@ -1,0 +1,46 @@
+#hero {
+
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  height: 250px;
+  transition: height $ts $te;
+  display: table;
+  width: 100%;
+
+  h1 {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1;
+    color: $white;
+    font-size: rem(40px);
+    transition: font-size $ts $te;
+  }
+
+  @include media($break1) {
+    height: 300px;
+
+    h1 {
+      font-size: rem(60px);
+    }
+  }
+
+  @include media($break2) {
+    height: 450px;
+
+    h1 {
+      font-size: rem(80px);
+    }
+  }
+
+  @include media($break3) {
+    height: 650px;
+
+    h1 {
+      font-size: rem(100px);
+    }
+  }
+
+}

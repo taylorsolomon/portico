@@ -1,0 +1,21 @@
+{
+  "name": "portico-theme",
+  "version": "0.0.1",
+  "homepage": "https://github.com/taylorsolomon/portico",
+  "authors": [
+    "Taylor Solomon"
+  ],
+  "description": "Theme stuff for portico's website",
+  "main": "portico.info",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "normalize.css": "~3.0.3"
+  }
+}

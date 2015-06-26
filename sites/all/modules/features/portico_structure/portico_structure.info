@@ -56,6 +56,7 @@ features[field_instance][] = paragraphs_item-text_and_sidebar-field_body
 features[field_instance][] = paragraphs_item-text_and_sidebar-field_sidebars
 features[field_instance][] = taxonomy_term-series-field_image
 features[filter][] = rich_text
+features[image][] = 1600-350
 features[image][] = 1600-500
 features[linkit_profiles][] = main_profile
 features[node][] = landing

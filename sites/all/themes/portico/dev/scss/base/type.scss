@@ -1,0 +1,90 @@
+body {
+
+  font-family: $open-sans;
+}
+
+
+
+
+a {
+  text-decoration: none;
+}
+
+
+
+
+p {
+
+  margin:0 0 1em 0;
+  line-height: 1.8;
+  font-size: rem(16px);
+}
+
+
+
+
+
+ul, ul.menu {
+  line-height: 1;
+  margin:0;
+  li {
+    line-height: 1;
+    margin:0;
+    padding:0;
+  }
+}
+
+
+
+
+/*
+ * Edit Tabs
+ */
+
+ul.tabs {
+
+  margin:0;
+  border: none;
+  width: 100%;
+  display: block;
+  background: $blue-dark;
+  padding: 10px;
+
+  li {
+
+    margin:0;
+    padding:0;
+    background:none;
+    border:none;
+    display:inline-block;
+    margin-right: 10px;
+
+    &.active {
+
+      a {
+        border:none;
+        background: none;
+        background: $blue;
+      }
+    }
+
+    a {
+
+      border-radius: 4px;
+      background: $grey;
+      display: block;
+      margin: 0;
+      padding: 10px 14px;
+      vertical-align: middle;
+      border: none;
+      font-weight: bold;
+      color: $white;
+      transition: background $ts $te;
+
+      &:hover {
+        background: $blue;
+      }
+
+    }
+  }
+}

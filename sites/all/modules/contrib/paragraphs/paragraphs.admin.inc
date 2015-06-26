@@ -13,12 +13,13 @@
  * @throws Exception
  */
 function paragraphs_admin_bundle_overview() {
+  $page = array();
   $bundles = paragraphs_bundle_load();
 
   $header = array(t('Bundle name'), array('data' => t('Operations'), 'colspan' => '4'));
   $rows = array();
   foreach ($bundles as $bundle) {
-    $rows[] = array(
+    $rows[$bundle->bundle] = array(
       array(
         'data' => $bundle->name . ' (' . $bundle->bundle . ')',
       ),
@@ -36,15 +37,19 @@ function paragraphs_admin_bundle_overview() {
       ),
     );
   }
-  if (empty($rows)) {
-    $output = t('No paragraph bundles have been defined yet.');
-  }
-  else {
-    // Sort rows by field name.
-    ksort($rows);
-    $output = theme('table', array('header' => $header, 'rows' => $rows));
-  }
-  return $output;
+
+  // Sort rows by bundle.
+  ksort($rows);
+
+  // Render paragraphs bundle table.
+  $page['paragraphs_bundle_table'] = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#empty' => t('No paragraph bundles have been defined yet.'),
+  );
+
+  return $page;
 }
 
 /**
@@ -209,4 +214,14 @@ function paragraphs_admin_bundle_delete_form_submit($form, &$form_state) {
 
   $form_state['redirect'] = 'admin/structure/paragraphs';
   return;
+}
+
+/**
+ * Helper to get the title of a bundle.
+ *
+ * @param $bundle
+ *   The bundle.
+ */
+function paragraphs_bundle_title_callback($bundle) {
+  return t('Edit Paragraph Bundle !name', array('!name' => $bundle->name));
 }

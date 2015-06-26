@@ -22,6 +22,26 @@ function portico_structure_ctools_plugin_api($module = NULL, $api = NULL) {
 function portico_structure_image_default_styles() {
   $styles = array();
 
+  // Exported image style: 1600-350.
+  $styles['1600-350'] = array(
+    'label' => '1600-350',
+    'effects' => array(
+      2 => array(
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 1600,
+          'height' => 350,
+          'focal_point_advanced' => array(
+            'shift_x' => '',
+            'shift_y' => '',
+          ),
+          '#imageinfo_cache_effect_callback' => 'focal_point_scale_and_crop_effect',
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: 1600-500.
   $styles['1600-500'] = array(
     'label' => '1600-500',
