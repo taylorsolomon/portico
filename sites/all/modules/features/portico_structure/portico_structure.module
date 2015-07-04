@@ -6,7 +6,26 @@
 
 include_once 'portico_structure.features.inc';
 include_once 'includes/portico_structure.block.inc';
+include_once 'includes/portico_structure.admin.inc';
 
-// function portico_structure_preprocess_entity(&$variables) {
-//   dpm($variables);
-// }
+function portico_structure_admin_paths_alter(&$paths) {
+  // Treat all user pages as administrative.
+  $paths ['user']   = TRUE;
+  $paths ['user/*'] = TRUE;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function portico_structure_menu() {
+
+  $items['admin/content/portico'] = array(
+    'title' => t('Portico'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('portico_config'),
+    'access arguments' => array('administer configuration'),
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  return $items;
+}

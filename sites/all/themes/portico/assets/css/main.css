@@ -559,6 +559,32 @@ ul.tabs li a:hover {
   }
 }
 
+body.front #hero {
+  display: block;
+  overflow: hidden;
+}
+
+body.front #hero h1 {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+body.front #hero video {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%    !important;
+  height: auto   !important;
+}
+
 .paragraphs-item-text {
   max-width: 800px;
   margin: 0 auto;
@@ -696,4 +722,60 @@ ul.tabs li a:hover {
   border-color: #0077C0;
   background-color: #0077C0;
   color: #fff;
+}
+
+#block-portico-structure-location {
+  background: #152d40;
+  display: block;
+}
+
+#block-portico-structure-location::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+#block-portico-structure-location .container {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 30px 0;
+  transition: padding 0.2s ease;
+}
+
+#block-portico-structure-location .container:last-child {
+  margin-right: 0;
+}
+
+@media screen and (min-width: 720px) {
+  #block-portico-structure-location .container {
+    padding: 40px 0;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  #block-portico-structure-location .container {
+    padding: 50px 0;
+  }
+}
+
+#block-portico-structure-location .map {
+  height: 300px;
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+}
+
+#block-portico-structure-location .map:last-child {
+  margin-right: 0;
+}
+
+#block-portico-structure-location #map-canvas {
+  height: 100%;
+}
+
+#block-portico-structure-location #map-canvas img {
+  max-width: none;
 }

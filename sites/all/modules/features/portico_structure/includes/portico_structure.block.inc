@@ -7,7 +7,12 @@ function portico_structure_block_info() {
 
   $blocks['hero_image_title'] = array(
     'info' => t('Hero Image / Title'),
-    'cache' => DRUPAL_CACHE_PER_PAGE
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
+
+  $blocks['location'] = array(
+    'info' => t('Location / Times Block'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
 
   return $blocks;
@@ -27,11 +32,31 @@ function portico_structure_block_view($delta = '') {
       $block['content'] = portico_structure_apply_bg($entity);
       break;
 
+    case 'location':
+      $block['subject'] = '';
+      $block['content'] = portico_structure_location();
+      break;
+
   }
+
   return $block;
 }
 
 function portico_structure_apply_bg($entity, $field = 'field_image') {
+
+  if (drupal_is_front_page()) {
+
+    $markup =
+      "<video autoplay loop>
+        <source preload='auto' src='" .
+
+        '/sites/default/files/video/coffee.webm'
+
+        . "' type='video/webm' />
+      </video>";
+
+    return array('#markup' => $markup);
+  }
 
   $wrapper = entity_metadata_wrapper('node', $entity);
 
@@ -73,4 +98,57 @@ function entity_metadata_yank_raw($wrapper, $field) {
   else {
     return FALSE;
   }
+}
+
+
+function portico_structure_location() {
+  $var = variable_get('portico_config', '');
+
+  $location_markup = $var['address'] . ': ' . $var['service-time'];
+
+  $map_markup = '<div id="map-canvas"></div>';
+
+  $content = array(
+    'locaish' => array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('container')),
+      'location' => array(
+        '#type' => 'markup',
+        '#markup' => $location_markup,
+      ),
+    ),
+
+    'map' => array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('map')),
+      'location' => array(
+        '#type' => 'markup',
+        '#markup' => $map_markup,
+      ),
+    ),
+
+  );
+
+  $browser_key = 'AIzaSyCxncqkLAX4lR6I7wb_rAIFNNjZRpuV9Sg';
+  drupal_add_js('https://maps.googleapis.com/maps/api/js?key=' . $browser_key, 'external');
+  drupal_add_js(array(
+    'portico_structure' => array(
+      'mapLat' => $var['lat'],
+      'mapLng' => $var['long'],
+      ),
+    ), 'setting'
+  );
+
+  // Attach that Google Maps API JS
+  $path = drupal_get_path('module', 'portico_structure');
+  drupal_add_js($path . '/js/googlemaps.js', 'file');
+
+  return render($content);
+}
+
+/**
+ * Implementation of hook_preprocess_block().
+ */
+function portico_structure_preprocess_block(&$variables) {
+  // dpm($variables);
 }
