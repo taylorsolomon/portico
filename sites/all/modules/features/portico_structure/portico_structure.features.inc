@@ -81,6 +81,22 @@ function portico_structure_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'page' => array(
+      'name' => t('Page'),
+      'base' => 'node_content',
+      'description' => t('Standard Page type'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'person' => array(
+      'name' => t('Person'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'sermon' => array(
       'name' => t('Sermon'),
       'base' => 'node_content',
@@ -104,6 +120,11 @@ function portico_structure_paragraphs_info() {
       'bundle' => 'full_width_image',
       'locked' => '1',
     ),
+    'grid' => array(
+      'name' => 'Grid',
+      'bundle' => 'grid',
+      'locked' => '1',
+    ),
     'sidebar_list' => array(
       'name' => 'Sidebar List',
       'bundle' => 'sidebar_list',
@@ -114,6 +135,11 @@ function portico_structure_paragraphs_info() {
       'bundle' => 'sidebar_text',
       'locked' => '1',
     ),
+    'spotify_playlist' => array(
+      'name' => 'Spotify Playlist',
+      'bundle' => 'spotify_playlist',
+      'locked' => '1',
+    ),
     'text' => array(
       'name' => 'Text',
       'bundle' => 'text',
@@ -122,6 +148,16 @@ function portico_structure_paragraphs_info() {
     'text_and_sidebar' => array(
       'name' => 'Text and Sidebar',
       'bundle' => 'text_and_sidebar',
+      'locked' => '1',
+    ),
+    'the_city' => array(
+      'name' => 'The City',
+      'bundle' => 'the_city',
+      'locked' => '1',
+    ),
+    'video' => array(
+      'name' => 'Video',
+      'bundle' => 'video',
       'locked' => '1',
     ),
   );

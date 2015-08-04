@@ -32,6 +32,12 @@ function portico_structure_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
+        'portico_structure-sermon_promo' => array(
+          'module' => 'portico_structure',
+          'delta' => 'sermon_promo',
+          'region' => 'content',
+          'weight' => '-9',
+        ),
       ),
     ),
   );
@@ -59,11 +65,17 @@ function portico_structure_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'menu_block-1' => array(
+          'module' => 'menu_block',
+          'delta' => '1',
+          'region' => 'hero',
+          'weight' => '-10',
+        ),
         'portico_structure-hero_image_title' => array(
           'module' => 'portico_structure',
           'delta' => 'hero_image_title',
           'region' => 'hero',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
       ),
     ),

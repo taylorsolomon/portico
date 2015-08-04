@@ -2,7 +2,7 @@
 }
 
 .paragraphs-item-text {
-  max-width: 800px;
+  max-width: $break1;
   margin: 0 auto;
   @include pad(1em);
 
@@ -12,14 +12,13 @@
 }
 
 
-
 .paragraphs-item-text-and-sidebar {
-  max-width: 800px;
+  max-width: $break1;
   margin: 0 auto;
   @include pad(1em);
 
   @include media($break2) {
-    max-width: 1200px;
+    max-width: $max;
     @include pad(3em);
 
     @include row;
@@ -32,7 +31,7 @@
     }
   }
 
-  .paragraphs-items-field-sidebars {
+  > .wrapper-field-sidebars {
 
     @include media($break2) {
       @include direction-context(right-to-left) {
@@ -103,5 +102,39 @@
   }
 }
 
+.paragraphs-item-grid {
+
+  @include media($break2) {
+    max-width: $max;
+    margin: 0 auto;
+
+    .paragraphs-item-text {
+      @include pad(3em 1em);
+    }
+
+    ul {
+      @include row;
+    }
+
+    &.columns-2 {
+
+      li {
+        display: block;
+        @include span-columns(6);
+      }
+
+    }
+
+    &.columns-3 {
+
+      li {
+        display: block;
+        @include span-columns(4);
+      }
+
+    }
 
 
+  }
+
+}

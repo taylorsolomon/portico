@@ -27,5 +27,67 @@ function portico_structure_menu() {
     'type' => MENU_LOCAL_TASK,
   );
 
+  $items['sermon/autocomplete'] = array(
+    'title' => 'Autocomplete for sermons',
+    'page callback' => '_sermons_autocomplete',
+    'access arguments' => array('administer configuration'),
+    'type' => MENU_CALLBACK
+  );
   return $items;
 }
+
+function _sermons_autocomplete($string) {
+  $matches = array();
+  $result = db_select('node', 'n')
+    ->condition('type', 'sermon')
+    ->fields('n', array('title', 'nid'))
+    ->condition('title', '%' . db_like($string) . '%', 'LIKE')
+    ->execute();
+
+  // save the query to matches
+  foreach ($result as $row) {
+    $matches[$row->title . ' [' . $row->nid . ']'] = check_plain($row->title) ;
+  }
+
+  // Return the result to the form in json
+  drupal_json_output($matches);
+}
+
+function portico_structure_preprocess_entity(&$variables, $hook) {
+  $function = __FUNCTION__ . '_' . $variables['entity_type'];
+  if (function_exists($function)) {
+    $function($variables, $hook);
+  }
+}
+
+function portico_structure_preprocess_entity_paragraphs_item(&$vars) {
+  // Reset all classes on paragraph items.
+  $vars['classes_array'] = array(
+    'paragraphs-item-' . drupal_html_class($vars['elements']['#bundle'])
+  );
+
+  switch ($vars['elements']['#bundle']) {
+
+    case 'grid':
+
+      if (empty($vars['paragraphs_item']->field_columns)) {
+        return $vars;
+      }
+
+      $vars['classes_array'][] = 'columns-' .
+        $vars['paragraphs_item']->field_columns['und'][0]['value'];
+
+
+      break;
+  }
+
+}
+
+function portico_structure_preprocess_paragraphs_items(&$variables) {
+  $element = $variables['element'];
+
+  $variables['classes_array'] = array(
+    'wrapper-' . drupal_html_class($element['#field_name'])
+  );
+}
+

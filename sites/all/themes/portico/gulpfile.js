@@ -74,7 +74,6 @@ gulp.task('scripts', function() {
 gulp.task('watch', function() {
 	livereload({start: true});
   livereload.listen();
-  gutil.log(livereload.server);
 
 	// Watch for js changes
 	gulp.watch('./dev/js/*.js', ['lint', 'scripts']);

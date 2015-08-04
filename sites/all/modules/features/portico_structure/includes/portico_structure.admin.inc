@@ -7,61 +7,90 @@ function portico_config($form, &$form_state) {
     '#type' => 'vertical_tabs',
   );
 
-    $form['location-service-time'] = array(
-      '#type' => 'fieldset',
-      '#group' => 'group',
-      '#title' => t('Location/Service Time'),
+  // Location and Service Time
+  $form['location-service-time'] = array(
+    '#type' => 'fieldset',
+    '#group' => 'group',
+    '#title' => t('Location/Service Time'),
+  );
+
+    $form['location-service-time']['address'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Address'),
+      '#size' => '100',
+      '#maxlength' => '300',
+      '#default_value' => empty($var['address']) ? '' : $var['address'],
     );
 
-      $form['location-service-time']['address'] = array(
-        '#type' => 'textfield',
-        '#title' => t('Address'),
-        '#size' => '100',
-        '#maxlength' => '300',
-        '#default_value' => empty($var['address']) ? '' : $var['address'],
-      );
+    $form['location-service-time']['service-time'] = array(
+      '#type' => 'textfield',
+      '#size' => '100',
+      '#title' => t('Service Time'),
+      '#maxlength' => 300,
+      '#default_value' => empty($var['service-time']) ? '' : $var['service-time'],
+    );
 
-      $form['location-service-time']['service-time'] = array(
-        '#type' => 'textfield',
-        '#size' => '100',
-        '#title' => t('Service Time'),
-        '#maxlength' => 300,
-        '#default_value' => empty($var['service-time']) ? '' : $var['service-time'],
-      );
+    $form['location-service-time']['locate'] = array(
+      '#type' => 'submit',
+      '#submit' => array(),
+      '#value' => t('Locate'),
+      '#ajax' => array(
+        'callback' => 'map_locate',
+        'wrapper' => 'locate',
+        'method' => 'replace',
+        'effect' => 'fade',
+      ),
+    );
 
-      $form['location-service-time']['locate'] = array(
-        '#type' => 'submit',
-        '#submit' => array(),
-        '#value' => t('Locate'),
-        '#ajax' => array(
-          'callback' => 'map_locate',
-          'wrapper' => 'locate',
-          'method' => 'replace',
-          'effect' => 'fade',
-        ),
-      );
+    $form['location-service-time']['geometry'] = array(
+      '#type' => 'fieldset',
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+      '#title' => t("Google Maps Location Stuff"),
+      '#prefix' => '<div id="locate">',
+      '#suffix' => '</div>',
 
-      $form['location-service-time']['geometry'] = array(
-        '#type' => 'fieldset',
-        '#collapsible' => TRUE,
-        '#collapsed' => TRUE,
-        '#title' => t("Google Maps Location Stuff"),
-        '#prefix' => '<div id="locate">',
-        '#suffix' => '</div>',
+    );
 
-      );
+    $form['location-service-time']['geometry']['lat'] = array(
+      '#type' => 'textfield',
+      '#maxlength' => 100,
+      '#default_value' => empty($var['lat']) ? '' : $var['lat'],
+    );
 
-      $form['location-service-time']['geometry']['lat'] = array(
-        '#type' => 'textfield',
-        '#maxlength' => 100,
-        '#default_value' => empty($var['lat']) ? '' : $var['lat'],
-      );
+    $form['location-service-time']['geometry']['long'] = array(
+      '#type' => 'textfield',
+      '#maxlength' => 100,
+      '#default_value' => empty($var['long']) ? '' : $var['long'],
+    );
 
-      $form['location-service-time']['geometry']['long'] = array(
-        '#type' => 'textfield',
-        '#maxlength' => 100,
-        '#default_value' => empty($var['long']) ? '' : $var['long'],
-      );
+    $form['sermon-promo'] = array(
+      '#type' => 'fieldset',
+      '#group' => 'group',
+      '#title' => t('Sermon Promo'),
+    );
+
+
+    if (empty($var['sermon'])) {
+
+      $value = '';
+
+    } else {
+
+      $value = '[' . $var['sermon'] . ']';
+      $node = node_load($var['sermon']);
+      $value = $node->title . " " . $value;
+
+    }
+
+    $form['sermon-promo']['sermon'] = array(
+      '#type' => 'textfield',
+      '#size' => '60',
+      '#title' => t('Sermon to display on the homepage'),
+      '#maxlength' => 300,
+      '#autocomplete_path' => 'sermon/autocomplete',
+      '#default_value' => $value,
+    );
 
     $form['submit'] = array(
       '#type' => 'submit',
@@ -100,6 +129,15 @@ function map_locate($form, $form_state) {
 
 function portico_config_submit($form, &$form_state) {
   $values = $form_state['values'];
+
+  if (!empty($values['sermon'])) {
+    $matches = array();
+    if (preg_match('/(\w+)(?=\])/', $values['sermon'], $matches)) {
+      $values['sermon'] = $matches[0];
+    } else {
+      unset($values['sermon']);
+    }
+  }
 
   variable_set('portico_config', $values);
   drupal_set_message(t('Configuration Saved.'), 'status', FALSE);

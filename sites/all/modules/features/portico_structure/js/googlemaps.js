@@ -8,6 +8,12 @@
 
       window.mapOptions = {
         zoom: 13,
+        scrollwheel: false,
+        // navigationControl: false,
+        // mapTypeControl: false,
+        // scaleControl: false,
+        draggable: true,
+        disableDefaultUI: true,
         center: new google.maps.LatLng(lat, lng),
       };
 
@@ -16,7 +22,7 @@
         {
           position: mapOptions.center,
           map: map,
-          animation: drop,
+          animation: 'bounce',
         }
       );
     }

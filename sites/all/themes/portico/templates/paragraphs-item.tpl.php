@@ -26,6 +26,6 @@
  * @see template_process()
  */
 ?>
-<div class="content <?php print $classes; ?>"<?php print $content_attributes; ?>>
+<div class="<?php print $classes; ?>"<?php print $content_attributes; ?>>
   <?php print render($content); ?>
 </div>
