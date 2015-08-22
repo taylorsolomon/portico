@@ -1,4 +1,4 @@
 sites/default/files/
 sites/all/themes/portico/node_modules/
 sites/all/themes/portico/bower_components/
-sites/default/settings.php
+sites/default/settings.local.php

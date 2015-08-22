@@ -117,10 +117,14 @@
     }
 
     &.columns-2 {
+      max-width: ($max - 200px);
 
       li {
         display: block;
         @include span-columns(6);
+        &:nth-child(2n) {
+          @include omega;
+        }
       }
 
     }

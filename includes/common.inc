@@ -6536,7 +6536,7 @@ function element_child($key) {
 function element_children(&$elements, $sort = FALSE) {
   // Do not attempt to sort elements which have already been sorted.
   $sort = isset($elements['#sorted']) ? !$elements['#sorted'] : $sort;
-
+  dpm($elements);
   // Filter out properties from the element, leaving only children.
   $children = array();
   $sortable = FALSE;

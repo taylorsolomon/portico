@@ -740,6 +740,9 @@ body.front #hero video {
     content: "";
     display: table;
   }
+  .paragraphs-item-grid.columns-2 {
+    max-width: 1000px;
+  }
   .paragraphs-item-grid.columns-2 li {
     display: block;
     float: left;
@@ -748,6 +751,9 @@ body.front #hero video {
     width: 48.82117%;
   }
   .paragraphs-item-grid.columns-2 li:last-child {
+    margin-right: 0;
+  }
+  .paragraphs-item-grid.columns-2 li:nth-child(2n) {
     margin-right: 0;
   }
   .paragraphs-item-grid.columns-3 li {
@@ -823,4 +829,94 @@ body.front #hero video {
 
 #block-portico-structure-location #map-canvas img {
   max-width: none;
+}
+
+.jp-audio {
+  height: 50px;
+  position: relative;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+}
+
+.jp-audio .jp-controls {
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  background-color: #0077C0;
+}
+
+.jp-audio .jp-controls a {
+  text-decoration: none;
+  font-size: 20px;
+  padding-left: 0px;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.jp-audio .jp-controls a:hover {
+  color: #fff;
+}
+
+.jp-audio .jp-controls a:before {
+  display: inline-block;
+  font-family: flat-audio;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  font-variant: normal;
+  text-transform: none;
+  speak: none;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  opacity: 1;
+}
+
+.jp-audio .jp-progress {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  right: 0;
+  height: 100%;
+  background-color: #949494;
+}
+
+.jp-audio .jp-progress .jp-seek-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  cursor: pointer;
+}
+
+.jp-audio .jp-progress .jp-seek-bar .jp-play-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #aeaeae;
+}
+
+.jp-audio .jp-current-time {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  right: 0;
+  height: 100%;
+  padding: 0 12px 0 0;
+  font-size: 14px;
+  line-height: 50px;
+  text-align: right;
+  color: #fff;
+  font-weight: bold;
 }

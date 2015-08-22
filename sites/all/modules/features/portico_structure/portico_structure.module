@@ -53,6 +53,23 @@ function _sermons_autocomplete($string) {
   drupal_json_output($matches);
 }
 
+/**
+ * Implementation of hook_entity_view_alter().
+ */
+function portico_structure_node_view_alter(&$build) {
+  switch ($build['#bundle']) {
+    case 'sermon':
+
+      break;
+  }
+}
+
+/**
+ * [portico_structure_preprocess_entity description]
+ * @param  [type] &$variables [description]
+ * @param  [type] $hook       [description]
+ * @return [type]             [description]
+ */
 function portico_structure_preprocess_entity(&$variables, $hook) {
   $function = __FUNCTION__ . '_' . $variables['entity_type'];
   if (function_exists($function)) {
@@ -60,6 +77,11 @@ function portico_structure_preprocess_entity(&$variables, $hook) {
   }
 }
 
+/**
+ * [portico_structure_preprocess_entity_paragraphs_item description]
+ * @param  [type] &$vars [description]
+ * @return [type]        [description]
+ */
 function portico_structure_preprocess_entity_paragraphs_item(&$vars) {
   // Reset all classes on paragraph items.
   $vars['classes_array'] = array(
@@ -76,7 +98,6 @@ function portico_structure_preprocess_entity_paragraphs_item(&$vars) {
 
       $vars['classes_array'][] = 'columns-' .
         $vars['paragraphs_item']->field_columns['und'][0]['value'];
-
 
       break;
   }
