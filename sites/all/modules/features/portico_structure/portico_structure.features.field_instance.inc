@@ -393,11 +393,9 @@ function portico_structure_field_default_field_instances() {
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(
-          'trim_length' => 400,
-        ),
-        'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'node',
@@ -417,6 +415,91 @@ function portico_structure_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-sermon-field_audio'
+  $field_instances['node-sermon-field_audio'] = array(
+    'bundle' => 'sermon',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'jplayer',
+        'settings' => array(
+          'autoplay' => 0,
+          'backgroundColor' => '000000',
+          'continuous' => 0,
+          'mode' => 'single',
+          'muted' => 0,
+          'preload' => 'metadata',
+          'repeat' => 'none',
+          'solution' => 'html, flash',
+          'volume' => 80,
+        ),
+        'type' => 'jplayer_player',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'jplayer',
+        'settings' => array(
+          'autoplay' => 0,
+          'backgroundColor' => '000000',
+          'continuous' => 0,
+          'mode' => 'single',
+          'muted' => 0,
+          'preload' => 'metadata',
+          'repeat' => 'none',
+          'solution' => 'html, flash',
+          'volume' => 80,
+        ),
+        'type' => 'jplayer_player',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'node',
+    'fences_wrapper' => 'div',
+    'field_name' => 'field_audio',
+    'label' => 'Audio',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => 'sermons',
+      'file_extensions' => 'mp3',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'filefield_sources' => array(
+          'filefield_sources' => array(
+            'attach' => 0,
+            'clipboard' => 0,
+            'imce' => 'imce',
+            'reference' => 0,
+            'remote' => 0,
+            'upload' => 'upload',
+          ),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+          ),
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
       'weight' => 4,
     ),
   );
@@ -428,7 +511,7 @@ function portico_structure_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -441,9 +524,16 @@ function portico_structure_field_default_field_instances() {
         'weight' => 3,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'inline',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'short',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
         'weight' => 0,
       ),
     ),
@@ -489,7 +579,7 @@ function portico_structure_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'portico_bible',
         'settings' => array(
           'render_context' => FALSE,
@@ -498,10 +588,13 @@ function portico_structure_field_default_field_instances() {
         'weight' => 2,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'inline',
+        'module' => 'portico_bible',
+        'settings' => array(
+          'render_context' => FALSE,
+        ),
+        'type' => 'biblesearch_formatter',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -539,7 +632,7 @@ function portico_structure_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'node',
@@ -1190,6 +1283,7 @@ function portico_structure_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Audio');
   t('Body');
   t('Columns');
   t('Date');

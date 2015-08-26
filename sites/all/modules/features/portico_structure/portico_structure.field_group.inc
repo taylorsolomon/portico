@@ -113,7 +113,8 @@ function portico_structure_field_group_info() {
       0 => 'body',
       1 => 'field_series',
       2 => 'field_date',
-      3 => 'title',
+      3 => 'field_audio',
+      4 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
