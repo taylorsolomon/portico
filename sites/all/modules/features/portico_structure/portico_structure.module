@@ -56,13 +56,15 @@ function _sermons_autocomplete($string) {
 /**
  * Implementation of hook_entity_view_alter().
  */
-function portico_structure_node_view_alter(&$build) {
-  switch ($build['#bundle']) {
-    case 'sermon':
-
-      break;
+function portico_structure_node_view($node, $view_mode, $lang) {
+  if ($node->type == 'sermon' && $view_mode == 'full') {
+    if (!empty($node->field_series)) {
+      $path = drupal_get_path_alias('taxonomy/term/' . $node->field_series['und'][0]['tid']);
+      drupal_goto($path);
+    }
   }
 }
+
 
 /**
  * [portico_structure_preprocess_entity description]
@@ -75,6 +77,18 @@ function portico_structure_preprocess_entity(&$variables, $hook) {
   if (function_exists($function)) {
     $function($variables, $hook);
   }
+}
+
+/**
+ * [portico_structure_preprocess_node description]
+ * @param  [type] $vars [description]
+ * @return [type]       [description]
+ */
+function portico_structure_preprocess_node(&$vars) {
+  // dpm($vars);
+
+  $vars['node_url'] = empty($vars['node_url']) ?
+    $path : $path . '#' . ltrim($vars['node_url'], '/');
 }
 
 /**
@@ -95,7 +109,6 @@ function portico_structure_preprocess_entity_paragraphs_item(&$vars) {
       if (empty($vars['paragraphs_item']->field_columns)) {
         return $vars;
       }
-
       $vars['classes_array'][] = 'columns-' .
         $vars['paragraphs_item']->field_columns['und'][0]['value'];
 
@@ -104,9 +117,13 @@ function portico_structure_preprocess_entity_paragraphs_item(&$vars) {
 
 }
 
+/**
+ * [portico_structure_preprocess_paragraphs_items description]
+ * @param  [type] &$variables [description]
+ * @return [type]             [description]
+ */
 function portico_structure_preprocess_paragraphs_items(&$variables) {
   $element = $variables['element'];
-
   $variables['classes_array'] = array(
     'wrapper-' . drupal_html_class($element['#field_name'])
   );

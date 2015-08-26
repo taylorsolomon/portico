@@ -37,7 +37,6 @@ function portico_structure_block_view($delta = '') {
 
       if (empty($entity)) {
         $entity = menu_get_item();
-
         $entity = $entity['map'][($entity['number_parts'] - 1)];
         $type = 'taxonomy_term';
       }
