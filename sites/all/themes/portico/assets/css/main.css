@@ -504,32 +504,47 @@ ul.tabs li a {
   border: none;
   font-weight: bold;
   color: #fff;
-  transition: background 0.2s ease;
+  -webkit-transition: background 0.2s ease;
+          transition: background 0.2s ease;
 }
 
 ul.tabs li a:hover {
   background: #0077C0;
 }
 
+/**
+ * body styles
+ */
 #hero {
+  background-image: -webkit-radial-gradient(50% 50%, circle, #215070 0%, #153349 100%);
+  background-image: radial-gradient(circle at 50% 50%, #215070 0%, #153349 100%);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   position: relative;
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
   height: 250px;
-  transition: height 0.2s ease;
-  display: table;
-  width: 100%;
+  -webkit-transition: height 0.2s ease;
+          transition: height 0.2s ease;
 }
 
 #hero h1 {
-  display: table-cell;
-  width: 100%;
-  vertical-align: middle;
   text-align: center;
   line-height: 1;
   color: #fff;
   font-size: 2.5rem;
-  transition: font-size 0.2s ease;
+  -webkit-transition: font-size 0.2s ease;
+          transition: font-size 0.2s ease;
 }
 
 @media screen and (min-width: 800px) {
@@ -561,74 +576,119 @@ ul.tabs li a:hover {
 
 .menu-name-main-menu {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
+  top: 0;
+  right: 0;
 }
 
-.menu-name-main-menu ul {
+.menu-name-main-menu a {
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.menu-name-main-menu > ul {
   display: block;
   float: right;
 }
 
-.menu-name-main-menu ul > li {
+.menu-name-main-menu > ul > li {
   display: inline-block;
-  margin: 0 0.6em;
-  transition: margin 0.2s ease;
+  margin: 0 0.5em;
+  -webkit-transition: margin 0.2s ease;
+          transition: margin 0.2s ease;
   position: relative;
 }
 
 @media screen and (min-width: 960px) {
-  .menu-name-main-menu ul > li {
-    margin: 0 1em;
+  .menu-name-main-menu > ul > li {
+    margin: 0 0.3em;
   }
 }
 
-.menu-name-main-menu ul > li > a {
-  padding: 1em 0.3em;
+.menu-name-main-menu > ul > li > a {
+  padding: 1em;
   color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
   text-align: center;
+  -webkit-transition: color 0.2s ease;
+          transition: color 0.2s ease;
 }
 
-.menu-name-main-menu ul > li > ul {
-  position: absolute;
+.menu-name-main-menu > ul > li > a:hover {
+  color: #5ac0ff;
+}
+
+.menu-name-main-menu > ul > li > a:hover + ul {
   top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid green;
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-name-main-menu > ul > li > a:hover + ul:before {
+  height: 100%;
+}
+
+.menu-name-main-menu > ul > li > ul {
+  position: absolute;
+  -webkit-transition: top 0.2s ease, opacity 0.2s ease;
+          transition: top 0.2s ease, opacity 0.2s ease;
+  top: 85%;
+  opacity: 0;
+  visibility: hidden;
+  left: 0%;
+  margin: 0;
   min-width: 200px;
 }
 
-.menu-name-main-menu ul > li > ul > li {
+.menu-name-main-menu > ul > li > ul:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0%;
+  width: 1px;
+  display: block;
+  content: '';
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-transition: height 0.2s ease 0.1s;
+          transition: height 0.2s ease 0.1s;
+}
+
+.menu-name-main-menu > ul > li > ul:hover {
+  top: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-name-main-menu > ul > li > ul:hover:before {
+  height: 100%;
+}
+
+.menu-name-main-menu > ul > li > ul > li {
   display: block;
 }
 
-.menu-name-main-menu ul > li > ul > li > a {
+.menu-name-main-menu > ul > li > ul > li > a {
   display: block;
   padding: 0.25em 0.8em;
-  border: 1px solid blue;
-  text-align: center;
+  text-align: left;
 }
 
 .menu-name-main-menu a {
   display: block;
 }
 
-body.front #hero {
-  display: block;
-  overflow: hidden;
+body.page-taxonomy-term #hero h1 {
+  display: none;
 }
 
 body.front #hero h1 {
   display: block;
-  position: absolute;
-  z-index: 1;
   line-height: 1;
   padding: 0;
   margin: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
+  z-index: 1;
 }
 
 body.front #hero video {
@@ -717,7 +777,7 @@ body.front #hero video {
     margin-right: 2.35765%;
     width: 100%;
     padding: 0;
-    border-left: 3px solid #949494;
+    border-left: 1px solid #949494;
   }
   .paragraphs-item-text-and-sidebar > .wrapper-field-sidebars .field-sidebars:last-child {
     margin-right: 0;
@@ -769,7 +829,8 @@ body.front #hero video {
   padding: 0.5em 1.5em;
   display: inline-block;
   border: 2px solid #152d40;
-  transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+  -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+          transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
   font-weight: bold;
 }
 
@@ -778,6 +839,12 @@ body.front #hero video {
   border-color: #0077C0;
   background-color: #0077C0;
   color: #fff;
+}
+
+@media screen and (min-width: 800px) {
+  .paragraphs-item-grid {
+    padding: 0 1em;
+  }
 }
 
 @media screen and (min-width: 960px) {
@@ -812,14 +879,17 @@ body.front #hero video {
   .paragraphs-item-grid.columns-2 li:nth-child(2n) {
     margin-right: 0;
   }
-  .paragraphs-item-grid.columns-3 li {
+  .paragraphs-item-grid.columns-3 .field-sections > li {
     display: block;
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 31.76157%;
   }
-  .paragraphs-item-grid.columns-3 li:last-child {
+  .paragraphs-item-grid.columns-3 .field-sections > li:last-child {
+    margin-right: 0;
+  }
+  .paragraphs-item-grid.columns-3 .field-sections > li:nth-child(3n) {
     margin-right: 0;
   }
 }
@@ -846,7 +916,8 @@ body.front #hero video {
   z-index: 1;
   background: #152d40;
   padding: 30px 20px;
-  transition: padding 0.2s ease;
+  -webkit-transition: padding 0.2s ease;
+          transition: padding 0.2s ease;
 }
 
 @media screen and (min-width: 720px) {
@@ -887,6 +958,12 @@ body.front #hero video {
   max-width: none;
 }
 
+#block-portico-structure-sermon-promo {
+  background-attachment: fixed;
+  background-position: center top;
+  background-size: cover;
+}
+
 .jp-audio {
   height: 50px;
   position: relative;
@@ -914,7 +991,8 @@ body.front #hero video {
   text-align: center;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.8);
-  transition: color 0.2s ease, background 0.2s ease;
+  -webkit-transition: color 0.2s ease, background 0.2s ease;
+          transition: color 0.2s ease, background 0.2s ease;
 }
 
 .jp-audio .jp-controls a:hover {

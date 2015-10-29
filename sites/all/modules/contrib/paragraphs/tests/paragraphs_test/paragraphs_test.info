@@ -1,7 +1,7 @@
 name = Paragraphs test
 core = 7.x
 package = Paragraphs
-dependencies[] = features
+dependencies[] = features (2.x)
 dependencies[] = node
 dependencies[] = panelizer
 dependencies[] = paragraphs
@@ -40,9 +40,9 @@ features[variable][] = panelizer_defaults_paragraphs_item_ptest
 features[variable][] = panelizer_paragraphs_item:ptest:default_selection
 hidden = 1
 
-; Information added by Drupal.org packaging script on 2015-06-23
-version = "7.x-1.0-rc1"
+; Information added by Drupal.org packaging script on 2015-10-11
+version = "7.x-1.0-rc4"
 core = "7.x"
 project = "paragraphs"
-datestamp = "1435045382"
+datestamp = "1444523876"
 

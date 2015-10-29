@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * [portico_config description]
+ * @param  [type] $form        [description]
+ * @param  [type] &$form_state [description]
+ * @return [type]              [description]
+ */
 function portico_config($form, &$form_state) {
   $var = variable_get('portico_config', '');
 
@@ -127,6 +133,12 @@ function map_locate($form, $form_state) {
   return $form['location-service-time']['geometry'];
 }
 
+/**
+ * [portico_config_submit description]
+ * @param  [type] $form        [description]
+ * @param  [type] &$form_state [description]
+ * @return [type]              [description]
+ */
 function portico_config_submit($form, &$form_state) {
   $values = $form_state['values'];
 

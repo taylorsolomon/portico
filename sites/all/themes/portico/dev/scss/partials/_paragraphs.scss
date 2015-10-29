@@ -55,7 +55,7 @@
       @include media($break2) {
         @include span-columns(12);
         @include pad(0);
-        border-left: 3px solid $grey;
+        border-left: 1px solid $grey;
 
         &:nth-child(2n) {
           @include pad(0);
@@ -103,7 +103,9 @@
 }
 
 .paragraphs-item-grid {
-
+  @include media($break1) {
+    @include pad(0 1em);
+  }
   @include media($break2) {
     max-width: $max;
     margin: 0 auto;
@@ -131,9 +133,12 @@
 
     &.columns-3 {
 
-      li {
+      .field-sections > li {
         display: block;
         @include span-columns(4);
+        &:nth-child(3n) {
+          @include omega;
+        }
       }
 
     }

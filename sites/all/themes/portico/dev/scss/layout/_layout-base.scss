@@ -1,16 +1,27 @@
 #hero {
+  @include background-image(
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(33,80,112,1) 0%,
+      rgba(21,51,73,1) 100%
+    )
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   position: relative;
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
   height: 250px;
   transition: height $ts $te;
-  display: table;
-  width: 100%;
+  // display: table;
+  // width: 100%;
 
   h1 {
-    display: table-cell;
-    width: 100%;
-    vertical-align: middle;
+    // display: table-cell;
+    // width: 100%;
+    // vertical-align: middle;
     text-align: center;
     line-height: 1;
     color: $white;
@@ -46,41 +57,85 @@
 
 .menu-name-main-menu {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
+  top: 0;
+  right:0;
 
-  ul { // .menu
+  a {
+    color: $white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  > ul { // .menu
     display:block;
     float:right;
 
     > li {
       // Level 1
       display:inline-block;
-      margin: 0 0.6em;
+      margin: 0 0.5em;
       transition: margin $ts $te;
       position:relative;
-
       @include media($break2) {
-        margin: 0 1em;
+        margin: 0 0.3em;
       }
 
       > a {
         // Level 1 Link
-        padding: 1em 0.3em;
-        color: $white;
-        font-weight: bold;
-        text-transform: uppercase;
+        padding: 1em;
+        color:$white;
         text-align: center;
+        transition: color $ts $te;
+
+        &:hover {
+          color: lighten($blue, 30%);
+          + ul {
+            top: 100%;
+            opacity: 1;
+            visibility: visible;
+
+            &:before {
+              height: 100%;
+            }
+          }
+        }
       }
 
       > ul  {
         // Level 2 wrappers
         position:absolute;
-        top:100%;
-        left: 50%;
-        transform: translateX(-50%);
-        border: 1px solid green;
+        transition: top $ts $te, opacity $ts $te;
+        top:85%;
+        opacity: 0;
+        visibility: hidden;
+        left: 0%;
+        margin:0;
         min-width: 200px;
+
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 0%;
+
+          width: 1px;
+          display:block;
+          content: '';
+          background: rgba($white, 0.4);
+          transition: height $ts $te 0.1s;
+        }
+
+        &:hover {
+          top: 100%;
+          opacity: 1;
+          visibility: visible;
+
+          &:before {
+            height: 100%;
+          }
+        }
 
         > li {
           // Level 2
@@ -90,8 +145,7 @@
             // Level 2 links
             display:block;
             padding: 0.25em 0.8em;
-            border: 1px solid blue;
-            text-align: center;
+            text-align: left;
           }
         }
       }

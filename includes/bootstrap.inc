@@ -8,7 +8,7 @@
 /**
  * The current system version.
  */
-define('VERSION', '7.39');
+define('VERSION', '7.41');
 
 /**
  * Core API compatibility.
@@ -733,22 +733,6 @@ function drupal_settings_initialize() {
   }
   $is_https = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on';
 
-  // Load environmental config, if present.
-  if (isset($_SERVER['PRESSFLOW_SETTINGS'])) {
-    $pressflow_settings = json_decode($_SERVER['PRESSFLOW_SETTINGS'], TRUE);
-    foreach ($pressflow_settings as $key => $value) {
-      // One level of depth should be enough for $conf and $database.
-      if ($key == 'conf') {
-        foreach($value as $conf_key => $conf_value) {
-          $conf[$conf_key] = $conf_value;
-        }
-      }
-      else {
-        $$key = $value;
-      }
-    }
-  }
-
   if (isset($base_url)) {
     // Parse fixed base URL from settings.php.
     $parts = parse_url($base_url);
@@ -1071,7 +1055,7 @@ function drupal_page_get_cache($check_only = FALSE) {
  * Determines the cacheability of the current page.
  *
  * @param $allow_caching
- *   Set to FALSE if you want to prevent this page to get cached.
+ *   Set to FALSE if you want to prevent this page from being cached.
  *
  * @return
  *   TRUE if the current page can be cached, FALSE otherwise.
@@ -1278,6 +1262,10 @@ function drupal_page_header() {
   $default_headers = array(
     'Expires' => 'Sun, 19 Nov 1978 05:00:00 GMT',
     'Cache-Control' => 'no-cache, must-revalidate, post-check=0, pre-check=0',
+    // Prevent browsers from sniffing a response and picking a MIME type
+    // different from the declared content-type, since that can lead to
+    // XSS and other vulnerabilities.
+    'X-Content-Type-Options' => 'nosniff',
   );
   drupal_send_headers($default_headers);
 }
@@ -1792,7 +1780,7 @@ function watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NO
  * @see theme_status_messages()
  */
 function drupal_set_message($message = NULL, $type = 'status', $repeat = TRUE) {
-  if ($message) {
+  if ($message || $message === '0' || $message === 0) {
     if (!isset($_SESSION['messages'][$type])) {
       $_SESSION['messages'][$type] = array();
     }
@@ -2480,6 +2468,9 @@ function _drupal_bootstrap_database() {
   // the install or upgrade process.
   spl_autoload_register('drupal_autoload_class');
   spl_autoload_register('drupal_autoload_interface');
+  if (version_compare(PHP_VERSION, '5.4') >= 0) {
+    spl_autoload_register('drupal_autoload_trait');
+  }
 }
 
 /**
@@ -2487,17 +2478,6 @@ function _drupal_bootstrap_database() {
  */
 function _drupal_bootstrap_variables() {
   global $conf;
-
-  // Pressflow Smart Start
-  if (!empty($GLOBALS['databases']) && variable_get('pressflow_smart_start', FALSE)) {
-    try {
-      $result = db_query('SELECT s.name FROM {system} s WHERE s.name = :name', array(':name' => 'system'));
-    } catch (Exception $e) {
-      // Redirect to the installer if an essential table is missing.
-      include_once DRUPAL_ROOT . '/includes/install.inc';
-      install_goto('install.php');
-    }
-  }
 
   // Initialize the lock system.
   require_once DRUPAL_ROOT . '/' . variable_get('lock_inc', 'includes/lock.inc');
@@ -2979,7 +2959,9 @@ function ip_address() {
  * Gets the schema definition of a table, or the whole database schema.
  *
  * The returned schema will include any modifications made by any
- * module that implements hook_schema_alter().
+ * module that implements hook_schema_alter(). To get the schema without
+ * modifications, use drupal_get_schema_unprocessed().
+ *
  *
  * @param $table
  *   The name of the table. If not given, the schema of all tables is returned.
@@ -3135,6 +3117,22 @@ function drupal_autoload_class($class) {
 }
 
 /**
+ * Confirms that a trait is available.
+ *
+ * This function is rarely called directly. Instead, it is registered as an
+ * spl_autoload() handler, and PHP calls it for us when necessary.
+ *
+ * @param string $trait
+ *   The name of the trait to check or load.
+ *
+ * @return bool
+ *   TRUE if the trait is currently available, FALSE otherwise.
+ */
+function drupal_autoload_trait($trait) {
+  return _registry_check_code('trait', $trait);
+}
+
+/**
  * Checks for a resource in the registry.
  *
  * @param $type
@@ -3152,7 +3150,7 @@ function drupal_autoload_class($class) {
 function _registry_check_code($type, $name = NULL) {
   static $lookup_cache, $cache_update_needed;
 
-  if ($type == 'class' && class_exists($name) || $type == 'interface' && interface_exists($name)) {
+  if ($type == 'class' && class_exists($name) || $type == 'interface' && interface_exists($name) || $type == 'trait' && trait_exists($name)) {
     return TRUE;
   }
 

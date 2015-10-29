@@ -65,9 +65,9 @@ function portico_structure_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'menu_block-1' => array(
+        'menu_block-main-menu' => array(
           'module' => 'menu_block',
-          'delta' => '1',
+          'delta' => 'main-menu',
           'region' => 'hero',
           'weight' => '-10',
         ),

@@ -10,7 +10,7 @@
 function portico_structure_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
+  // Exported field_base: 'body'.
   $field_bases['body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'field_audio'
+  // Exported field_base: 'field_audio'.
   $field_bases['field_audio'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -54,7 +54,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_body'
+  // Exported field_base: 'field_body'.
   $field_bases['field_body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -73,7 +73,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_columns'
+  // Exported field_base: 'field_columns'.
   $field_bases['field_columns'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -88,7 +88,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_date'
+  // Exported field_base: 'field_date'.
   $field_bases['field_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -117,7 +117,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_heading'
+  // Exported field_base: 'field_heading'.
   $field_bases['field_heading'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -138,7 +138,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_image'
+  // Exported field_base: 'field_image'.
   $field_bases['field_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -160,7 +160,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_link'
+  // Exported field_base: 'field_link'.
   $field_bases['field_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -189,7 +189,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_links'
+  // Exported field_base: 'field_links'.
   $field_bases['field_links'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -218,7 +218,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_passage'
+  // Exported field_base: 'field_passage'.
   $field_bases['field_passage'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -240,7 +240,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'biblesearch',
   );
 
-  // Exported field_base: 'field_sections'
+  // Exported field_base: 'field_sections'.
   $field_bases['field_sections'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -255,7 +255,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'paragraphs',
   );
 
-  // Exported field_base: 'field_series'
+  // Exported field_base: 'field_series'.
   $field_bases['field_series'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -281,7 +281,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_sidebars'
+  // Exported field_base: 'field_sidebars'.
   $field_bases['field_sidebars'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -296,7 +296,7 @@ function portico_structure_field_default_field_bases() {
     'type' => 'paragraphs',
   );
 
-  // Exported field_base: 'field_subtype'
+  // Exported field_base: 'field_subtype'.
   $field_bases['field_subtype'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -318,7 +318,29 @@ function portico_structure_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_type'
+  // Exported field_base: 'field_title_image'.
+  $field_bases['field_title_image'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_title_image',
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'image',
+    'settings' => array(
+      'default_image' => 0,
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 0,
+    'type' => 'image',
+  );
+
+  // Exported field_base: 'field_type'.
   $field_bases['field_type'] = array(
     'active' => 1,
     'cardinality' => -1,

@@ -24,19 +24,6 @@ var onError = function (err) {
 };
 
 //libsass
-gulp.task('sass', function () {
-    return gulp.src('./dev/scss/main.scss')
-        .pipe(sass({
-            includePaths: [
-
-            ],
-            outputStyle: 'expanded', // change to compressed when you're done
-            errLogToConsole: true
-        }))
-        .pipe(prefix())
-        .pipe(gulp.dest('./assets/css'))
-        .pipe(livereload())
-});
 
 gulp.task('sass', function () {
   gulp.src('./dev/scss/main.scss')
@@ -46,7 +33,9 @@ gulp.task('sass', function () {
       includePaths: neat.includePaths,
       outputStyle: 'expanded', // change to compressed when you're done
     }).on('error', onError))
-    .pipe(gulp.dest('./assets/css'));
+    .pipe(prefix())
+    .pipe(gulp.dest('./assets/css'))
+    .pipe(livereload());
 });
 
 // Lint Task

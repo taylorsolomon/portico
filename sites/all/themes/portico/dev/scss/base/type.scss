@@ -88,3 +88,18 @@ ul.tabs {
     }
   }
 }
+
+
+
+
+
+/**
+ * body styles
+ */
+
+p ul {
+  li {
+    &:before {
+    }
+  }
+}

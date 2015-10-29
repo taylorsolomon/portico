@@ -1,18 +1,14 @@
 body.front {
 
 #hero {
-  display:block;
-  overflow: hidden;
 
   h1 {
     display: block;
-    position: absolute;
-    z-index:1;
     line-height: 1;
     padding:0;
     margin:0;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    z-index: 1;
   }
 
   video {
@@ -21,7 +17,6 @@ body.front {
     left:0;
     right:0;
     top:0;
-
     width: 100%    !important;
     height: auto   !important;
   }

@@ -24,6 +24,28 @@ function portico_structure_block_info() {
 }
 
 /**
+ * [portico_structure_menu_block_blocks description]
+ * @return [type] [description]
+ */
+function portico_structure_menu_block_blocks() {
+  return array(
+    // The array key is the block id used by menu block.
+    'main-menu' => array(
+      // Use the array keys/values described in menu_tree_build().
+      'menu_name'   => 'main-menu',
+      'parent_mlid' => 0,
+      'title_link'  => FALSE,
+      'admin_title' => 'Main Menu (Portico Structure)',
+      'level'       => 1,
+      'follow'      => 0,
+      'depth'       => 0,
+      'expanded'    => TRUE,
+      'sort'        => FALSE,
+    ),
+  );
+}
+
+/**
  * Implements hook_block_view().
  */
 function portico_structure_block_view($delta = '') {
@@ -32,6 +54,9 @@ function portico_structure_block_view($delta = '') {
   switch ($delta) {
 
     case 'hero_image_title':
+      if (path_is_admin(current_path())) {
+        return FALSE;
+      }
       $entity = menu_get_object();
       $type = 'node';
 
@@ -60,6 +85,25 @@ function portico_structure_block_view($delta = '') {
   return $block;
 }
 
+/**
+ * [portico_structure_block_view_alter description]
+ * @param  [type] &$data [description]
+ * @param  [type] $block [description]
+ * @return [type]        [description]
+ */
+function portico_structure_block_view_alter(&$data, $block) {
+  if ($block->module == 'menu_block') {
+    $data['subject'] = '';
+  }
+}
+
+/**
+ * [portico_structure_apply_bg description]
+ * @param  [type] $entity [description]
+ * @param  [type] $type   [description]
+ * @param  string $field  [description]
+ * @return [type]         [description]
+ */
 function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
 
   if (drupal_is_front_page()) {
@@ -104,6 +148,20 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
 
   }
 
+  if ($type == 'taxonomy_term') {
+
+    $titleImage = field_get_items('taxonomy_term', $entity, 'field_title_image');
+
+    $titleOptions = array(
+      'label' => 'hidden',
+      'type' => 'image',
+    );
+
+    $titleImageRenderable = field_view_value('taxonomy_term', $entity, 'field_title_image', $titleImage[0], $titleOptions);
+
+    return array('#markup' => render($titleImageRenderable));
+  }
+
   return;
 
 }
@@ -117,7 +175,10 @@ function entity_metadata_yank_raw($wrapper, $field) {
   }
 }
 
-
+/**
+ * [portico_structure_location description]
+ * @return [type] [description]
+ */
 function portico_structure_location() {
   $var = variable_get('portico_config', '');
 
@@ -133,7 +194,6 @@ function portico_structure_location() {
       '#type' => 'container',
       '#attributes' => array('class' => array('container')),
       'location' => array(
-        '#type' => 'markup',
         '#markup' => $location_markup,
       ),
     ),
@@ -142,7 +202,6 @@ function portico_structure_location() {
       '#type' => 'container',
       '#attributes' => array('class' => array('map')),
       'location' => array(
-        '#type' => 'markup',
         '#markup' => $map_markup,
       ),
     ),
@@ -167,15 +226,9 @@ function portico_structure_location() {
 }
 
 /**
- * Implementation of hook_preprocess_block().
+ * [portico_structure_sermon_promo description]
+ * @return [type] [description]
  */
-function portico_structure_preprocess_block(&$variables) {
-  // dpm($variables);
-}
-
-
-
-
 function portico_structure_sermon_promo() {
 
   $var = variable_get('portico_config', '');
@@ -210,5 +263,33 @@ function portico_structure_sermon_promo() {
   // Add the CSS
   drupal_add_css($css, 'inline');
 
+  $titleImage = field_get_items('taxonomy_term', $series, 'field_title_image');
+  $titleOptions = array(
+    'label' => 'hidden',
+    'type' => 'image',
+    'settings' => array(
+      'image_link' => 'content',
+    ),
+  );
+
+  $titleImageRenderable = field_view_value('taxonomy_term', $series, 'field_title_image', $titleImage[0], $titleOptions);
+
+  $return = array(
+    'series-area' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('left'),
+      ),
+      'series-info' => $titleImageRenderable,
+    ),
+    'sermon-area' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('right'),
+      ),
+      'node' => node_view($sermon, 'promo')),
+  );
+
+  return $return;
 }
 

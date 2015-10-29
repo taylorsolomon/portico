@@ -43,10 +43,14 @@
 
   #map-canvas {
     height: 100%;
-
     img {
       max-width: none;
     }
-
   }
+}
+
+#block-portico-structure-sermon-promo {
+  background-attachment: fixed;
+  background-position: center top;
+  background-size: cover;
 }
