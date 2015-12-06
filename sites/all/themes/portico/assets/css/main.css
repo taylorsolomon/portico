@@ -515,35 +515,35 @@ ul.tabs li a:hover {
 /**
  * body styles
  */
-.hero-default, body.node-type-landing {
+.hero-default, body.node-type-landing, body.front #hero {
   height: 250px;
   -webkit-transition: height 0.2s ease;
           transition: height 0.2s ease;
 }
 
 @media screen and (min-width: 800px) {
-  .hero-default, body.node-type-landing {
+  .hero-default, body.node-type-landing, body.front #hero {
     height: 300px;
   }
-  .hero-default h1, body.node-type-landing h1 {
+  .hero-default h1, body.node-type-landing h1, body.front #hero h1 {
     font-size: 3.75rem;
   }
 }
 
 @media screen and (min-width: 960px) {
-  .hero-default, body.node-type-landing {
+  .hero-default, body.node-type-landing, body.front #hero {
     height: 450px;
   }
-  .hero-default h1, body.node-type-landing h1 {
+  .hero-default h1, body.node-type-landing h1, body.front #hero h1 {
     font-size: 5rem;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .hero-default, body.node-type-landing {
+  .hero-default, body.node-type-landing, body.front #hero {
     height: 650px;
   }
-  .hero-default h1, body.node-type-landing h1 {
+  .hero-default h1, body.node-type-landing h1, body.front #hero h1 {
     font-size: 6.25rem;
   }
 }
@@ -714,6 +714,10 @@ body.node-type-wufoo #hero {
 
 body.page-taxonomy-term #hero h1 {
   display: none;
+}
+
+body.front #hero {
+  background-image: none;
 }
 
 body.front #hero h1 {

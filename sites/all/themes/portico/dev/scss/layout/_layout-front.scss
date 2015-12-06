@@ -1,6 +1,8 @@
 body.front {
 
 #hero {
+  @extend .hero-default;
+  background-image: none;
 
   h1 {
     display: block;
