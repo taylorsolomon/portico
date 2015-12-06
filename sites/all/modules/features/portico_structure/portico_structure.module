@@ -37,6 +37,58 @@ function portico_structure_menu() {
 }
 
 /**
+ * [portico_structure_subtype_options description]
+ * @param  [type] &$form       [description]
+ * @param  [type] &$form_state [description]
+ * @return [type]              [description]
+ */
+function portico_structure_subtype_options(&$form, &$form_state) {
+  switch($form_state['bundle']) {
+    case 'page' :
+      $options = array();
+      break;
+  }
+
+  drupal_alter('subtype_options', $options, $form_state);
+
+  return $options;
+}
+
+/**
+ * Helper function that returns first node that meets the subtype argument.
+ *
+ * @param  string $subtype
+ * @param  string $bundle
+ * @return node object
+ */
+function portico_structure_get_subtype($subtype, $bundle = NULL) {
+  if (empty($subtype)) {
+    return FALSE;
+  }
+  // Now check for bundle, if empty set as landing.
+  if (empty($bundle)) {
+    $bundle = 'page';
+  }
+
+  $efq = new EntityFieldQuery();
+  $efq->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', $bundle)
+      ->propertyCondition('status', NODE_PUBLISHED)
+      ->fieldCondition('field_subtype', 'value', $subtype, '=')
+      ->addTag('portico_structure_get_subtype');
+
+  $result = $efq->execute();
+
+  if (empty($result['node'])) {
+    return FALSE;
+  }
+
+  $result_node = reset($result['node']);
+  $node = node_load($result_node->nid);
+  return $node;
+}
+
+/**
  * Featured Sermon autocomplete
  * @param  [type] $string [description]
  * @return [type]         [description]

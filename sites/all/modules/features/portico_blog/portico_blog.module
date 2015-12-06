@@ -1,0 +1,283 @@
+<?php
+/**
+ * @file
+ * Code for the Portico Blog feature.
+ */
+
+include_once 'portico_blog.features.inc';
+
+/**
+ * [portico_blog_subtype_options_alter description]
+ * @param  [type] &$options   [description]
+ * @param  [type] $form_state [description]
+ * @return [type]             [description]
+ */
+function portico_blog_subtype_options_alter(&$options, $form_state) {
+  if ($form_state['bundle'] == 'page') {
+    $options['blog'] = t('Blog Landing Page');
+  }
+}
+
+/**
+ * Implementation of hook_entity_view_alter().
+ */
+function portico_blog_entity_view_alter(&$build, $type) {
+  switch ($type) {
+    case 'node':
+      switch ($build['#bundle']) {
+        case 'page':
+          $subtype = field_get_items('node', $build['#node'], 'field_subtype');
+          $subtype = reset($subtype);
+          if ($subtype['value'] == 'blog') {
+            portico_blog_add_blogposts($build);
+          }
+          break;
+      }
+      break;
+  }
+}
+
+/**
+ * [portico_blog_add_blogposts description]
+ * @param  [type] &$build [description]
+ * @return [type]         [description]
+ */
+function portico_blog_add_blogposts(&$build) {
+
+  $build['blog_results'] = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('blog-results')),
+    'nodes' => array(
+      '#markup' => '<p class="no-results">No results</p>',
+    ),
+  );
+  $index = search_api_index_load('blog_index');
+  $query = new SearchApiQuery($index);
+  $result = $query->execute();
+
+  if (empty($result['results'])) {
+    return $build;
+  }
+
+  $results = array_column($result['results'], 'id');
+  $loaded = entity_load('node', $results);
+  $viewed = entity_view('node', $loaded, 'teaser');
+
+  $build['blog_results']['nodes'] = $viewed;
+
+  $build['blog_facets'] = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('blog-facets')),
+    '#weight' => -1,
+    'date' => array('#markup' => portico_blog_facet_dates()),
+    'category' => portico_blog_facet_categories(),
+  );
+}
+
+/**
+ * [portico_blog_facet_categories description]
+ * @return [type] [description]
+ */
+function portico_blog_facet_categories() {
+  $vocab = taxonomy_vocabulary_machine_name_load('blogpost_category');
+  $tree = taxonomy_get_tree($vocab->vid);
+
+  $items = array();
+  foreach ($tree as $term) {
+    $path = '/blog';
+
+    $options = array(
+      'query' => array(
+        'f' => array(
+          'field_category:'.$term->tid,
+        ),
+      ),
+    );
+
+    $items[] = l($term->name, $path, $options);
+  }
+
+  $categories_array = array(
+    '#theme' => 'item_list',
+    '#items' => $items,
+    '#prefix' => "<div class='facet-wrapper category'>",
+    '#suffix' => "</div>",
+  );
+  return $categories_array;
+}
+
+/**
+ * [portico_blog_archives description]
+ *
+ * @return [type] [description]
+ */
+function portico_blog_facet_dates() {
+  // $output = &drupal_static(__FUNCTION__);
+  // if (isset($output)) {
+  //   return portico_blog_archive_theme($output);
+  // }
+
+  // // Get the available results from the cache table.
+  // if ($cache = cache_get('portico_blog_archives')) {
+  //   return portico_blog_archive_theme($cache->data);
+  // }
+
+  // Get the first blog node ever created.
+  $output = array();
+  $entity = portico_blog_query('blogpost', NODE_PUBLISHED, FALSE)
+    ->fieldOrderBy('field_date', 'value')
+    ->range(0, 1);
+
+  $first = $entity->execute();
+  if (empty($first['node'])) {
+    return $output;
+  }
+
+  // Load the first entity to get is field_date value.
+  $entity = entity_load('node', array(key($first['node'])));
+  $wrapper = entity_metadata_wrapper('node', reset($entity));
+
+  // Use the field_date value as a start date to work up to today.
+  $first_year = format_date($wrapper->field_date->raw(), 'custom', 'Y');
+
+  // Get an array of all 12 months.
+  $months = range(1, 12);
+
+  foreach (range($first_year, date('Y')) as $year) {
+    // Get months that contain a node.
+    $results = portico_blog_months($months, $year);
+    if (empty($results)) {
+      continue;
+    }
+
+    // Output the available months.
+    $output[$year] = array(
+      'data' => $year,
+      'children' => $results
+    );
+  }
+
+  // Make sure we have years and months to work with.
+  $output = array_filter($output);
+  if (empty($output)) {
+    return $output;
+  }
+
+  // Sort the items by Year DESC.
+  krsort($output, SORT_REGULAR);
+
+  // Set the cache.
+  // cache_set('portico_blog_archives', $output, 'cache');
+
+  return portico_blog_archive_theme($output);
+}
+
+/**
+ * [portico_blog_months description]
+ *
+ * @param  [type] &$months [description]
+ * @param  [type] $year    [description]
+ *
+ * @return [type]          [description]
+ */
+function portico_blog_months($months, $year) {
+  // Get blog subtype.
+  $subtype = portico_structure_get_subtype('blog');
+  if (empty($subtype)) {
+    return $months;
+  }
+
+  // Loop through all available months.
+  foreach ($months as $key => $month) {
+    $digit = $month;
+
+    // Convert the month digit to human readable.
+    $month = date('F', mktime(0, 0, 0, $month, 10));
+
+    // The entire month.
+    $start = strtotime($month . ' 01 ' . $year);
+    $end = strtotime($month . ' 31 ' . $year);
+
+    // Get all nodes witin the date range.
+    $query = portico_blog_query('blogpost', NODE_PUBLISHED, FALSE);
+    $query->fieldCondition('field_date', 'value', array($start, $end), 'BETWEEN');
+
+    // Get the total number of nodes.
+    $count = $query->count()->execute();
+    if (empty($count)) {
+      unset($months[$key]);
+      continue;
+    }
+
+    $months[$key] = array(
+      'month' => $month,
+      'count' => $count,
+      'path' => 'node/' . $subtype->nid,
+      'query' => array(
+        'f' => array('field_date:' . $year . '-' . $digit),
+      ),
+    );
+  }
+
+  return $months;
+}
+
+/**
+ * [portico_blog_archive_theme description]
+ *
+ * @param  [type] $options [description]
+ *
+ * @return [type]          [description]
+ */
+function portico_blog_archive_theme($options) {
+  // Build each url and allow for on the fly alterations.
+  foreach ($options as &$year) {
+    foreach ($year['children'] as $key => $month) {
+
+      // Add query parameters.
+      $query = empty($month['query']) ? array()
+        : array('query' => $month['query']);
+
+      // Build link.
+      $title = $month['month'] . ' (' . $month['count'] . ')';
+      $year['children'][$key] = l($title, $month['path'], $query);
+    }
+  }
+
+  return theme('item_list', array('items' => $options));
+}
+
+/**
+ * Execute and EntityFieldQuery.
+ *
+ * @param string $entity_type.
+ *   The entity type being queried.
+ * @param string $bundle.
+ *   The bundle to filter by.
+ * @param boolean $status.
+ *   The published or unpublished state.
+ *
+ * @return NULL || object.
+ */
+function portico_blog_query($bundle, $status = NODE_PUBLISHED, $execute = TRUE) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', $bundle)
+    ->addMetaData('account', user_load(1)); // Run the query as user 1.
+
+  // Apply status to nodes so we do not return unpublished items.
+  $query->propertyCondition('status', $status);
+
+  // Allow for another function to execute this query.
+  if (empty($execute)) {
+    return $query;
+  }
+
+  $results = $query->execute();
+  if (empty($results)) {
+    return array();
+  }
+
+  $ids = array_keys($results[$entity_type]);
+  return entity_load($entity_type, $ids);
+}

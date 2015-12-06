@@ -1,11 +1,53 @@
+
+.hero-default {
+  //
+  height: 250px;
+  transition: height $ts $te;
+
+  @include media($break1) {
+    height: 300px;
+    h1 {
+      font-size: rem(60px);
+    }
+
+  }
+
+  @include media($break2) {
+    height: 450px;
+    h1 {
+      font-size: rem(80px);
+    }
+
+  }
+
+  @include media($break3) {
+    height: 650px;
+    h1 {
+      font-size: rem(100px);
+    }
+
+  }
+}
+
+.hero-short {
+  //
+  height: 250px;
+  transition: height $ts $te;
+
+  @include media($break1) {
+    height: 300px;
+    h1 {
+      font-size: rem(60px);
+    }
+
+  }
+}
+
+
+
 #hero {
-  @include background-image(
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(33,80,112,1) 0%,
-      rgba(21,51,73,1) 100%
-    )
-  );
+  @include background-image(linear-gradient(to left, #16222A , #3A6073));
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,15 +55,8 @@
   position: relative;
   background-size: cover;
   background-position: center top;
-  height: 250px;
-  transition: height $ts $te;
-  // display: table;
-  // width: 100%;
 
   h1 {
-    // display: table-cell;
-    // width: 100%;
-    // vertical-align: middle;
     text-align: center;
     line-height: 1;
     color: $white;
@@ -29,28 +64,17 @@
     transition: font-size $ts $te;
   }
 
-  @include media($break1) {
-    height: 300px;
+}
 
-    h1 {
-      font-size: rem(60px);
-    }
-  }
+body.node-type-landing {
+  @extend .hero-default;
 
-  @include media($break2) {
-    height: 450px;
+}
 
-    h1 {
-      font-size: rem(80px);
-    }
-  }
-
-  @include media($break3) {
-    height: 650px;
-
-    h1 {
-      font-size: rem(100px);
-    }
+body.node-type-page,
+body.node-type-wufoo {
+  #hero {
+    @extend .hero-short;
   }
 }
 
@@ -152,9 +176,19 @@
     }
   }
 
-
   a {
     display:block;
   }
 
+}
+
+
+.field-body, .wufoo-form-wrapper {
+  max-width: $break1;
+  margin: 0 auto;
+  @include pad(1em);
+
+  @include media($break2) {
+    @include pad(3em);
+  }
 }

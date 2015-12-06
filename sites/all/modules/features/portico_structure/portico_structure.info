@@ -8,6 +8,7 @@ dependencies[] = ckeditor
 dependencies[] = context
 dependencies[] = ctools
 dependencies[] = date
+dependencies[] = facetapi
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = filter

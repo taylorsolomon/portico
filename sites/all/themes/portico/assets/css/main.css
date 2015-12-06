@@ -515,9 +515,61 @@ ul.tabs li a:hover {
 /**
  * body styles
  */
+.hero-default, body.node-type-landing {
+  height: 250px;
+  -webkit-transition: height 0.2s ease;
+          transition: height 0.2s ease;
+}
+
+@media screen and (min-width: 800px) {
+  .hero-default, body.node-type-landing {
+    height: 300px;
+  }
+  .hero-default h1, body.node-type-landing h1 {
+    font-size: 3.75rem;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .hero-default, body.node-type-landing {
+    height: 450px;
+  }
+  .hero-default h1, body.node-type-landing h1 {
+    font-size: 5rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hero-default, body.node-type-landing {
+    height: 650px;
+  }
+  .hero-default h1, body.node-type-landing h1 {
+    font-size: 6.25rem;
+  }
+}
+
+.hero-short, body.node-type-page #hero,
+body.node-type-wufoo #hero {
+  height: 250px;
+  -webkit-transition: height 0.2s ease;
+          transition: height 0.2s ease;
+}
+
+@media screen and (min-width: 800px) {
+  .hero-short, body.node-type-page #hero,
+  body.node-type-wufoo #hero {
+    height: 300px;
+  }
+  .hero-short h1, body.node-type-page #hero h1,
+  body.node-type-wufoo #hero h1 {
+    font-size: 3.75rem;
+  }
+}
+
 #hero {
-  background-image: -webkit-radial-gradient(50% 50%, circle, #215070 0%, #153349 100%);
-  background-image: radial-gradient(circle at 50% 50%, #215070 0%, #153349 100%);
+  background-image: -webkit-linear-gradient( right , #16222A, #3A6073);
+  background-image: -webkit-linear-gradient(right, #16222A, #3A6073);
+  background-image: linear-gradient(to left, #16222A, #3A6073);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -533,9 +585,6 @@ ul.tabs li a:hover {
   position: relative;
   background-size: cover;
   background-position: center top;
-  height: 250px;
-  -webkit-transition: height 0.2s ease;
-          transition: height 0.2s ease;
 }
 
 #hero h1 {
@@ -545,33 +594,6 @@ ul.tabs li a:hover {
   font-size: 2.5rem;
   -webkit-transition: font-size 0.2s ease;
           transition: font-size 0.2s ease;
-}
-
-@media screen and (min-width: 800px) {
-  #hero {
-    height: 300px;
-  }
-  #hero h1 {
-    font-size: 3.75rem;
-  }
-}
-
-@media screen and (min-width: 960px) {
-  #hero {
-    height: 450px;
-  }
-  #hero h1 {
-    font-size: 5rem;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  #hero {
-    height: 650px;
-  }
-  #hero h1 {
-    font-size: 6.25rem;
-  }
 }
 
 .menu-name-main-menu {
@@ -676,6 +698,18 @@ ul.tabs li a:hover {
 
 .menu-name-main-menu a {
   display: block;
+}
+
+.field-body, .wufoo-form-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+@media screen and (min-width: 960px) {
+  .field-body, .wufoo-form-wrapper {
+    padding: 3em;
+  }
 }
 
 body.page-taxonomy-term #hero h1 {

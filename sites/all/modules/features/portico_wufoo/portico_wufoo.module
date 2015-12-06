@@ -1,0 +1,71 @@
+<?php
+/**
+ * @file
+ * Code for the portico_wufoo feature.
+ */
+
+include_once 'portico_wufoo.features.inc';
+
+
+function portico_wufoo_subtype_options_alter(&$options, $form_state) {
+  switch($form_state['bundle']) {
+    case 'wufoo':
+      $options = array(
+        'connect_card' => t('Connect Card'),
+      );
+      break;
+  }
+}
+
+
+function portico_wufoo_entity_view_alter(&$build, $type) {
+  if ($type !== 'node' || $build['#bundle'] !== 'wufoo') {
+    return FALSE;
+  }
+
+  $subtype = field_get_items('node', $build['#node'], 'field_subtype', NULL);
+  $subtype = reset($subtype);
+
+  $function_call = empty($subtype) ? '' : 'portico_wufoo_retrieve_wufoo_' . $subtype['value'];
+
+  if (!empty($function_call) && function_exists($function_call)) {
+    $output = $function_call();
+  } else {
+    $output = '';
+  }
+
+  $build['form'] = array(
+    '#markup' => $output,
+    '#prefix' => '<div class=\'wufoo-form-wrapper\'>',
+    '#suffix' => '</div>'
+  );
+
+}
+
+function portico_wufoo_retrieve_wufoo_connect_card() {
+
+  $output = <<<EOF
+
+  <div id="wufoo-m149snn214m0b2b">
+  Fill out my <a href="https://porticoarlington.wufoo.com/forms/m149snn214m0b2b">online form</a>.
+  </div>
+  <script type="text/javascript">var m149snn214m0b2b;(function(d, t) {
+  var s = d.createElement(t), options = {
+  'userName':'porticoarlington',
+  'formHash':'m149snn214m0b2b',
+  'autoResize':true,
+  'height':'1133',
+  'async':true,
+  'host':'wufoo.com',
+  'header':'show',
+  'ssl':true};
+  s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+  s.onload = s.onreadystatechange = function() {
+  var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+  try { m149snn214m0b2b = new WufooForm();m149snn214m0b2b.initialize(options);m149snn214m0b2b.display(); } catch (e) {}};
+  var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+  })(document, 'script');</script>
+EOF;
+
+  return $output;
+}

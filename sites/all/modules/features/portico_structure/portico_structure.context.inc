@@ -56,6 +56,11 @@ function portico_structure_context_default_contexts() {
   $context->description = 'Sitewide Block Placement';
   $context->tag = 'Portico';
   $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'blog/*' => 'blog/*',
+      ),
+    ),
     'sitewide' => array(
       'values' => array(
         1 => 1,
@@ -76,6 +81,12 @@ function portico_structure_context_default_contexts() {
           'delta' => 'hero_image_title',
           'region' => 'hero',
           'weight' => '-9',
+        ),
+        'facetapi-SOjl8INR3lfpVhEkYsOj4lUoFa8oXfFd' => array(
+          'module' => 'facetapi',
+          'delta' => 'SOjl8INR3lfpVhEkYsOj4lUoFa8oXfFd',
+          'region' => 'content',
+          'weight' => '-10',
         ),
       ),
     ),

@@ -1,0 +1,16 @@
+name = Portico Blog
+core = 7.x
+package = Portico
+version = 7.x-1.0
+dependencies[] = features
+dependencies[] = options
+dependencies[] = portico_structure
+dependencies[] = taxonomy
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = field_category
+features[field_instance][] = node-blogpost-body
+features[field_instance][] = node-blogpost-field_category
+features[field_instance][] = node-blogpost-field_date
+features[node][] = blogpost
+features[taxonomy][] = blogpost_category

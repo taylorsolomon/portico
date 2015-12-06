@@ -114,7 +114,7 @@ function portico_structure_field_default_field_bases() {
       'tz_handling' => 'none',
     ),
     'translatable' => 0,
-    'type' => 'datetime',
+    'type' => 'datestamp',
   );
 
   // Exported field_base: 'field_heading'.
@@ -312,7 +312,7 @@ function portico_structure_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => '',
+      'allowed_values_function' => 'portico_structure_subtype_options',
     ),
     'translatable' => 0,
     'type' => 'list_text',
