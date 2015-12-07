@@ -45,7 +45,9 @@ function portico_structure_menu() {
 function portico_structure_subtype_options(&$form, &$form_state) {
   switch($form_state['bundle']) {
     case 'page' :
-      $options = array();
+      $options = array(
+        'sermons' => t('Sermons'),
+      );
       break;
   }
 
@@ -157,4 +159,46 @@ function portico_structure_preprocess_paragraphs_items(&$variables) {
   $variables['classes_array'] = array(
     'wrapper-' . drupal_html_class($element['#field_name'])
   );
+}
+
+/**
+ * Implementation of hook_entity_view_alter().
+ */
+function portico_structure_entity_view_alter(&$build, $type) {
+  if ($type == 'node' && $build['#bundle'] == 'page') {
+    if ($subtype = field_get_items('node', $build['#node'], 'field_subtype')) {
+
+      if ($subtype[0]['value'] == 'sermons') {
+        portico_structure_add_sermons($build);
+      }
+    }
+  }
+}
+
+/**
+ * [portico_structure_add_sermons description]
+ * @param  [type] &$build [description]
+ * @return [type]         [description]
+ */
+function portico_structure_add_sermons(&$build) {
+
+  $q = new EntityFieldQuery;
+  $q->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'sermon')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->pager(0,10)
+    ->propertyOrderBy('created', 'DESC')
+    ->addTag('portico_structure_sermons');
+
+  $r = $q->execute();
+
+  if (empty($r['node'])) {
+    return FALSE;
+  }
+
+  $nodes = entity_load('node', array_keys($r['node']));
+
+  $viewed = entity_view('node', $nodes, 'teaser');
+unset($viewed['node']['#sorted']);
+  $build['sermons'] = $viewed;
 }
