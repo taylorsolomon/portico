@@ -40,10 +40,11 @@ function portico_blog_entity_view_alter(&$build, $type) {
     case 'node':
       switch ($build['#bundle']) {
         case 'page':
-          $subtype = field_get_items('node', $build['#node'], 'field_subtype');
-          $subtype = reset($subtype);
-          if ($subtype['value'] == 'blog') {
-            portico_blog_add_blogposts($build);
+          if ($subtype = field_get_items('node', $build['#node'], 'field_subtype')) {
+            $subtype = reset($subtype);
+            if ($subtype['value'] == 'blog') {
+              portico_blog_add_blogposts($build);
+            }
           }
           break;
       }

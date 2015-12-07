@@ -6,7 +6,12 @@
 
 include_once 'portico_wufoo.features.inc';
 
-
+/**
+ * [portico_wufoo_subtype_options_alter description]
+ * @param  [type] &$options   [description]
+ * @param  [type] $form_state [description]
+ * @return [type]             [description]
+ */
 function portico_wufoo_subtype_options_alter(&$options, $form_state) {
   switch($form_state['bundle']) {
     case 'wufoo':
@@ -21,7 +26,12 @@ function portico_wufoo_subtype_options_alter(&$options, $form_state) {
   }
 }
 
-
+/**
+ * [portico_wufoo_entity_view_alter description]
+ * @param  [type] &$build [description]
+ * @param  [type] $type   [description]
+ * @return [type]         [description]
+ */
 function portico_wufoo_entity_view_alter(&$build, $type) {
   if ($type !== 'node' || $build['#bundle'] !== 'wufoo') {
     return FALSE;
