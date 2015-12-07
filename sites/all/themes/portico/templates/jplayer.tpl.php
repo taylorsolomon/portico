@@ -28,4 +28,6 @@
   </div>
 </div>
 
+<?php if($dynamic !== TRUE): ?>
 <?php print drupal_render($dynamic);?>
+<?php endif; ?>
