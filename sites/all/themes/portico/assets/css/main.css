@@ -717,6 +717,7 @@ body.node-type-wufoo #hero {
 
 body.front #hero {
   background-image: none;
+  position: relative;
 }
 
 body.front #hero h1 {
@@ -725,7 +726,7 @@ body.front #hero h1 {
   padding: 0;
   margin: 0;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 body.front #hero video {
@@ -736,6 +737,18 @@ body.front #hero video {
   top: 0;
   width: 100%    !important;
   height: auto   !important;
+}
+
+body.front #hero:after {
+  position: absolute;
+  z-index: 1;
+  content: '';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #152d40;
+  opacity: 0.4;
 }
 
 .field-sections h1, .field-sections h2, .field-sections h3, .field-sections h4, .field-sections h5, .field-sections h6 {

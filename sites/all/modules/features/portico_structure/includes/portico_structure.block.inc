@@ -112,9 +112,9 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
       "<video autoplay loop>
         <source preload='auto' src='" .
 
-        '/sites/default/files/video/coffee.webm'
+        '/sites/default/files/video/hero-video.mp4'
 
-        . "' type='video/webm' />
+        . "' type='video/mp4' />
       </video>";
 
     return array('#markup' => $markup);
