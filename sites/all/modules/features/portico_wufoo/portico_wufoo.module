@@ -11,7 +11,11 @@ function portico_wufoo_subtype_options_alter(&$options, $form_state) {
   switch($form_state['bundle']) {
     case 'wufoo':
       $options = array(
-        'connect_card' => t('Connect Card'),
+        'opportunities_to_serve' => t('Opportunities to Serve'),
+        'tell_the_story' => t('Tell The Story'),
+        'interested_in_leadership' => t('Interested In Leadership'),
+        'ministry_support' => t('Ministry Support'),
+        'interested_in_connectionmembership_at_portico' => t('Interested in Connection/Membership at Portico'),
       );
       break;
   }
@@ -42,19 +46,22 @@ function portico_wufoo_entity_view_alter(&$build, $type) {
 
 }
 
-function portico_wufoo_retrieve_wufoo_connect_card() {
+/**
+ * [portico_wufoo_retrieve_wufoo_opportunities_to_serve description]
+ * @return [type] [description]
+ */
+function portico_wufoo_retrieve_wufoo_opportunities_to_serve() {
 
   $output = <<<EOF
-
-  <div id="wufoo-m149snn214m0b2b">
-  Fill out my <a href="https://porticoarlington.wufoo.com/forms/m149snn214m0b2b">online form</a>.
+  <div id="wufoo-z6k3rp11mq0ldk">
+  Fill out my <a href="https://porticoarlington.wufoo.com/forms/z6k3rp11mq0ldk">online form</a>.
   </div>
-  <script type="text/javascript">var m149snn214m0b2b;(function(d, t) {
+  <script type="text/javascript">var z6k3rp11mq0ldk;(function(d, t) {
   var s = d.createElement(t), options = {
   'userName':'porticoarlington',
-  'formHash':'m149snn214m0b2b',
+  'formHash':'z6k3rp11mq0ldk',
   'autoResize':true,
-  'height':'1133',
+  'height':'1188',
   'async':true,
   'host':'wufoo.com',
   'header':'show',
@@ -62,9 +69,133 @@ function portico_wufoo_retrieve_wufoo_connect_card() {
   s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
   s.onload = s.onreadystatechange = function() {
   var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-  try { m149snn214m0b2b = new WufooForm();m149snn214m0b2b.initialize(options);m149snn214m0b2b.display(); } catch (e) {}};
+  try { z6k3rp11mq0ldk = new WufooForm();z6k3rp11mq0ldk.initialize(options);z6k3rp11mq0ldk.display(); } catch (e) {}};
   var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
   })(document, 'script');</script>
+EOF;
+
+  return $output;
+}
+
+/**
+ * [portico_wufoo_retrieve_wufoo_tell_the_story description]
+ * @return [type] [description]
+ */
+function portico_wufoo_retrieve_wufoo_tell_the_story() {
+  $output = <<<EOF
+  <div id="wufoo-mqk22v01auxcsw">
+  Fill out my <a href="https://porticoarlington.wufoo.com/forms/mqk22v01auxcsw">online form</a>.
+  </div>
+  <script type="text/javascript">var mqk22v01auxcsw;(function(d, t) {
+  var s = d.createElement(t), options = {
+  'userName':'porticoarlington',
+  'formHash':'mqk22v01auxcsw',
+  'autoResize':true,
+  'height':'755',
+  'async':true,
+  'host':'wufoo.com',
+  'header':'show',
+  'ssl':true};
+  s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+  s.onload = s.onreadystatechange = function() {
+  var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+  try { mqk22v01auxcsw = new WufooForm();mqk22v01auxcsw.initialize(options);mqk22v01auxcsw.display(); } catch (e) {}};
+  var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+  })(document, 'script');</script>
+
+EOF;
+
+  return $output;
+}
+
+/**
+ * [portico_wufoo_retrieve_wufoo_interested_in_leadership description]
+ * @return [type] [description]
+ */
+function portico_wufoo_retrieve_wufoo_interested_in_leadership() {
+  $output = <<<EOF
+  <div id="wufoo-s1trq3731bbpyo6">
+  Fill out my <a href="https://porticoarlington.wufoo.com/forms/s1trq3731bbpyo6">online form</a>.
+  </div>
+  <script type="text/javascript">var s1trq3731bbpyo6;(function(d, t) {
+  var s = d.createElement(t), options = {
+  'userName':'porticoarlington',
+  'formHash':'s1trq3731bbpyo6',
+  'autoResize':true,
+  'height':'1328',
+  'async':true,
+  'host':'wufoo.com',
+  'header':'show',
+  'ssl':true};
+  s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+  s.onload = s.onreadystatechange = function() {
+  var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+  try { s1trq3731bbpyo6 = new WufooForm();s1trq3731bbpyo6.initialize(options);s1trq3731bbpyo6.display(); } catch (e) {}};
+  var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+  })(document, 'script');</script>
+
+EOF;
+
+  return $output;
+}
+
+/**
+ * [portico_wufoo_retrieve_wufoo_ministry_support description]
+ * @return [type] [description]
+ */
+function portico_wufoo_retrieve_wufoo_ministry_support() {
+  $output = <<<EOF
+  <div id="wufoo-s1gcjday1d7j8ni">
+  Fill out my <a href="https://porticoarlington.wufoo.com/forms/s1gcjday1d7j8ni">online form</a>.
+  </div>
+  <script type="text/javascript">var s1gcjday1d7j8ni;(function(d, t) {
+  var s = d.createElement(t), options = {
+  'userName':'porticoarlington',
+  'formHash':'s1gcjday1d7j8ni',
+  'autoResize':true,
+  'height':'1318',
+  'async':true,
+  'host':'wufoo.com',
+  'header':'show',
+  'ssl':true};
+  s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+  s.onload = s.onreadystatechange = function() {
+  var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+  try { s1gcjday1d7j8ni = new WufooForm();s1gcjday1d7j8ni.initialize(options);s1gcjday1d7j8ni.display(); } catch (e) {}};
+  var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+  })(document, 'script');</script>
+
+EOF;
+
+  return $output;
+}
+
+/**
+ * [portico_wufoo_retrieve_wufoo_interested_in_connectionmembership_at_portico description]
+ * @return [type] [description]
+ */
+function portico_wufoo_retrieve_wufoo_interested_in_connectionmembership_at_portico() {
+  $output = <<<EOF
+  <div id="wufoo-snhw5j00lzfo29">
+  Fill out my <a href="https://porticoarlington.wufoo.com/forms/snhw5j00lzfo29">online form</a>.
+  </div>
+  <script type="text/javascript">var snhw5j00lzfo29;(function(d, t) {
+  var s = d.createElement(t), options = {
+  'userName':'porticoarlington',
+  'formHash':'snhw5j00lzfo29',
+  'autoResize':true,
+  'height':'1333',
+  'async':true,
+  'host':'wufoo.com',
+  'header':'show',
+  'ssl':true};
+  s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+  s.onload = s.onreadystatechange = function() {
+  var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+  try { snhw5j00lzfo29 = new WufooForm();snhw5j00lzfo29.initialize(options);snhw5j00lzfo29.display(); } catch (e) {}};
+  var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+  })(document, 'script');</script>
+
 EOF;
 
   return $output;
