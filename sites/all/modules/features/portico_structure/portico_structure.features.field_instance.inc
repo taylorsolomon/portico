@@ -16,6 +16,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -88,6 +94,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'paragraphs',
@@ -154,6 +166,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -197,6 +215,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -214,7 +238,7 @@ function portico_structure_field_default_field_instances() {
     'fences_wrapper' => 'div',
     'field_name' => 'field_image',
     'label' => 'Image',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -249,6 +273,7 @@ function portico_structure_field_default_field_instances() {
           ),
           'source_reference' => array(
             'autocomplete' => 0,
+            'search_all_fields' => 0,
           ),
         ),
         'preview_image_style' => 'thumbnail',
@@ -266,6 +291,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -301,6 +332,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -345,6 +382,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -383,6 +426,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -424,6 +473,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -498,6 +553,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'date',
@@ -568,6 +629,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'portico_bible',
@@ -611,6 +678,12 @@ function portico_structure_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),

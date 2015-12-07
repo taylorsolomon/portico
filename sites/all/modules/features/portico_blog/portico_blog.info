@@ -12,5 +12,6 @@ features[field_base][] = field_category
 features[field_instance][] = node-blogpost-body
 features[field_instance][] = node-blogpost-field_category
 features[field_instance][] = node-blogpost-field_date
+features[field_instance][] = node-blogpost-field_image
 features[node][] = blogpost
 features[taxonomy][] = blogpost_category
