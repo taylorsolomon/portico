@@ -515,57 +515,6 @@ ul.tabs li a:hover {
 /**
  * body styles
  */
-.hero-default, body.node-type-landing, body.front #hero {
-  height: 250px;
-  -webkit-transition: height 0.2s ease;
-          transition: height 0.2s ease;
-}
-
-@media screen and (min-width: 800px) {
-  .hero-default, body.node-type-landing, body.front #hero {
-    height: 300px;
-  }
-  .hero-default h1, body.node-type-landing h1, body.front #hero h1 {
-    font-size: 3.75rem;
-  }
-}
-
-@media screen and (min-width: 960px) {
-  .hero-default, body.node-type-landing, body.front #hero {
-    height: 450px;
-  }
-  .hero-default h1, body.node-type-landing h1, body.front #hero h1 {
-    font-size: 5rem;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .hero-default, body.node-type-landing, body.front #hero {
-    height: 650px;
-  }
-  .hero-default h1, body.node-type-landing h1, body.front #hero h1 {
-    font-size: 6.25rem;
-  }
-}
-
-.hero-short, body.node-type-page #hero,
-body.node-type-wufoo #hero {
-  height: 250px;
-  -webkit-transition: height 0.2s ease;
-          transition: height 0.2s ease;
-}
-
-@media screen and (min-width: 800px) {
-  .hero-short, body.node-type-page #hero,
-  body.node-type-wufoo #hero {
-    height: 300px;
-  }
-  .hero-short h1, body.node-type-page #hero h1,
-  body.node-type-wufoo #hero h1 {
-    font-size: 3.75rem;
-  }
-}
-
 #hero {
   background-image: -webkit-linear-gradient( right , #16222A, #3A6073);
   background-image: -webkit-linear-gradient(right, #16222A, #3A6073);
@@ -594,6 +543,60 @@ body.node-type-wufoo #hero {
   font-size: 2.5rem;
   -webkit-transition: font-size 0.2s ease;
           transition: font-size 0.2s ease;
+}
+
+.hero-default, body.node-type-landing #hero, body.front #hero {
+  height: 250px;
+  -webkit-transition: height 0.2s ease;
+          transition: height 0.2s ease;
+}
+
+@media screen and (min-width: 800px) {
+  .hero-default, body.node-type-landing #hero, body.front #hero {
+    height: 300px;
+  }
+  .hero-default h1, body.node-type-landing #hero h1, body.front #hero h1 {
+    font-size: 3.75rem;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .hero-default, body.node-type-landing #hero, body.front #hero {
+    height: 450px;
+  }
+  .hero-default h1, body.node-type-landing #hero h1, body.front #hero h1 {
+    font-size: 5rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hero-default, body.node-type-landing #hero, body.front #hero {
+    height: 600px;
+  }
+  .hero-default h1, body.node-type-landing #hero h1, body.front #hero h1 {
+    font-size: 6.25rem;
+  }
+}
+
+.hero-short, body.node-type-page #hero,
+body.node-type-blogpost #hero,
+body.node-type-wufoo #hero {
+  height: 250px;
+  -webkit-transition: height 0.2s ease;
+          transition: height 0.2s ease;
+}
+
+@media screen and (min-width: 800px) {
+  .hero-short, body.node-type-page #hero,
+  body.node-type-blogpost #hero,
+  body.node-type-wufoo #hero {
+    height: 350px;
+  }
+  .hero-short h1, body.node-type-page #hero h1,
+  body.node-type-blogpost #hero h1,
+  body.node-type-wufoo #hero h1 {
+    font-size: 3.75rem;
+  }
 }
 
 .menu-name-main-menu {
@@ -700,20 +703,16 @@ body.node-type-wufoo #hero {
   display: block;
 }
 
-.field-body, .wufoo-form-wrapper {
+.content > .field-body, .wufoo-form-wrapper {
   max-width: 800px;
   margin: 0 auto;
   padding: 1em;
 }
 
 @media screen and (min-width: 960px) {
-  .field-body, .wufoo-form-wrapper {
+  .content > .field-body, .wufoo-form-wrapper {
     padding: 3em;
   }
-}
-
-body.page-taxonomy-term #hero h1 {
-  display: none;
 }
 
 body.front #hero {
@@ -737,6 +736,11 @@ body.front #hero video {
   top: 0;
   width: 100%    !important;
   height: auto   !important;
+}
+
+.field-sections h1, .field-sections h2, .field-sections h3, .field-sections h4, .field-sections h5, .field-sections h6 {
+  margin-top: 0;
+  line-height: 1;
 }
 
 .paragraphs-item-text {

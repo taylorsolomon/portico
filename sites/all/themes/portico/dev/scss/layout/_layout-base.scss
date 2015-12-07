@@ -1,50 +1,3 @@
-
-.hero-default {
-  //
-  height: 250px;
-  transition: height $ts $te;
-
-  @include media($break1) {
-    height: 300px;
-    h1 {
-      font-size: rem(60px);
-    }
-
-  }
-
-  @include media($break2) {
-    height: 450px;
-    h1 {
-      font-size: rem(80px);
-    }
-
-  }
-
-  @include media($break3) {
-    height: 650px;
-    h1 {
-      font-size: rem(100px);
-    }
-
-  }
-}
-
-.hero-short {
-  //
-  height: 250px;
-  transition: height $ts $te;
-
-  @include media($break1) {
-    height: 300px;
-    h1 {
-      font-size: rem(60px);
-    }
-
-  }
-}
-
-
-
 #hero {
   @include background-image(linear-gradient(to left, #16222A , #3A6073));
 
@@ -63,15 +16,56 @@
     font-size: rem(40px);
     transition: font-size $ts $te;
   }
-
 }
 
-body.node-type-landing {
-  @extend .hero-default;
 
+.hero-default {
+  height: 250px;
+  transition: height $ts $te;
+
+  @include media($break1) {
+    height: 300px;
+    h1 {
+      font-size: rem(60px);
+    }
+  }
+
+  @include media($break2) {
+    height: 450px;
+    h1 {
+      font-size: rem(80px);
+    }
+  }
+
+  @include media($break3) {
+    height: 600px;
+    h1 {
+      font-size: rem(100px);
+    }
+  }
+}
+
+.hero-short {
+  height: 250px;
+  transition: height $ts $te;
+
+  @include media($break1) {
+    height: 350px;
+    h1 {
+      font-size: rem(60px);
+    }
+  }
+}
+
+
+body.node-type-landing {
+  #hero {
+    @extend .hero-default;
+  }
 }
 
 body.node-type-page,
+body.node-type-blogpost,
 body.node-type-wufoo {
   #hero {
     @extend .hero-short;
@@ -183,7 +177,7 @@ body.node-type-wufoo {
 }
 
 
-.field-body, .wufoo-form-wrapper {
+.content > .field-body, .wufoo-form-wrapper {
   max-width: $break1;
   margin: 0 auto;
   @include pad(1em);

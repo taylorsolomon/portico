@@ -1,4 +1,8 @@
-.entity-paragraphs-item {
+.field-sections {
+  h1,h2,h3,h4,h5,h6 {
+    margin-top: 0;
+    line-height: 1;
+  }
 }
 
 .paragraphs-item-text {
@@ -9,6 +13,7 @@
   @include media($break2) {
     @include pad(3em);
   }
+
 }
 
 
