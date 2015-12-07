@@ -123,12 +123,15 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
   $wrapper = entity_metadata_wrapper($type, $entity);
   $image = entity_metadata_yank_raw($wrapper, $field);
 
+  $style_name = '1600-500';
+  drupal_alter('bg', $style_name, $entity);
+
   if (!empty($image)) {
 
     try {
 
-      $derivative_uri = image_style_path('1600-500', $image['uri']);
-      $style = image_style_load('1600-500');
+      $derivative_uri = image_style_path($style_name, $image['uri']);
+      $style = image_style_load($style_name);
       $success = file_exists($derivative_uri) ||
         image_style_create_derivative($style, $image['uri'], $derivative_uri);
       $image_url = file_create_url($derivative_uri);
@@ -139,7 +142,7 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
     }
 
     $css = '
-      #hero {
+      body.page-node-' . $wrapper->getIdentifier() . ' #hero {
         background-image: url("' . $image_url . '");
       }
     ';
