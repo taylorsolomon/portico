@@ -295,4 +295,3 @@ function portico_structure_sermon_promo() {
 
   return $return;
 }
-

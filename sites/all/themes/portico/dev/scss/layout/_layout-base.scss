@@ -1,3 +1,154 @@
+
+.menu-name-main-menu {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  top: 0;
+  right:0;
+  background: rgba($blue-dark, 0.9);
+
+  a {
+    color: $white;
+    font-weight: bold;
+    display:block;
+  }
+
+  #home-link {
+    background: url('../images/logo.png');
+    width: 260px;
+    height: 60px;
+    span {
+      font-size:0;
+    }
+
+  }
+
+  > ul { // .menu
+    display: block;
+    float: right;
+    margin-right: 50px;
+
+    > li {
+      // Level 1
+      display: inline-block;
+      margin: 0 0.5em;
+      transition: margin $ts $te;
+      position:relative;
+
+      @include media($break2) {
+        margin: 0 0.3em;
+      }
+
+      > a {
+        // Level 1 Link
+        padding: 1.2em;
+        font-size: .9em;
+        color: $white;
+        text-align: center;
+        transition: color $ts $te;
+        text-transform: uppercase;
+
+        &:hover {
+          color: lighten($blue, 30%);
+          + ul {
+            top: 100%;
+            opacity: 1;
+            visibility: visible;
+
+            &:before {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      &.last {
+        > ul {
+
+
+          //width: 150px;
+          // min-width: 0;
+        }
+      }
+
+      > ul  {
+        // Level 2 wrappers
+        position: absolute;
+        transition: top $ts $te, opacity $ts $te;
+        top: 85%;
+        opacity: 0;
+        visibility: hidden;
+        left: 0%;
+        margin:0;
+        min-width: 160px;
+        background: rgba($blue-dark, 0.9);
+        padding-bottom: 10px;
+
+        &:before {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 2px;
+
+          width: 0;
+          display:block;
+          content: '';
+          background: rgba($white, 0.6);
+          transition: width $ts ease-out 0.1s;
+        }
+
+        &:hover {
+          top: 100%;
+          opacity: 1;
+          visibility: visible;
+
+          &:before {
+            width: 100%;
+          }
+        }
+
+        > li {
+          // Level 2
+          display:block;
+          position: relative;
+
+          &:after {
+            // For hover!
+            position:absolute;
+            top:0;
+            bottom: -20px;
+            left: -20px;
+            right: -20px;
+            width: 100%;
+            content: '';
+            z-index: 1;
+          }
+
+          > a {
+            // Level 2 links
+            position: relative;
+            z-index: 2;
+            display:block;
+            padding: 0.8em 0.8em;
+            text-align: left;
+            transition-property: color, background;
+            transition-duration: $ts;
+            transition-timing-function: $te;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+            &.active,
+            &:hover {
+              background: $blue;
+              // color: $blue-dark;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
 #hero {
   @include background-image(linear-gradient(to left, #16222A , #3A6073));
 
@@ -72,109 +223,6 @@ body.node-type-wufoo {
   }
 }
 
-
-.menu-name-main-menu {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  top: 0;
-  right:0;
-
-  a {
-    color: $white;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  > ul { // .menu
-    display:block;
-    float:right;
-
-    > li {
-      // Level 1
-      display:inline-block;
-      margin: 0 0.5em;
-      transition: margin $ts $te;
-      position:relative;
-      @include media($break2) {
-        margin: 0 0.3em;
-      }
-
-      > a {
-        // Level 1 Link
-        padding: 1em;
-        color:$white;
-        text-align: center;
-        transition: color $ts $te;
-
-        &:hover {
-          color: lighten($blue, 30%);
-          + ul {
-            top: 100%;
-            opacity: 1;
-            visibility: visible;
-
-            &:before {
-              height: 100%;
-            }
-          }
-        }
-      }
-
-      > ul  {
-        // Level 2 wrappers
-        position:absolute;
-        transition: top $ts $te, opacity $ts $te;
-        top:85%;
-        opacity: 0;
-        visibility: hidden;
-        left: 0%;
-        margin:0;
-        min-width: 200px;
-
-        &:before {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 0%;
-
-          width: 1px;
-          display:block;
-          content: '';
-          background: rgba($white, 0.4);
-          transition: height $ts $te 0.1s;
-        }
-
-        &:hover {
-          top: 100%;
-          opacity: 1;
-          visibility: visible;
-
-          &:before {
-            height: 100%;
-          }
-        }
-
-        > li {
-          // Level 2
-          display:block;
-
-          > a {
-            // Level 2 links
-            display:block;
-            padding: 0.25em 0.8em;
-            text-align: left;
-          }
-        }
-      }
-    }
-  }
-
-  a {
-    display:block;
-  }
-
-}
 
 
 .content > .field-body, .wufoo-form-wrapper {

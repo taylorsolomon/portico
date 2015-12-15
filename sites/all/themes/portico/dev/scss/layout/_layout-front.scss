@@ -4,7 +4,8 @@ body.front {
   @extend .hero-default;
   background-image: none;
   position: relative;
-
+  overflow: hidden;
+  
   h1 {
     display: block;
     line-height: 1;

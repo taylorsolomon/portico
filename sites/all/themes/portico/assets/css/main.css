@@ -515,6 +515,149 @@ ul.tabs li a:hover {
 /**
  * body styles
  */
+.menu-name-main-menu {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  top: 0;
+  right: 0;
+  background: rgba(21, 45, 64, 0.9);
+}
+
+.menu-name-main-menu a {
+  color: #fff;
+  font-weight: bold;
+  display: block;
+}
+
+.menu-name-main-menu #home-link {
+  background: url("../images/logo.png");
+  width: 260px;
+  height: 60px;
+}
+
+.menu-name-main-menu #home-link span {
+  font-size: 0;
+}
+
+.menu-name-main-menu > ul {
+  display: block;
+  float: right;
+  margin-right: 50px;
+}
+
+.menu-name-main-menu > ul > li {
+  display: inline-block;
+  margin: 0 0.5em;
+  -webkit-transition: margin 0.2s ease;
+          transition: margin 0.2s ease;
+  position: relative;
+}
+
+@media screen and (min-width: 960px) {
+  .menu-name-main-menu > ul > li {
+    margin: 0 0.3em;
+  }
+}
+
+.menu-name-main-menu > ul > li > a {
+  padding: 1.2em;
+  font-size: .9em;
+  color: #fff;
+  text-align: center;
+  -webkit-transition: color 0.2s ease;
+          transition: color 0.2s ease;
+  text-transform: uppercase;
+}
+
+.menu-name-main-menu > ul > li > a:hover {
+  color: #5ac0ff;
+}
+
+.menu-name-main-menu > ul > li > a:hover + ul {
+  top: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-name-main-menu > ul > li > a:hover + ul:before {
+  width: 100%;
+}
+
+.menu-name-main-menu > ul > li > ul {
+  position: absolute;
+  -webkit-transition: top 0.2s ease, opacity 0.2s ease;
+          transition: top 0.2s ease, opacity 0.2s ease;
+  top: 85%;
+  opacity: 0;
+  visibility: hidden;
+  left: 0%;
+  margin: 0;
+  min-width: 160px;
+  background: rgba(21, 45, 64, 0.9);
+  padding-bottom: 10px;
+}
+
+.menu-name-main-menu > ul > li > ul:before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  display: block;
+  content: '';
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-transition: width 0.2s ease-out 0.1s;
+          transition: width 0.2s ease-out 0.1s;
+}
+
+.menu-name-main-menu > ul > li > ul:hover {
+  top: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-name-main-menu > ul > li > ul:hover:before {
+  width: 100%;
+}
+
+.menu-name-main-menu > ul > li > ul > li {
+  display: block;
+  position: relative;
+}
+
+.menu-name-main-menu > ul > li > ul > li:after {
+  position: absolute;
+  top: 0;
+  bottom: -20px;
+  left: -20px;
+  right: -20px;
+  width: 100%;
+  content: '';
+  z-index: 1;
+}
+
+.menu-name-main-menu > ul > li > ul > li > a {
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding: 0.8em 0.8em;
+  text-align: left;
+  -webkit-transition-property: color, background;
+          transition-property: color, background;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+.menu-name-main-menu > ul > li > ul > li > a.active,
+.menu-name-main-menu > ul > li > ul > li > a:hover {
+  background: #0077C0;
+}
+
 #hero {
   background-image: -webkit-linear-gradient( right , #16222A, #3A6073);
   background-image: -webkit-linear-gradient(right, #16222A, #3A6073);
@@ -599,110 +742,6 @@ body.node-type-wufoo #hero {
   }
 }
 
-.menu-name-main-menu {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  top: 0;
-  right: 0;
-}
-
-.menu-name-main-menu a {
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.menu-name-main-menu > ul {
-  display: block;
-  float: right;
-}
-
-.menu-name-main-menu > ul > li {
-  display: inline-block;
-  margin: 0 0.5em;
-  -webkit-transition: margin 0.2s ease;
-          transition: margin 0.2s ease;
-  position: relative;
-}
-
-@media screen and (min-width: 960px) {
-  .menu-name-main-menu > ul > li {
-    margin: 0 0.3em;
-  }
-}
-
-.menu-name-main-menu > ul > li > a {
-  padding: 1em;
-  color: #fff;
-  text-align: center;
-  -webkit-transition: color 0.2s ease;
-          transition: color 0.2s ease;
-}
-
-.menu-name-main-menu > ul > li > a:hover {
-  color: #5ac0ff;
-}
-
-.menu-name-main-menu > ul > li > a:hover + ul {
-  top: 100%;
-  opacity: 1;
-  visibility: visible;
-}
-
-.menu-name-main-menu > ul > li > a:hover + ul:before {
-  height: 100%;
-}
-
-.menu-name-main-menu > ul > li > ul {
-  position: absolute;
-  -webkit-transition: top 0.2s ease, opacity 0.2s ease;
-          transition: top 0.2s ease, opacity 0.2s ease;
-  top: 85%;
-  opacity: 0;
-  visibility: hidden;
-  left: 0%;
-  margin: 0;
-  min-width: 200px;
-}
-
-.menu-name-main-menu > ul > li > ul:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 0%;
-  width: 1px;
-  display: block;
-  content: '';
-  background: rgba(255, 255, 255, 0.4);
-  -webkit-transition: height 0.2s ease 0.1s;
-          transition: height 0.2s ease 0.1s;
-}
-
-.menu-name-main-menu > ul > li > ul:hover {
-  top: 100%;
-  opacity: 1;
-  visibility: visible;
-}
-
-.menu-name-main-menu > ul > li > ul:hover:before {
-  height: 100%;
-}
-
-.menu-name-main-menu > ul > li > ul > li {
-  display: block;
-}
-
-.menu-name-main-menu > ul > li > ul > li > a {
-  display: block;
-  padding: 0.25em 0.8em;
-  text-align: left;
-}
-
-.menu-name-main-menu a {
-  display: block;
-}
-
 .content > .field-body, .wufoo-form-wrapper {
   max-width: 800px;
   margin: 0 auto;
@@ -718,6 +757,7 @@ body.node-type-wufoo #hero {
 body.front #hero {
   background-image: none;
   position: relative;
+  overflow: hidden;
 }
 
 body.front #hero h1 {
