@@ -531,9 +531,11 @@ ul.tabs li a:hover {
 }
 
 .menu-name-main-menu #home-link {
-  background: url("../images/logo.png");
-  width: 260px;
-  height: 60px;
+  background: url("../images/logo.png") center left no-repeat;
+  margin-left: 50px;
+  width: 220px;
+  height: 48px;
+  float: left;
 }
 
 .menu-name-main-menu #home-link span {
