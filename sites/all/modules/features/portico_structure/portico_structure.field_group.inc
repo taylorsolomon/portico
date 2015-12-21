@@ -83,7 +83,9 @@ function portico_structure_field_group_info() {
     'children' => array(
       0 => 'body',
       1 => 'field_type',
-      2 => 'title',
+      2 => 'field_weight',
+      3 => 'field_image',
+      4 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

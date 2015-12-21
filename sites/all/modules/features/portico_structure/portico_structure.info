@@ -71,6 +71,7 @@ features[field_instance][] = node-page-body
 features[field_instance][] = node-page-field_image
 features[field_instance][] = node-page-field_subtype
 features[field_instance][] = node-person-body
+features[field_instance][] = node-person-field_image
 features[field_instance][] = node-person-field_type
 features[field_instance][] = node-person-field_weight
 features[field_instance][] = node-sermon-body
