@@ -19,6 +19,14 @@ function portico_structure_default_linkit_profiles() {
   $linkit_profile->profile_type = '2';
   $linkit_profile->data = array(
     'search_plugins' => array(
+      'entity:search_api_server' => array(
+        'enabled' => 0,
+        'weight' => '-10',
+      ),
+      'entity:search_api_index' => array(
+        'enabled' => 0,
+        'weight' => '-10',
+      ),
       'entity:taxonomy_term' => array(
         'enabled' => 1,
         'weight' => '-10',
@@ -39,11 +47,21 @@ function portico_structure_default_linkit_profiles() {
     'entity:node' => array(
       'result_description' => '',
       'bundles' => array(
+        'blogpost' => 0,
         'landing' => 0,
+        'page' => 0,
+        'person' => 0,
         'sermon' => 0,
+        'wufoo' => 0,
       ),
       'group_by_bundle' => 1,
       'include_unpublished' => 0,
+    ),
+    'entity:search_api_server' => array(
+      'result_description' => '',
+    ),
+    'entity:search_api_index' => array(
+      'result_description' => '',
     ),
     'entity:file' => array(
       'result_description' => '',
@@ -57,13 +75,18 @@ function portico_structure_default_linkit_profiles() {
     ),
     'entity:taxonomy_term' => array(
       'result_description' => '',
+      'bundles' => array(
+        'series' => 0,
+        'blogpost_category' => 0,
+      ),
+      'group_by_bundle' => 0,
     ),
     'entity:user' => array(
       'result_description' => '',
     ),
     'insert_plugin' => array(
       'plugin' => 'raw_url',
-      'url_method' => '2',
+      'url_method' => '1',
     ),
     'attribute_plugins' => array(
       'accesskey' => array(
@@ -71,6 +94,10 @@ function portico_structure_default_linkit_profiles() {
         'weight' => '-10',
       ),
       'id' => array(
+        'enabled' => 0,
+        'weight' => '-10',
+      ),
+      'class' => array(
         'enabled' => 0,
         'weight' => '-10',
       ),
@@ -83,10 +110,6 @@ function portico_structure_default_linkit_profiles() {
         'weight' => '-10',
       ),
       'title' => array(
-        'enabled' => 0,
-        'weight' => '-10',
-      ),
-      'class' => array(
         'enabled' => 0,
         'weight' => '-10',
       ),

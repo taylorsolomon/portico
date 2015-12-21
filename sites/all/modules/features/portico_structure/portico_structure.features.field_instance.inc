@@ -419,6 +419,59 @@ function portico_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-person-field_weight'.
+  $field_instances['node-person-field_weight'] = array(
+    'bundle' => 'person',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Give the person a weight to show up earlier or later in a list. The smaller the number, the earlier they show up. Negative numbers are ok.',
+    'display' => array(
+      'blog_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'fences_wrapper' => 'div',
+    'field_name' => 'field_weight',
+    'label' => 'Weight',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => -50,
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-sermon-body'.
   $field_instances['node-sermon-body'] = array(
     'bundle' => 'sermon',
@@ -1412,6 +1465,7 @@ function portico_structure_field_default_field_instances() {
   t('Body');
   t('Columns');
   t('Date');
+  t('Give the person a weight to show up earlier or later in a list. The smaller the number, the earlier they show up. Negative numbers are ok.');
   t('Heading');
   t('Hero Image');
   t('Image');
@@ -1424,6 +1478,7 @@ function portico_structure_field_default_field_instances() {
   t('Subtype');
   t('Title Image');
   t('Type');
+  t('Weight');
 
   return $field_instances;
 }

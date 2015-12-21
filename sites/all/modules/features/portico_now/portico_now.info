@@ -1,0 +1,16 @@
+name = Portico Now
+core = 7.x
+package = Features
+dependencies[] = features
+dependencies[] = field_group
+dependencies[] = image
+dependencies[] = portico_structure
+dependencies[] = text
+features[ctools][] = field_group:field_group:1
+features[features_api][] = api:2
+features[field_group][] = group_details|node|portico_now|form
+features[field_group][] = group_main|node|portico_now|form
+features[field_instance][] = node-portico_now-body
+features[field_instance][] = node-portico_now-field_image
+features[node][] = portico_now
+features_exclude[dependencies][ctools] = ctools

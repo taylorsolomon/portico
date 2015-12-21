@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Portico Now feature.
+ */
+
+include_once 'portico_now.features.inc';
