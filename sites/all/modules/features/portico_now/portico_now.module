@@ -58,7 +58,7 @@ function portico_now_aggregate_nodes(&$build) {
 
   $result = $query->execute();
 
-  if (!$result['node']) {
+  if (empty($result['node'])) {
     return $build;
   }
 
