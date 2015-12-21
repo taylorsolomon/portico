@@ -98,6 +98,7 @@ features[image][] = 1024-512
 features[image][] = 1200-628
 features[image][] = 1600-350
 features[image][] = 1600-500
+features[image][] = 200-300
 features[linkit_profiles][] = main_profile
 features[node][] = landing
 features[node][] = page

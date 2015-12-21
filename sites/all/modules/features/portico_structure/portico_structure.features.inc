@@ -108,6 +108,26 @@ function portico_structure_image_default_styles() {
     ),
   );
 
+  // Exported image style: 200-300.
+  $styles['200-300'] = array(
+    'label' => '200-300',
+    'effects' => array(
+      3 => array(
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 200,
+          'height' => 300,
+          'focal_point_advanced' => array(
+            'shift_x' => '',
+            'shift_y' => '',
+          ),
+          '#imageinfo_cache_effect_callback' => 'focal_point_scale_and_crop_effect',
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 
