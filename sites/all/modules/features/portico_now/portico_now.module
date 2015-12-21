@@ -69,5 +69,15 @@ function portico_now_aggregate_nodes(&$build) {
   $build['nodes'] = $viewed;
   $build['pager']['#markup'] = theme('pager', $query->pager);
 
-  dpm($viewed);
+}
+
+/**
+ * [portico_now_preprocess_field description]
+ * @param  [type] $variables [description]
+ * @return [type]            [description]
+ */
+function portico_now_preprocess_field(&$variables) {
+	if($variables['element']['#field_name'] == 'field_portico_now_category') {
+    $variables['classes_array'][] = 'term-' . drupal_html_class($variables['items'][0]['#markup']);
+	}
 }

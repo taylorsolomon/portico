@@ -25,7 +25,8 @@ function portico_now_field_group_info() {
     'children' => array(
       0 => 'body',
       1 => 'field_image',
-      2 => 'title',
+      2 => 'field_portico_now_category',
+      3 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
