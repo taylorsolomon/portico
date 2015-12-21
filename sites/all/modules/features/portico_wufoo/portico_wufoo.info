@@ -1,6 +1,6 @@
-name = portico_wufoo
+name = Portico Wufoo
 core = 7.x
-package = Features
+package = Portico
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = field_group

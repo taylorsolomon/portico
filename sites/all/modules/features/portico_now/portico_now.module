@@ -5,3 +5,69 @@
  */
 
 include_once 'portico_now.features.inc';
+
+/**
+ * [portico_blog_subtype_options_alter description]
+ * @param  [type] &$options   [description]
+ * @param  [type] $form_state [description]
+ * @return [type]             [description]
+ */
+function portico_now_subtype_options_alter(&$options, $form_state) {
+  if ($form_state['bundle'] == 'page') {
+    $options['portico_now'] = t('Portico Now Landing Page');
+  }
+}
+
+/**
+ * Implements hook_entity_view_alter
+ * @param  [type] &$build [description]
+ * @param  [type] $type   [description]
+ * @return [type]         [description]
+ */
+function portico_now_entity_view_alter(&$build, $type) {
+  switch ($type) {
+    case 'node':
+      switch ($build['#bundle']) {
+        case 'page':
+          if ($subtype = field_get_items('node', $build['#node'], 'field_subtype')) {
+            $subtype = reset($subtype);
+            if ($subtype['value'] == 'portico_now') {
+              portico_now_aggregate_nodes($build);
+            }
+          }
+          break;
+      }
+      break;
+  }
+}
+
+/**
+ * [portico_now_aggregate_nodes description]
+ * @param  [type] $build [description]
+ * @return [type]        [description]
+ */
+function portico_now_aggregate_nodes(&$build) {
+
+  $query = new EntityFieldQuery;
+  $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'portico_now')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->propertyOrderBy('created', 'DESC')
+        ->pager(10)
+        ->addMetaData('account', user_load(1)); // Run the query as user 1.
+
+  $result = $query->execute();
+
+  if (!$result['node']) {
+    return $build;
+  }
+
+  $keys = array_keys($result['node']);
+  $loaded = entity_load('node', $keys);
+  $viewed = entity_view('node', $loaded, 'teaser');
+
+  $build['nodes'] = $viewed;
+  $build['pager']['#markup'] = theme('pager', $query->pager);
+
+  dpm($viewed);
+}

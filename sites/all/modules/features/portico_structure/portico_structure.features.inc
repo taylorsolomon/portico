@@ -79,7 +79,7 @@ function portico_structure_node_info() {
     'landing' => array(
       'name' => t('Landing'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Landing pages and standard pages aren\'t really that different, but landing pages have the ability to set up grids and sidebars, full-width images, etc.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -87,7 +87,7 @@ function portico_structure_node_info() {
     'page' => array(
       'name' => t('Page'),
       'base' => 'node_content',
-      'description' => t('Standard Page type'),
+      'description' => t('Standard Page type. Use this one for any content that needs only one text area and possibly an image. If you\'re creating a "subtype" page, use this type.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -95,7 +95,7 @@ function portico_structure_node_info() {
     'person' => array(
       'name' => t('Person'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Persons show up on the leadership page.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
