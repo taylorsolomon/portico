@@ -47,6 +47,7 @@ function portico_structure_subtype_options(&$form, &$form_state) {
     case 'page' :
       $options = array(
         'sermons' => t('Sermons'),
+        'leadership' => t('Leadership'),
       );
       break;
   }
@@ -168,8 +169,14 @@ function portico_structure_entity_view_alter(&$build, $type) {
   if ($type == 'node' && $build['#bundle'] == 'page') {
     if ($subtype = field_get_items('node', $build['#node'], 'field_subtype')) {
 
-      if ($subtype[0]['value'] == 'sermons') {
-        portico_structure_add_sermons($build);
+      switch($subtype[0]['value']) {
+        case 'sermons':
+          portico_structure_add_sermons($build);
+          break;
+
+        case 'leadership':
+          portico_structure_add_leadership($build);
+          break;
       }
     }
   }
@@ -201,4 +208,81 @@ function portico_structure_add_sermons(&$build) {
   $viewed = entity_view('node', $nodes, 'teaser');
 unset($viewed['node']['#sorted']);
   $build['sermons'] = $viewed;
+}
+
+/**
+ * [portico_structure_add_sermons description]
+ * @param  [type] &$build [description]
+ * @return [type]         [description]
+ */
+function portico_structure_add_leadership(&$build) {
+
+  $q = new EntityFieldQuery;
+  $q->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'person')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->addTag('portico_structure_leadership');
+
+  $r = $q->execute();
+
+  if (empty($r['node'])) {
+    return FALSE;
+  }
+
+  $nodes = entity_load('node', array_keys($r['node']));
+
+  $viewed = entity_view('node', $nodes, 'teaser');
+
+  $build['leaders'] = array(
+
+    'pastor-elder' => array(
+      '#prefix' => '<div class=\'leadership-type\'>',
+      'title' => array('#markup' => '<h2>' . t('Pastors and Elders') . '</h2>'),
+      '#suffix' => '</div>',
+      'people' => array(),
+    ),
+
+    'deacon' => array(
+      '#prefix' => '<div class=\'leadership-type\'>',
+      'title' => array('#markup' => '<h2>' . t('Deacons') . '</h2>'),
+      '#suffix' => '</div>',
+      'people' => array(),
+    ),
+
+    'staff' => array(
+      '#prefix' => '<div class=\'leadership-type\'>',
+      'title' => array('#markup' => '<h2>' . t('Staff') . '</h2>'),
+      '#suffix' => '</div>',
+      'people' => array(),
+    ),
+
+    '#prefix' => '<div class=\'leadership-wrapper\'>',
+    '#suffix' => '</div>',
+  );
+
+  // Assign weight, and divy people up by type
+  foreach ($nodes as $node) {
+
+    $type = field_get_items('node', $node, 'field_type');
+    $type = reset($type);
+
+    $weight = field_get_items('node', $node, 'field_weight');
+    $weight = reset($weight);
+
+    $viewed['node'][$node->nid]['#weight'] = $weight['value'];
+
+    $build['leaders'][$type['value']]['people'][] = $viewed['node'][$node->nid];
+
+  }
+
+  // Get rid of unneeded areas if there are any.
+  // Also, sort results by field_weight
+  foreach ($build['leaders'] as $key => $value) {
+    if (empty($value['people'])) {
+      unset($build['leaders'][$key]);
+      continue;
+    }
+
+    uasort($build['leaders'][$key]['people'], 'element_sort');
+  }
 }
