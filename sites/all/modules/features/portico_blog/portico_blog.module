@@ -78,13 +78,21 @@ function portico_blog_add_blogposts(&$build) {
       '#markup' => '<p class="no-results">No results</p>',
     ),
   );
+
+  $limit = 10;
+  $params = drupal_get_query_parameters();
+  $offset = empty($params['page']) ? 0 : $limit * ($params['page']);
+
   $index = search_api_index_load('blog_index');
   $query = new SearchApiQuery($index);
+  $query->range($offset, $limit);
   $result = $query->execute();
 
   if (empty($result['results'])) {
     return $build;
   }
+
+  $pager = pager_default_initialize($result['result count'], $limit, 0);
 
   $results = array_column($result['results'], 'id');
   $loaded = entity_load('node', $results);
@@ -99,6 +107,8 @@ function portico_blog_add_blogposts(&$build) {
     'date' => array('#markup' => portico_blog_facet_dates()),
     'category' => portico_blog_facet_categories(),
   );
+
+  $build['pager']['#markup'] = theme('pager');
 }
 
 /**
