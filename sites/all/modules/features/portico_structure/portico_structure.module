@@ -234,30 +234,30 @@ function portico_structure_add_leadership(&$build) {
   $viewed = entity_view('node', $nodes, 'teaser');
 
   $build['leaders'] = array(
+    '#prefix' => '<div class=\'leadership-wrapper\'>',
+    '#suffix' => '</div>',
 
     'pastor-elder' => array(
       '#prefix' => '<div class=\'leadership-type\'>',
-      'title' => array('#markup' => '<h2>' . t('Pastors and Elders') . '</h2>'),
+      'title' => array('#markup' => '<h2 class=\'leadership-title\'>' . t('Pastors and Elders') . '</h2>'),
       '#suffix' => '</div>',
       'people' => array(),
     ),
 
     'deacon' => array(
       '#prefix' => '<div class=\'leadership-type\'>',
-      'title' => array('#markup' => '<h2>' . t('Deacons') . '</h2>'),
+      'title' => array('#markup' => '<h2 class=\'leadership-title\'>' . t('Deacons') . '</h2>'),
       '#suffix' => '</div>',
       'people' => array(),
     ),
 
     'staff' => array(
       '#prefix' => '<div class=\'leadership-type\'>',
-      'title' => array('#markup' => '<h2>' . t('Staff') . '</h2>'),
+      'title' => array('#markup' => '<h2 class=\'leadership-title\'>' . t('Staff') . '</h2>'),
       '#suffix' => '</div>',
       'people' => array(),
     ),
 
-    '#prefix' => '<div class=\'leadership-wrapper\'>',
-    '#suffix' => '</div>',
   );
 
   // Assign weight, and divy people up by type
@@ -278,6 +278,9 @@ function portico_structure_add_leadership(&$build) {
   // Get rid of unneeded areas if there are any.
   // Also, sort results by field_weight
   foreach ($build['leaders'] as $key => $value) {
+    if (!is_array($value)) {
+      continue;
+    }
     if (empty($value['people'])) {
       unset($build['leaders'][$key]);
       continue;

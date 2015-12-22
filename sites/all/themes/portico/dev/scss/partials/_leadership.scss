@@ -1,0 +1,20 @@
+.leadership-wrapper {
+  max-width: $break2;
+  margin: 0 auto;
+  @include pad(1em);
+
+  h2.leadership-title {
+    font-weight: 300;
+    margin-bottom: 1em;
+    font-size: 2em;
+  }
+
+  .leadership-type {
+    @include row;
+    margin-bottom: 2em;
+
+    .node-person {
+      @include span-columns(4,12);
+    }
+  }
+}

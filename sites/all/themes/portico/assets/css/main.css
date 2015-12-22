@@ -1219,3 +1219,37 @@ body.front #hero:after {
     line-height: 1.5;
   }
 }
+
+.leadership-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.leadership-wrapper h2.leadership-title {
+  font-weight: 300;
+  margin-bottom: 1em;
+  font-size: 2em;
+}
+
+.leadership-wrapper .leadership-type {
+  display: block;
+  margin-bottom: 2em;
+}
+
+.leadership-wrapper .leadership-type::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.leadership-wrapper .leadership-type .node-person {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+}
+
+.leadership-wrapper .leadership-type .node-person:last-child {
+  margin-right: 0;
+}
