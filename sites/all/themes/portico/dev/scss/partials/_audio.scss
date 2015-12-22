@@ -1,55 +1,78 @@
+$audio-height: 40px;
+
 .jp-audio {
-  height: 50px;
+  height: $audio-height;
   position: relative;
   text-align: left;
   margin: 0;
   padding: 0;
   font-size: 0;
   line-height: 0;
+  overflow: hidden;
 
   .jp-controls {
     left: 0;
     position: absolute;
     top: 0;
-    width: 50px;
+    width: $audio-height;
     height: 100%;
     background-color: $blue;
 
+    li {
+      display: block;
+      line-height: $audio-height;
+    }
+
     a {
-        text-decoration: none;
-        font-size: 20px;
-        padding-left: 0px;
-        line-height: 50px;
-        text-align: center;
-        cursor: pointer;
-        color: rgba($white, 0.8);
-        transition: color $ts $te, background $ts $te;
-    }
-
-    a:hover {
-      color: $white;
-    }
-
-    a:before {
-      display: inline-block;
-      font-family: flat-audio;
-      font-style: normal;
-      font-weight: 400;
       text-decoration: none;
-      font-variant: normal;
-      text-transform: none;
-      speak: none;
-      width: 50px;
-      line-height: 50px;
+      font-size: 20px;
+      padding-left: 0px;
+      line-height: $audio-height;
       text-align: center;
-      opacity: 1;
+      cursor: pointer;
+      color: rgba($white, 0.8);
+      transition: color $ts $te, background $ts $te;
+
+      &:hover {
+        color: $white;
+      }
+
+      &:before {
+        display: inline-block;
+        font-family: 'icomoon';
+        font-style: normal;
+        font-weight: 400;
+        text-decoration: none;
+        font-variant: normal;
+        text-transform: none;
+        speak: none;
+        width: $audio-height;
+        line-height: $audio-height;
+        text-align: center;
+        opacity: 1;
+      }
+
+      &.jp-play:before {
+        content: '\e908';
+      }
+
+      &.jp-pause:before {
+        content: '\e909';
+      }
+
+      span {
+        display:inline-block;
+        width:0;
+        height:0;
+        text-indent: 100%;
+      }
     }
   }
 
   .jp-progress {
     position: absolute;
     top: 0;
-    left: 50px;
+    left: $audio-height;
     right: 0;
     height: 100%;
     background-color: $grey;
@@ -83,7 +106,7 @@
       height: 100%;
       padding: 0 12px 0 0;
       font-size: 14px;
-      line-height: 50px;
+      line-height: $audio-height;
       text-align:right;
       color: $white;
       font-weight: bold;

@@ -540,7 +540,7 @@ h1, h2, h3, h4, h5, h6 {
   background: url("../images/logo.png") center left no-repeat;
   margin-left: 50px;
   width: 220px;
-  height: 48px;
+  height: 54px;
   float: left;
 }
 
@@ -570,7 +570,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .menu-name-main-menu > ul > li > a {
   padding: 1.2em;
-  font-size: .9em;
   color: #fff;
   text-align: center;
   -webkit-transition: color 0.2s ease;
@@ -759,6 +758,115 @@ body.node-type-wufoo #hero {
 @media screen and (min-width: 960px) {
   .content > .field-body, .wufoo-form-wrapper {
     padding: 3em;
+  }
+}
+
+.sermons-list .series-image {
+  padding: 2em;
+  background-size: cover;
+}
+
+.sermons-list .series-image img {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.sermons-list .sermons-by-series {
+  padding: 1em;
+}
+
+.sermons-list .node-sermon {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.sermons-list .node-sermon h2 {
+  font-weight: 200;
+  margin-right: 50px;
+}
+
+.sermons-list .node-sermon .field-date {
+  margin-right: 50px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8em;
+  color: #0077C0;
+}
+
+.sermons-list .node-sermon a.sermon-body-toggle {
+  position: absolute;
+  color: #949494;
+  display: block;
+  height: 30px;
+  width: 30px;
+  top: 0;
+  right: 0;
+  margin: 10px 0;
+  border: 2px solid #0077C0;
+  border-radius: 100px;
+}
+
+.sermons-list .node-sermon a.sermon-body-toggle:after {
+  position: absolute;
+  content: '\f107';
+  font-family: 'icomoon';
+  font-size: 1.5em;
+  padding: 0;
+  left: 0;
+  right: 0;
+  top: 0px;
+  margin: auto;
+  text-align: center;
+  z-index: 1;
+  -webkit-transform: rotate3d(0, 0, 0, 0deg);
+          transform: rotate3d(0, 0, 0, 0deg);
+  -webkit-transition: -webkit-transform 0.2s ease;
+          transition: transform 0.2s ease;
+}
+
+.sermons-list .node-sermon a.sermon-body-toggle.open:after {
+  -webkit-transform: rotate3d(0, 0, 1, 180deg);
+          transform: rotate3d(0, 0, 1, 180deg);
+}
+
+.sermons-list .node-sermon .sermon-body {
+  overflow: hidden;
+  height: 0;
+  -webkit-transition: height 0.2s ease;
+          transition: height 0.2s ease;
+}
+
+.sermons-list .node-sermon .field-body {
+  padding-bottom: 10px;
+}
+
+@media screen and (min-width: 800px) {
+  .sermons-list {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .sermons-list .series-list {
+    display: block;
+    padding: 1em 0;
+    margin-bottom: 1em;
+  }
+  .sermons-list .series-list::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+  .sermons-list .series-image {
+    float: left;
+    width: 40%;
+  }
+  .sermons-list .sermons-by-series {
+    float: right;
+    width: 60%;
+    padding: 0 2em;
+  }
+  .sermons-list .node-sermon {
+    margin-bottom: 40px;
   }
 }
 
@@ -1068,29 +1176,35 @@ body.front #hero:after {
 }
 
 .jp-audio {
-  height: 50px;
+  height: 40px;
   position: relative;
   text-align: left;
   margin: 0;
   padding: 0;
   font-size: 0;
   line-height: 0;
+  overflow: hidden;
 }
 
 .jp-audio .jp-controls {
   left: 0;
   position: absolute;
   top: 0;
-  width: 50px;
+  width: 40px;
   height: 100%;
   background-color: #0077C0;
+}
+
+.jp-audio .jp-controls li {
+  display: block;
+  line-height: 40px;
 }
 
 .jp-audio .jp-controls a {
   text-decoration: none;
   font-size: 20px;
   padding-left: 0px;
-  line-height: 50px;
+  line-height: 40px;
   text-align: center;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.8);
@@ -1104,23 +1218,38 @@ body.front #hero:after {
 
 .jp-audio .jp-controls a:before {
   display: inline-block;
-  font-family: flat-audio;
+  font-family: 'icomoon';
   font-style: normal;
   font-weight: 400;
   text-decoration: none;
   font-variant: normal;
   text-transform: none;
   speak: none;
-  width: 50px;
-  line-height: 50px;
+  width: 40px;
+  line-height: 40px;
   text-align: center;
   opacity: 1;
+}
+
+.jp-audio .jp-controls a.jp-play:before {
+  content: '\e908';
+}
+
+.jp-audio .jp-controls a.jp-pause:before {
+  content: '\e909';
+}
+
+.jp-audio .jp-controls a span {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  text-indent: 100%;
 }
 
 .jp-audio .jp-progress {
   position: absolute;
   top: 0;
-  left: 50px;
+  left: 40px;
   right: 0;
   height: 100%;
   background-color: #949494;
@@ -1152,7 +1281,7 @@ body.front #hero:after {
   height: 100%;
   padding: 0 12px 0 0;
   font-size: 14px;
-  line-height: 50px;
+  line-height: 40px;
   text-align: right;
   color: #fff;
   font-weight: bold;

@@ -51,6 +51,8 @@
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
   <?php print $scripts; ?>
+
+<link rel="stylesheet" href="https://i.icomoon.io/public/temp/1b730ae3a7/UntitledProject/style.css">
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <?php print $page_top; ?>

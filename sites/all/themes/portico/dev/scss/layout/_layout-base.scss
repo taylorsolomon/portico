@@ -12,12 +12,12 @@
     font-weight: bold;
     display:block;
   }
- 
+
   #home-link {
     background: url('../images/logo.png') center left no-repeat;
     margin-left: 50px;
     width: 220px;
-    height: 48px;
+    height: 54px;
     float: left;
 
     span {
@@ -44,7 +44,6 @@
       > a {
         // Level 1 Link
         padding: 1.2em;
-        font-size: .9em;
         color: $white;
         text-align: center;
         transition: color $ts $te;

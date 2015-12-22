@@ -1,0 +1,105 @@
+.sermons-list {
+
+  .series-image {
+    padding: 2em;
+    background-size: cover;
+    img {
+      text-align: center;
+      margin: 0 auto;
+    }
+
+  }
+
+  .sermons-by-series {
+    padding: 1em;
+  }
+
+  .node-sermon {
+    position:relative;
+    margin-bottom: 20px;
+
+    h2 {
+      font-weight: 200;
+      margin-right: 50px;
+      // margin-bottom: 10px;
+    }
+
+    .field-date {
+      margin-right: 50px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.8em;
+      color: $blue;
+    }
+
+    a.sermon-body-toggle {
+      position: absolute;
+      color: $grey;
+      display: block;
+      height: 30px;
+      width: 30px;
+      top:0;
+      right:0;
+      margin: 10px 0;
+      border: 2px solid $blue;
+      border-radius: 100px;
+
+      &:after {
+        position: absolute;
+        content: '\f107';
+        font-family: 'icomoon';
+        font-size: 1.5em;
+        padding:0;
+        left: 0;
+        right: 0;
+        top: 0px;
+        margin: auto;
+        text-align: center;
+        z-index: 1;
+        transform: rotate3d(0, 0, 0, 0deg);
+        transition: transform $ts $te;
+      }
+
+      &.open:after {
+        transform: rotate3d(0, 0, 1, 180deg);
+      }
+    }
+
+    .sermon-body {
+      overflow: hidden;
+      height:0;
+      transition: height $ts $te;
+    }
+
+    .field-body {
+      padding-bottom: 10px;
+    }
+  }
+
+  @include media($break1) {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    .series-list {
+      @include row;
+      padding: 1em 0;
+      margin-bottom: 1em;
+    }
+
+    .series-image {
+      float:left;
+      width: 40%;
+    }
+
+    .sermons-by-series {
+      float:right;
+      width: 60%;
+      padding: 0 2em;
+    }
+
+    .node-sermon {
+      margin-bottom: 40px;
+    }
+  }
+}

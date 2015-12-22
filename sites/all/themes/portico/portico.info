@@ -4,7 +4,7 @@ version = 1.0
 core = 7.x
 
 stylesheets[all][] = assets/css/main.css
-
+scripts[] = assets/js/all.js
 
 regions[header]         = Header
 regions[hero]           = Hero

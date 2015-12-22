@@ -11,8 +11,8 @@
     <div id="<?php print $player_id; ?>_interface" class="jp-interface">
 
       <ul class="jp-controls">
-        <li><a href="#" class="jp-play" tabindex="1">play</a></li>
-        <li><a href="#" class="jp-pause" tabindex="1">pause</a></li>
+        <li><a href="#" class="jp-play" tabindex="1"><span>play</span></a></li>
+        <li><a href="#" class="jp-pause" tabindex="1"><span>pause</span></a></li>
       </ul>
 
       <div class="jp-progress">

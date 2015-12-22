@@ -193,8 +193,7 @@ function portico_structure_add_sermons(&$build) {
   $q->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'sermon')
     ->propertyCondition('status', NODE_PUBLISHED)
-    ->pager(0,10)
-    ->propertyOrderBy('created', 'DESC')
+    ->fieldOrderBy('field_date', 'value', 'DESC')
     ->addTag('portico_structure_sermons');
 
   $r = $q->execute();
@@ -205,8 +204,12 @@ function portico_structure_add_sermons(&$build) {
 
   $nodes = entity_load('node', array_keys($r['node']));
 
-  $viewed = entity_view('node', $nodes, 'teaser');
-unset($viewed['node']['#sorted']);
+  $viewed = _split_and_view_by_series($nodes);
+
+  // $viewed = entity_view('node', $nodes, 'teaser');
+
+  unset($viewed['node']['#sorted']);
+
   $build['sermons'] = $viewed;
 }
 
@@ -288,4 +291,84 @@ function portico_structure_add_leadership(&$build) {
 
     uasort($build['leaders'][$key]['people'], 'element_sort');
   }
+}
+
+
+function _split_and_view_by_series($nodes) {
+  $working = array_values($nodes);
+  $terms = array();
+
+  for($i = 0; $i < count($working); $i++) {
+
+    // It's a required field
+    $tid = $working[$i]->field_series['und'][0]['tid'];
+
+    if (isset($terms[$tid]) &&
+       ($tid !== $working[ $i - 1 ]->field_series['und'][0]['tid'])
+       ) {
+      $terms[$tid . '-' . $i][] = $working[$i];
+      continue;
+    }
+
+    $terms[$tid][] = $working[$i];
+  }
+
+  $output = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('sermons-list'))
+  );
+
+  foreach ($terms as $tid_candidate => $sermons) {
+    $tid = explode('-',$tid_candidate);
+    $tid = reset($tid);
+
+    $term = taxonomy_term_load($tid);
+    $image = '';
+
+    if (!empty($term->field_title_image)) {
+      $title_image = array(
+        'path'   => $term->field_title_image['und'][0]['uri'],
+        'width'  => $term->field_title_image['und'][0]['width'],
+        'height' => $term->field_title_image['und'][0]['height'],
+        'alt'    => $term->name,
+        'title'  => $term->name,
+        'attributes' => array(),
+      );
+    }
+
+    if (!empty($term->field_image)) {
+      $bg_image = $term->field_image['und'][0]['uri'];
+    }
+
+    $sermons_viewed = entity_view('node', $sermons, 'teaser');
+
+    $output[$tid_candidate] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('series-list', drupal_html_class($term->name)),
+      ),
+
+      'series-image' => array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('series-image')),
+      ),
+
+      'sermons' => array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('sermons-by-series')),
+        'sermons' => $sermons_viewed,
+      )
+    );
+
+    if (!empty($title_image)) {
+      $output[$tid_candidate]['series-image']['image']['#markup'] = theme('image', $title_image);
+    }
+
+    if (!empty($bg_image)) {
+      $output[$tid_candidate]['series-image']['#attributes']['style'] =
+        'background-image: url(' . file_create_url($bg_image) . ');';
+    }
+  }
+
+  return $output;
 }
