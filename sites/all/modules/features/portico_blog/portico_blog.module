@@ -101,11 +101,16 @@ function portico_blog_add_blogposts(&$build) {
   $build['blog_results']['nodes'] = $viewed;
 
   $build['blog_facets'] = array(
+    '#prefix' => '<div class=\'filter-bar\'><span>Filter</span></div>',
     '#type' => 'container',
-    '#attributes' => array('class' => array('blog-facets')),
+    '#attributes' => array('class' => array('blog-facets-wrapper')),
     '#weight' => -1,
-    'date' => array('#markup' => portico_blog_facet_dates()),
-    'category' => portico_blog_facet_categories(),
+    'inner' => array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('blog-facets')),
+      'date' => array('#markup' => portico_blog_facet_dates()),
+      'category' => portico_blog_facet_categories(),
+    ),
   );
 
   $build['pager']['#markup'] = theme('pager');
@@ -153,7 +158,7 @@ function portico_blog_facet_dates() {
   // if (isset($output)) {
   //   return portico_blog_archive_theme($output);
   // }
-
+  //
   // // Get the available results from the cache table.
   // if ($cache = cache_get('portico_blog_archives')) {
   //   return portico_blog_archive_theme($cache->data);
@@ -189,7 +194,7 @@ function portico_blog_facet_dates() {
 
     // Output the available months.
     $output[$year] = array(
-      'data' => $year,
+      'data' => '<span>' . $year . '</span>',
       'children' => $results
     );
   }
@@ -281,7 +286,16 @@ function portico_blog_archive_theme($options) {
     }
   }
 
-  return theme('item_list', array('items' => $options));
+  $output = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('facet-wrapper', 'dates')),
+    'items' => array(
+      '#theme' => 'item_list',
+      '#items' => $options
+    )
+  );
+  return render($output);
+  // return theme('item_list', array('items' => $options));
 }
 
 /**
