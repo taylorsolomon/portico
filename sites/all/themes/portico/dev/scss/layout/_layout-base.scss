@@ -8,7 +8,7 @@ body {
 
 .slideout-menu {
   position: fixed;
-  // left: 0;
+
   top: 0;
   bottom: 0;
   right: 0;
@@ -17,6 +17,33 @@ body {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   display: none;
+  background: $blue-dark;
+  padding: 1em;
+  font-size: 1.2em;
+
+  > ul > li {
+    display: block;
+    color: $blue;
+    font-weight: 700;
+    margin-bottom: 1em;
+    line-height: 1.5;
+    text-transform: uppercase;
+
+    a, a.active {
+      text-transform: none;
+      line-height: 1.5;
+
+      display: block;
+      color: $white;
+      font-weight: 400;
+    }
+
+    > ul {
+      margin-top: 0.5em;
+      margin-left:1em;
+
+    }
+  }
 }
 
 .slideout-panel {
@@ -34,13 +61,24 @@ body {
   display: block;
 }
 
-.slideout-open #off-screen-bounds {
+#off-screen-bounds {
   position:absolute;
-  z-index: 5;
   top:0;
   left: 0;
-  right: $slideout-width;
+  right: 0;
   bottom:0;
+  z-index:-1;
+  transform: translate3d(0,0,0);
+  transition-property: transform, background;
+  transition-timing-function: cubic-bezier(0.5,0.8,0.5,0.8);
+  transition-duration: 200ms;
+  background: rgba($black, 0);
+}
+
+#off-screen-bounds.open {
+  z-index: 5;
+  background: rgba($black, 0.4);
+  transform: translate3d(-$slideout-width, 0, 0);
 }
 
 #mobile-header {
@@ -73,11 +111,12 @@ body {
     }
 
     &:after {
-      padding: 12px 14px;
+      padding: 16px 10px;
+      text-align: center;
       height: 54px;
       font-weight: normal;
       content: '\f0c9';
-      font-size: 30px;
+      font-size: 20px;
       font-family: 'icomoon';
       display: block;
       color: $white;

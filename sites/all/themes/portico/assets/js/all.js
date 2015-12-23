@@ -75,10 +75,21 @@ function loadAsset(filename, callback){
         'menu': document.getElementById('off-screen-nav'),
         'padding': 256,
         'tolerance': 70,
-        'side': 'right'
+        'side': 'right',
+        'duration': 200,
+        'fx': 'cubic-bezier(0.5,0.8,0.5,0.8)'
       });
 
       markup.appendTo('#off-screen-nav');
+
+      porticoConfig.menu.on('beforeopen', function() {
+        $('#off-screen-bounds').addClass('open');
+        $('#off-screen-nav').addClass('open');
+
+      }).on('beforeclose', function() {
+        $('#off-screen-bounds').removeClass('open');
+        $('#off-screen-nav').removeClass('open');
+      });
 
       var div = document.createElement('div');
       div.setAttribute('id', 'off-screen-bounds');

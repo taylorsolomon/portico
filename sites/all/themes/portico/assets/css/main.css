@@ -540,6 +540,31 @@ body {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   display: none;
+  background: #152d40;
+  padding: 1em;
+  font-size: 1.2em;
+}
+
+.slideout-menu > ul > li {
+  display: block;
+  color: #0077C0;
+  font-weight: 700;
+  margin-bottom: 1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.slideout-menu > ul > li a, .slideout-menu > ul > li a.active {
+  text-transform: none;
+  line-height: 1.5;
+  display: block;
+  color: #fff;
+  font-weight: 400;
+}
+
+.slideout-menu > ul > li > ul {
+  margin-top: 0.5em;
+  margin-left: 1em;
 }
 
 .slideout-panel {
@@ -557,13 +582,29 @@ body {
   display: block;
 }
 
-.slideout-open #off-screen-bounds {
+#off-screen-bounds {
   position: absolute;
-  z-index: 5;
   top: 0;
   left: 0;
-  right: 256px;
+  right: 0;
   bottom: 0;
+  z-index: -1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition-property: -webkit-transform, background;
+          transition-property: transform, background;
+  -webkit-transition-timing-function: cubic-bezier(0.5, 0.8, 0.5, 0.8);
+          transition-timing-function: cubic-bezier(0.5, 0.8, 0.5, 0.8);
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
+  background: transparent;
+}
+
+#off-screen-bounds.open {
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-transform: translate3d(-256px, 0, 0);
+          transform: translate3d(-256px, 0, 0);
 }
 
 #mobile-header {
@@ -600,11 +641,12 @@ body {
 }
 
 #mobile-header #trigger-menu:after {
-  padding: 12px 14px;
+  padding: 16px 10px;
+  text-align: center;
   height: 54px;
   font-weight: normal;
   content: '\f0c9';
-  font-size: 30px;
+  font-size: 20px;
   font-family: 'icomoon';
   display: block;
   color: #fff;
