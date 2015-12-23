@@ -75,8 +75,10 @@
 
   <div id="page-wrapper"><div id="page">
 
-    <div id="header">
+    <div id="mobile-header">
+      <a class='home-link' href="<?php print url('<front>'); ?>"><span>Portico Church Arlington</span></a>
 
+      <a href="#" id='trigger-menu'><span>Open Menu</span></a>
       <?php print render($page['header']); ?>
 
     </div> <!-- /.section, /#header -->

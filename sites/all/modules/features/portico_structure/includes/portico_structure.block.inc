@@ -57,6 +57,7 @@ function portico_structure_block_view($delta = '') {
       if (path_is_admin(current_path())) {
         return FALSE;
       }
+
       $entity = menu_get_object();
       $type = 'node';
 
@@ -120,53 +121,58 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
     return array('#markup' => $markup);
   }
 
-  $wrapper = entity_metadata_wrapper($type, $entity);
-  $image = entity_metadata_yank_raw($wrapper, $field);
+  try {
+    
+    $wrapper = entity_metadata_wrapper($type, $entity);
+    $image = entity_metadata_yank_raw($wrapper, $field);
 
-  $style_name = '1600-500';
-  drupal_alter('bg', $style_name, $entity);
+    $style_name = '1600-500';
+    drupal_alter('bg', $style_name, $entity);
 
-  if (!empty($image)) {
+    if (!empty($image)) {
 
-    try {
+      try {
 
-      $derivative_uri = image_style_path($style_name, $image['uri']);
-      $style = image_style_load($style_name);
-      $success = file_exists($derivative_uri) ||
-        image_style_create_derivative($style, $image['uri'], $derivative_uri);
-      $image_url = file_create_url($derivative_uri);
+        $derivative_uri = image_style_path($style_name, $image['uri']);
+        $style = image_style_load($style_name);
+        $success = file_exists($derivative_uri) ||
+          image_style_create_derivative($style, $image['uri'], $derivative_uri);
+        $image_url = file_create_url($derivative_uri);
 
-    } catch (Exception $e) {
+      } catch (Exception $e) {
 
+
+      }
+
+      $css = '
+        body.page-node-' . $wrapper->getIdentifier() . ' #hero {
+          background-image: url("' . $image_url . '");
+        }
+      ';
+
+      drupal_add_css($css, 'inline');
 
     }
 
-    $css = '
-      body.page-node-' . $wrapper->getIdentifier() . ' #hero {
-        background-image: url("' . $image_url . '");
-      }
-    ';
+    if ($type == 'taxonomy_term') {
 
-    drupal_add_css($css, 'inline');
+      $titleImage = field_get_items('taxonomy_term', $entity, 'field_title_image');
+
+      $titleOptions = array(
+        'label' => 'hidden',
+        'type' => 'image',
+      );
+
+      $titleImageRenderable = field_view_value('taxonomy_term', $entity, 'field_title_image', $titleImage[0], $titleOptions);
+
+      return array('#markup' => render($titleImageRenderable));
+    }
+
+    return;
+
+  } catch(Exception $e) {
 
   }
-
-  if ($type == 'taxonomy_term') {
-
-    $titleImage = field_get_items('taxonomy_term', $entity, 'field_title_image');
-
-    $titleOptions = array(
-      'label' => 'hidden',
-      'type' => 'image',
-    );
-
-    $titleImageRenderable = field_view_value('taxonomy_term', $entity, 'field_title_image', $titleImage[0], $titleOptions);
-
-    return array('#markup' => render($titleImageRenderable));
-  }
-
-  return;
-
 }
 
 function entity_metadata_yank_raw($wrapper, $field) {

@@ -1,5 +1,105 @@
 
-.menu-name-main-menu {
+$slideout-width: 256px;
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.slideout-menu {
+  position: fixed;
+  // left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  width: $slideout-width;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+}
+
+.slideout-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+  display: block;
+}
+
+.slideout-open #off-screen-bounds {
+  position:absolute;
+  z-index: 5;
+  top:0;
+  left: 0;
+  right: $slideout-width;
+  bottom:0;
+}
+
+#mobile-header {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  top: 0;
+  right:0;
+  background: rgba($blue-dark, 0.9);
+  height: 54px;
+
+  @include media($break2) {
+    display: none;
+  }
+
+  .home-link {
+    margin-left: 15px;
+  }
+
+  #trigger-menu {
+    display: block;
+    width: 54px;
+    float:right;
+
+    span {
+      text-indent: 100%;
+      height:0;
+      display:block;
+      overflow: hidden;
+    }
+
+    &:after {
+      padding: 12px 14px;
+      height: 54px;
+      font-weight: normal;
+      content: '\f0c9';
+      font-size: 30px;
+      font-family: 'icomoon';
+      display: block;
+      color: $white;
+      // background: $green;
+    }
+  }
+}
+
+.home-link {
+  background: url('../images/logo.png') center left no-repeat;
+  margin-left: 50px;
+  width: 220px;
+  height: 54px;
+  float: left;
+
+  span {
+    font-size:0;
+  }
+}
+
+#block-menu-block-main-menu .menu-name-main-menu {
+  display:none;
   position: absolute;
   z-index: 2;
   width: 100%;
@@ -7,22 +107,14 @@
   right:0;
   background: rgba($blue-dark, 0.9);
 
+  @include media($break2) {
+    display:block;
+  }
+
   a {
     color: $white;
     font-weight: bold;
     display:block;
-  }
-
-  #home-link {
-    background: url('../images/logo.png') center left no-repeat;
-    margin-left: 50px;
-    width: 220px;
-    height: 54px;
-    float: left;
-
-    span {
-      font-size:0;
-    }
   }
 
   > ul { // .menu
@@ -147,12 +239,11 @@
       }
     }
   }
-
 }
 
 #hero {
   @include background-image(linear-gradient(to left, #16222A , #3A6073));
-
+  min-height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;

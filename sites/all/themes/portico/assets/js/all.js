@@ -1,5 +1,33 @@
-var porticoConfig = {};
+var porticoConfig = {
 
+  test: true,
+},
+themePath = '/sites/all/themes/portico',
+assetPath = '/sites/all/themes/portico/assets/js/vendor/';
+
+function loadAsset(filename, callback){
+  var script = document.createElement('script');
+  script.setAttribute("type","text/javascript");
+
+  if (script.readyState){ //IE
+    script.onreadystatechange = function(){
+      if (script.readyState == "loaded" || script.readyState == "complete") {
+        script.onreadystatechange = null;
+        callback();
+      }
+    };
+  } else { //Others
+    script.onload = function(){
+      callback();
+    };
+  }
+
+  script.setAttribute("src", filename);
+
+  if (typeof script !== "undefined") {
+    document.getElementsByTagName("head")[0].appendChild(script);
+  }
+}
 
 ;(function ( $, window, document, undefined ) {
 
@@ -32,6 +60,40 @@ var porticoConfig = {};
           }
         });
       }
+
     });
+
+    var mobileMenu = function() {
+
+      var menu   = $('#block-menu-block-main-menu').find('.menu-block-wrapper > ul'),
+          markup = menu.clone();
+
+      markup.attr('id', 'mobile-menu');
+
+      porticoConfig.menu = new Slideout({
+        'panel': document.getElementById('page-wrapper'),
+        'menu': document.getElementById('off-screen-nav'),
+        'padding': 256,
+        'tolerance': 70,
+        'side': 'right'
+      });
+
+      markup.appendTo('#off-screen-nav');
+
+      var div = document.createElement('div');
+      div.setAttribute('id', 'off-screen-bounds');
+      document.getElementsByTagName("body")[0].appendChild(div);
+
+      $('#off-screen-bounds').on('click touchstart', function(e) {
+        porticoConfig.menu.close();
+      });
+
+      $('#trigger-menu').on('click', function(e) {
+        e.preventDefault();
+        porticoConfig.menu.open();
+      });
+    };
+
+    loadAsset(themePath + '/bower_components/slideout.js/dist/slideout.js', mobileMenu);
 
   })( jQuery, window, document );

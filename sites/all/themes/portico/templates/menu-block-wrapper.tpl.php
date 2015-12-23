@@ -23,7 +23,7 @@
     <?php
       $url = url('<front>');
     ?>
-    <a id='home-link' href="<?php print $url; ?>"><span>Portico Church Arlington</span></a>
+    <a class='home-link' href="<?php print $url; ?>"><span>Portico Church Arlington</span></a>
   <?php endif; ?>
 
   <?php print render($content); ?>
