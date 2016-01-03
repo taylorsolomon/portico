@@ -22,7 +22,7 @@
     .field-category {
       position: absolute;
       top: 0;
-      right:20px;
+      right: 20px;
     }
   }
 
@@ -34,7 +34,7 @@
 
       .field-portico-now-category,
       .field-category {
-        margin-top:-1em;
+        margin-top: -25px;
         margin-right: 0px;
         float:right;
       }
@@ -43,9 +43,9 @@
     h2 {
       margin: 1em 0;
       font-weight: 400;
+
       a {
         color: $blue;
-
       }
     }
 

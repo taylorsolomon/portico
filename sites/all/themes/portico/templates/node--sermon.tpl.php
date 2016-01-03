@@ -84,6 +84,7 @@ hide($content['links']);
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
+<?php if ($view_mode === 'teaser'): ?>
   <h2<?php print $title_attributes; ?>><?php print $title; ?></h2>
 
   <?php print render($content['field_date']); ?>
@@ -99,4 +100,17 @@ hide($content['links']);
   <?php endif; ?>
 
     <?php print render($content); ?>
+
+<?php elseif($view_mode === 'blog_teaser'): ?>
+
+    <h2<?php print $title_attributes; ?>><?php print $title; ?></h2>
+
+    <?php print render($content['field_date']); ?>
+      <div class='sermon-body'>
+        <?php print render($content['body']); ?>
+      </div>
+
+      <?php print render($content); ?>
+<?php endif; ?>
+
 </article>

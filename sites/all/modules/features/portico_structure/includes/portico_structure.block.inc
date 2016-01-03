@@ -122,7 +122,7 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
   }
 
   try {
-    
+
     $wrapper = entity_metadata_wrapper($type, $entity);
     $image = entity_metadata_yank_raw($wrapper, $field);
 
@@ -250,6 +250,8 @@ function portico_structure_sermon_promo() {
   $series_tid = $sermon->field_series['und'][0]['tid'];
   $series = taxonomy_term_load($series_tid);
 
+  $sermon_page = portico_structure_get_subtype('sermons');
+
   try {
     // Check for parent's image
     $image = $series->field_image['und'][0];
@@ -277,7 +279,7 @@ function portico_structure_sermon_promo() {
     'label' => 'hidden',
     'type' => 'image',
     'settings' => array(
-      'image_link' => 'content',
+      'image_link' => 'none',
     ),
   );
 
@@ -296,8 +298,21 @@ function portico_structure_sermon_promo() {
       '#attributes' => array(
         'class' => array('right'),
       ),
-      'node' => node_view($sermon, 'promo')),
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('inner'),
+        ),
+        'node' => node_view($sermon, 'blog_teaser'),
+        'link' => array('#markup' => l('View Series','taxonomy/term/'.$series_tid)),
+      ),
+    ),
   );
+
+  if (!empty($sermon_page)) {
+    $return['sermon-area']['inner']['link2']['#markup'] =
+      l('View All Messages','node/'.$sermon_page->nid);
+  }
 
   return $return;
 }

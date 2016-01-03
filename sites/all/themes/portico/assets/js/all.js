@@ -34,6 +34,8 @@ function loadAsset(filename, callback){
   "use strict";
 
     $(document).ready(function() {
+      
+      loadAsset(themePath + '/bower_components/slideout.js/dist/slideout.js', mobileMenu);
 
       // Sermon toggle JS
       if ($('.sermon-body-toggle').length) {
@@ -77,18 +79,16 @@ function loadAsset(filename, callback){
         'tolerance': 70,
         'side': 'right',
         'duration': 200,
-        'fx': 'cubic-bezier(0.5,0.8,0.5,0.8)'
+        // 'fx': 'cubic-bezier(0.5,0.8,0.5,0.8)'
       });
 
       markup.appendTo('#off-screen-nav');
-
+      console.log($('#off-screen-nav'));
       porticoConfig.menu.on('beforeopen', function() {
         $('#off-screen-bounds').addClass('open');
-        $('#off-screen-nav').addClass('open');
 
       }).on('beforeclose', function() {
         $('#off-screen-bounds').removeClass('open');
-        $('#off-screen-nav').removeClass('open');
       });
 
       var div = document.createElement('div');
@@ -104,7 +104,5 @@ function loadAsset(filename, callback){
         porticoConfig.menu.open();
       });
     };
-
-    loadAsset(themePath + '/bower_components/slideout.js/dist/slideout.js', mobileMenu);
 
   })( jQuery, window, document );

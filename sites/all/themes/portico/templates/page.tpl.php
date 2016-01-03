@@ -102,9 +102,9 @@
 
     </div>
 
-    <div id="main-wrapper"><div id="main" class="clearfix">
+    <div id="main-wrapper"><div id="main" class="">
 
-      <div id="content" class="column"><div class='wrapper'>
+      <div id="content" class=""><div class='wrapper'>
         <?php print render($page['content']); ?>
       </div></div>
 

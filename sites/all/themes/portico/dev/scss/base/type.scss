@@ -109,3 +109,38 @@ h1,h2,h3,h4,h5,h6 {
   padding:0;
   line-height: 1.3;
 }
+
+
+.field-body,
+.field-description {
+
+  ul {
+    margin-bottom: 1.3em;
+
+    li {
+      position: relative;
+      line-height: 1.5;
+      padding-left: 1em;
+      margin-left: 0.5em;
+
+      &:before {
+        content: '\f111';
+        font-family: 'icomoon';
+        color: $blue;
+        position: absolute;
+        left: 0;
+        font-size: 8px;
+        top: 6px;
+      }
+
+    }
+
+  }
+
+  p {
+    margin-bottom: 1.3em;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    margin-bottom: 1em;
+  }
+}

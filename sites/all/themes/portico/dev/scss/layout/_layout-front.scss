@@ -1,43 +1,75 @@
 body.front {
 
-#hero {
-  @extend .hero-default;
-  background-image: none;
-  position: relative;
-  overflow: hidden;
-  
-  h1 {
-    display: block;
-    line-height: 1;
-    padding:0;
-    margin:0;
+  .clearfix {
+    &:after {
+      content: '';
+    }
+  }
+
+  #hero {
+    @extend .hero-default;
+
+    // background: linear-gradient(to top, #16222A , #3A6073);
     position: relative;
-    z-index: 2;
+    overflow: hidden;
+
+    h1 {
+      display: block;
+      line-height: 1;
+      padding:0;
+      margin:0;
+      position: relative;
+      z-index: 2;
+    }
+
+    video {
+      // position:absolute;
+      // bottom:0;
+      // left:0;
+      // right:0;
+      // top:0;
+      // width: 100%    !important;
+      // height: auto   !important;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      transform: translateX(-50%) translateY(-50%);
+      background-size: cover;
+      display:none;
+    }
+
+    &:after {
+      position: absolute;
+      z-index: 1;
+      content: '';
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      background: $blue-dark;
+      opacity: 0.4;
+    }
+
+    @include media($break1) {
+      background-image:none;
+      height: 500px;
+      video {
+        display:block;
+      }
+    }
+
+    @include media($break3) {
+      height: 650px;
+    }
+
+    @include media($break3) {
+      height: 800px;
+    }
   }
-
-  video {
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    top:0;
-    width: 100%    !important;
-    height: auto   !important;
-  }
-
-  &:after {
-    position: absolute;
-    z-index: 1;
-    content: '';
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    background: $blue-dark;
-    opacity: 0.4;
-  }
-}
-
-
 
 }

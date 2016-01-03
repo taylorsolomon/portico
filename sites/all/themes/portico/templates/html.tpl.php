@@ -54,8 +54,7 @@
   <?php print $styles; ?>
   <?php print $scripts; ?>
 
-<link rel="stylesheet" href="https://i.icomoon.io/public/temp/b0c24b6440/UntitledProject/style.css">
-
+<!-- <link rel="stylesheet" href="https://i.icomoon.io/public/temp/3859238647/UntitledProject/style.css"> -->
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <?php print $page_top; ?>

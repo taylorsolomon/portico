@@ -39,6 +39,7 @@
       display: block;
       height: 30px;
       width: 30px;
+      padding:0;
       top:0;
       right:0;
       margin: 10px 0;
@@ -49,20 +50,22 @@
         position: absolute;
         content: '\f107';
         font-family: 'icomoon';
-        font-size: 1.5em;
-        padding:0;
-        left: 0;
-        right: 0;
-        top: 0px;
+        font-size: 16px;
+
+        line-height: 26px;
+
+        left: 8px;
+
+        // font-weight: bold;
         margin: auto;
-        text-align: center;
+        
         z-index: 1;
         transform: rotate3d(0, 0, 0, 0deg);
         transition: transform $ts $te;
       }
 
       &.open:after {
-        transform: rotate3d(0, 0, 1, 180deg);
+        transform: rotate3d(0, 0, 1, -180deg);
       }
     }
 

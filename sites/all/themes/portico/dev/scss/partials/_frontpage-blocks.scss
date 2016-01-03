@@ -53,4 +53,51 @@
   background-attachment: fixed;
   background-position: center top;
   background-size: cover;
+
+  > .content {
+    // background: rgba(#000,0.1);
+    max-width: 1200px;
+    margin:0 auto;
+    display:flex;
+    align-items: stretch;
+  }
+
+  .left,.right {
+    width: 50%;
+  }
+
+  .left {
+    padding: 2em;
+    img {
+      margin:0 auto;
+    }
+  }
+
+  .right {
+    padding: 2em;
+    .inner {
+      padding: 2em;
+      height: 100%;
+      // background: rgba($white, 0.5);
+    }
+  }
+
+  .node-sermon {
+    
+    h2 {
+      margin-bottom: 0;
+    }
+
+    .field-date {
+      margin: 0.5em 0 1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.8em;
+    }
+  }
+
+  a {
+    @include button;
+    margin-right: 1em;
+  }
 }
