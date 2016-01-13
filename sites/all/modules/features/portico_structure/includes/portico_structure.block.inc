@@ -113,7 +113,7 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
       "<video autoplay loop>
         <source preload='auto' src='" .
 
-        '/sites/default/files/video/hero-video.mp4'
+        '/sites/default/files/video/hero-video-small.mp4'
 
         . "' type='video/mp4' />
       </video>";
