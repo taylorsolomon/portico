@@ -124,9 +124,11 @@ function portico_blog_facet_categories() {
   $vocab = taxonomy_vocabulary_machine_name_load('blogpost_category');
   $tree = taxonomy_get_tree($vocab->vid);
 
+  $blog = portico_structure_get_subtype('blog');
+  $path = drupal_get_path_alias('node/' . $blog->nid);
+
   $items = array();
   foreach ($tree as $term) {
-    $path = '/blog';
 
     $options = array(
       'query' => array(

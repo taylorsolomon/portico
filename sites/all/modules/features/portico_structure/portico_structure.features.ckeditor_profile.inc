@@ -87,17 +87,16 @@ function portico_structure_ckeditor_profile_defaults() {
       'settings' => array(
         'ss' => 2,
         'toolbar' => '[
-    [\'Source\'],
-    [\'Cut\',\'Copy\',\'Paste\',\'PasteText\',\'PasteFromWord\',\'-\',\'SpellChecker\',\'Scayt\'],
-    [\'Undo\',\'Redo\',\'Find\',\'Replace\',\'-\',\'SelectAll\'],
-    [\'Image\',\'Table\',\'HorizontalRule\',\'Smiley\',\'SpecialChar\'],
+    [\'Bold\',\'Italic\',\'Underline\'],
+    [\'-\',\'Subscript\',\'Superscript\',\'RemoveFormat\',\'-\'],
+    [\'Image\',\'Table\'],
     [\'Maximize\',\'ShowBlocks\'],
+    [\'Link\',\'Unlink\',\'Anchor\'],
     \'/\',
-    [\'Format\'],
-    [\'Bold\',\'Italic\',\'Underline\',\'Strike\',\'-\',\'Subscript\',\'Superscript\',\'-\',\'RemoveFormat\'],
+    [\'Format\',\'Styles\'],
     [\'NumberedList\',\'BulletedList\',\'-\',\'Outdent\',\'Indent\',\'Blockquote\'],
-    [\'JustifyLeft\',\'JustifyCenter\',\'JustifyRight\',\'JustifyBlock\',\'-\',\'BidiLtr\',\'BidiRtl\'],
-    [\'Link\',\'Unlink\',\'Anchor\']
+    [\'JustifyLeft\',\'JustifyCenter\',\'JustifyRight\',\'JustifyBlock\'],
+    [\'Source\']
 ]',
         'expand' => 't',
         'default' => 't',
@@ -109,7 +108,7 @@ function portico_structure_ckeditor_profile_defaults() {
         'auto_lang' => 't',
         'language_direction' => 'default',
         'allowed_content' => 't',
-        'extraAllowedContent' => '',
+        'extraAllowedContent' => 'iframe[*]',
         'enter_mode' => 'p',
         'shift_enter_mode' => 'br',
         'font_format' => 'p;div;pre;address;h1;h2;h3;h4;h5;h6',
@@ -139,13 +138,6 @@ function portico_structure_ckeditor_profile_defaults() {
         'theme_config_js' => 'f',
         'js_conf' => '',
         'loadPlugins' => array(
-          'autogrow' => array(
-            'name' => 'autogrow',
-            'desc' => 'Auto Grow plugin. See <a href="http://ckeditor.com/addon/autogrow">addon page</a> for more details.',
-            'path' => '//cdn.ckeditor.com/4.4.3/full-all/plugins/autogrow/',
-            'buttons' => FALSE,
-            'default' => 'f',
-          ),
           'drupalbreaks' => array(
             'name' => 'drupalbreaks',
             'desc' => 'Plugin for inserting Drupal teaser and page breaks.',

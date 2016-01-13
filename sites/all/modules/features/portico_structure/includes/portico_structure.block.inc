@@ -139,13 +139,11 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
           image_style_create_derivative($style, $image['uri'], $derivative_uri);
         $image_url = file_create_url($derivative_uri);
 
-      } catch (Exception $e) {
+      } catch (Exception $e) {}
 
-
-      }
 
       $css = '
-        body.page-node-' . $wrapper->getIdentifier() . ' #hero {
+        body.page-' . drupal_html_class($type) . '-' . $wrapper->getIdentifier() . ' #hero {
           background-image: url("' . $image_url . '");
         }
       ';
@@ -311,7 +309,7 @@ function portico_structure_sermon_promo() {
 
   if (!empty($sermon_page)) {
     $return['sermon-area']['inner']['link2']['#markup'] =
-      l('View All Messages','node/'.$sermon_page->nid);
+      l('View All Messages', 'node/' . $sermon_page->nid);
   }
 
   return $return;

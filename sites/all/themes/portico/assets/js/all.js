@@ -3,7 +3,7 @@ var porticoConfig = {
   test: true,
 },
 themePath = '/sites/all/themes/portico',
-assetPath = '/sites/all/themes/portico/assets/js/vendor/';
+assetPath = '/sites/all/themes/portico/assets/js/vendor';
 
 function loadAsset(filename, callback){
   var script = document.createElement('script');
@@ -34,7 +34,7 @@ function loadAsset(filename, callback){
   "use strict";
 
     $(document).ready(function() {
-      
+
       loadAsset(themePath + '/bower_components/slideout.js/dist/slideout.js', mobileMenu);
 
       // Sermon toggle JS
@@ -57,12 +57,19 @@ function loadAsset(filename, callback){
             $(this).removeClass('open').siblings('.blog-facets-wrapper').height('');
           } else {
             var height = $(this).siblings('.blog-facets-wrapper').children('.blog-facets').height();
-            console.log(height);
+            
             $(this).addClass('open').siblings('.blog-facets-wrapper').height(height);
           }
         });
       }
 
+
+      // FitVids
+      if ($('iframe').length) {
+        loadAsset(themePath + '/bower_components/jquery.fitvids/jquery.fitvids.js', function() {
+          $('#page-wrapper').fitVids();
+        });
+      }
     });
 
     var mobileMenu = function() {
@@ -83,7 +90,7 @@ function loadAsset(filename, callback){
       });
 
       markup.appendTo('#off-screen-nav');
-      console.log($('#off-screen-nav'));
+
       porticoConfig.menu.on('beforeopen', function() {
         $('#off-screen-bounds').addClass('open');
 
@@ -104,5 +111,7 @@ function loadAsset(filename, callback){
         porticoConfig.menu.open();
       });
     };
+
+
 
   })( jQuery, window, document );

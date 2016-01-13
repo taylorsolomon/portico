@@ -1,33 +1,35 @@
 #block-portico-structure-location {
-
-  background: $blue-dark;
   @include row;
+  background: $blue-dark;
   position:relative;
 
   .container {
     color: $white;
-    position:absolute;
+    // position:absolute;
     top: 0;
     left: 20%;
     width: 300px;
     height:100%;
     z-index: 1;
     background: $blue-dark;
-
     padding: 30px 20px;
     transition: padding $ts $te;
 
     @include media($sidebar-break) {
-      padding: 40px 30px;
+      padding: 30px 30px;
+      position:absolute;
+
     }
 
     @include media($break2) {
-      padding: 50px;
+      padding: 30px;
+      background: rgba($blue-dark, 0.9);
     }
 
     .heading {
-      display:block;
-      font-style: italic;
+      display: block;
+      font-style: normal;
+      font-weight: 700;
       margin-bottom: 30px;
     }
 
@@ -50,6 +52,7 @@
 }
 
 #block-portico-structure-sermon-promo {
+  background-color: $blue-dark;
   background-attachment: fixed;
   background-position: center top;
   background-size: cover;
@@ -58,15 +61,10 @@
     // background: rgba(#000,0.1);
     max-width: 1200px;
     margin:0 auto;
-    display:flex;
-    align-items: stretch;
-  }
-
-  .left,.right {
-    width: 50%;
   }
 
   .left {
+    position: relative;
     padding: 2em;
     img {
       margin:0 auto;
@@ -74,16 +72,20 @@
   }
 
   .right {
-    padding: 2em;
+    padding: 1em;
     .inner {
-      padding: 2em;
+      padding: 1em;
       height: 100%;
-      // background: rgba($white, 0.5);
+      background: #eee;
+      background: rgba(#eee, 0.8);
+      border: 1px solid #777;
+      border-radius: 5px;
+
     }
   }
 
   .node-sermon {
-    
+
     h2 {
       margin-bottom: 0;
     }
@@ -98,6 +100,54 @@
 
   a {
     @include button;
-    margin-right: 1em;
+    margin-bottom: 20px;
+  }
+
+
+
+
+  @include media($sidebar-break) {
+
+    > .content {
+      padding: 5em 0;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .left,.right {
+      padding: 2em;
+      width: 50%;
+    }
+
+    .left {
+      img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .right {
+      .inner {
+        padding: 2em;
+      }
+
+      .node-sermon {
+        margin-top: 40px;
+        position: relative;
+      }
+    }
+  }
+
+  @include media($break2) {
+    .right {
+      padding-left: 8em;
+      a {
+        &:last-child {
+          margin-left: 20px;
+          margin-bottom: 3em;
+        }
+      }
+    }
   }
 }

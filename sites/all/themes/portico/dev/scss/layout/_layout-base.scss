@@ -171,13 +171,15 @@ body {
         margin: 0 0.3em;
       }
 
-      > a {
+      > a, > span {
         // Level 1 Link
+        display: block;
         padding: 1.2em;
         color: $white;
         text-align: center;
         transition: color $ts $te;
         text-transform: uppercase;
+        font-weight: 700;
 
         &:hover {
           color: lighten($blue, 30%);
@@ -339,11 +341,13 @@ body {
 }
 
 
-body.node-type-landing {
+body.node-type-landing,
+body.page-taxonomy-term {
   #hero {
     @extend .hero-default;
   }
 }
+
 
 body.node-type-page,
 body.node-type-blogpost,
@@ -353,6 +357,27 @@ body.node-type-wufoo {
   }
 }
 
+
+body.page-taxonomy-term {
+  #hero h1 {
+    font-size:0;
+  }
+  #content {
+    padding: 1em;
+  }
+
+
+  @include media($sidebar-break) {
+    #content {
+      max-width: 700px;
+      margin:0 auto;
+    }
+
+    .node-sermon {
+      margin-bottom: 3em;
+    }
+  }
+}
 
 
 .content > .field-body, .wufoo-form-wrapper {
@@ -364,7 +389,6 @@ body.node-type-wufoo {
     @include pad(3em);
   }
 }
-
 
 body.page-user {
 
@@ -400,8 +424,83 @@ input[type='submit'] {
   color: $white;
   font-weight: bold;
   transition: background-color $ts $te;
-  
+
   &:hover {
     background-color: $blue-dark;
+  }
+}
+
+
+
+#footer {
+  background: $blue-dark;
+  padding: 2em 0;
+
+  .social-links {
+    width: 100%;
+    display: block;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      font-size:0;
+    }
+
+    a {
+      margin: 0 10px 0 0;
+      display: block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid #aaa;
+      position: relative;
+      transition: border $ts $te;
+
+      &:after {
+        content: '';
+        position: absolute;
+        font-family: icomoon;
+        font-size: 20px;
+        color: #aaa;
+        text-align: center;
+        left: 0;
+        right: 0;
+        top: 13px;
+        transition: color $ts $te;
+
+      }
+
+      &.facebook:after {
+        content: '\e90e';
+      }
+
+      &.twitter:after {
+        content: '\e910';
+      }
+
+      &:hover {
+        border-color: $white;
+        &:after {
+          color: $white;
+        }
+      }
+
+      span {
+        overflow: hidden;
+        text-indent: 100%;
+        display: inline-block;
+      }
+    }
+  }
+
+  address {
+    margin-top: 20px;
+    font-style: normal;
+    text-align: center;
+
+    p {
+      color: $white;
+      margin:0;
+    }
   }
 }

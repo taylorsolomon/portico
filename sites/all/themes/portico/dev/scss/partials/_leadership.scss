@@ -14,7 +14,29 @@
     margin-bottom: 2em;
 
     .node-person {
-      @include span-columns(4,12);
+      height: 440px;
+      padding: 0 2em;
+    }
+
+    @include media(600px) {
+      .node-person {
+        @include span-columns(6,12);
+        &:nth-child(2n) {
+          @include omega;
+        }
+      }
+    }
+
+    @include media($break1) {
+      .node-person {
+        @include span-columns(4,12);
+        &:nth-child(2n) {
+          @include span-columns(4,12);;
+        }
+        &:nth-child(3n) {
+          @include omega;
+        }
+      }
     }
   }
 }

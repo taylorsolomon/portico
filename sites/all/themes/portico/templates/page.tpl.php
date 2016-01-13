@@ -123,6 +123,26 @@
     </div></div> <!-- /#main, /#main-wrapper -->
 
     <div id="footer">
+
+      <ul class='social-links'>
+        <li>
+          <a class='twitter' href='https://twitter.com/porticoARL'>
+            <span>Twitter</span>
+          </a>
+        </li>
+
+        <li>
+          <a class='facebook' href='https://www.facebook.com/porticoarlington'>
+            <span>Facebook</span>
+          </a>
+        </li>
+      </ul>
+
+      <address>
+        <p>4100 N Vacation Ln</p>
+        <p>Arlington, Virginia 22207</p>
+      </address>
+
       <?php print render($page['footer']); ?>
     </div>
 

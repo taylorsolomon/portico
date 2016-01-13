@@ -8,6 +8,22 @@ html {
   box-sizing: inherit;
 }
 
+.button {
+  color: #152d40;
+  padding: 0.5em 1.5em;
+  display: inline-block;
+  border: 2px solid #152d40;
+  -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+          transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+  font-weight: bold;
+}
+
+.button:hover {
+  border-color: #0077C0;
+  background-color: #0077C0;
+  color: #fff;
+}
+
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -446,6 +462,17 @@ ul li, ul.menu li {
   background: #fff;
 }
 
+ul.pager {
+  margin: 3em 0;
+}
+
+ul.pager a {
+  margin: 0;
+  color: #0077C0;
+  font-weight: 700;
+  padding: 0.5em;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
 }
@@ -880,26 +907,28 @@ body {
   }
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > a {
+#block-menu-block-main-menu .menu-name-main-menu > ul > li > a, #block-menu-block-main-menu .menu-name-main-menu > ul > li > span {
+  display: block;
   padding: 1.2em;
   color: #fff;
   text-align: center;
   -webkit-transition: color 0.2s ease;
           transition: color 0.2s ease;
   text-transform: uppercase;
+  font-weight: 700;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > a:hover {
+#block-menu-block-main-menu .menu-name-main-menu > ul > li > a:hover, #block-menu-block-main-menu .menu-name-main-menu > ul > li > span:hover {
   color: #5ac0ff;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > a:hover + ul {
+#block-menu-block-main-menu .menu-name-main-menu > ul > li > a:hover + ul, #block-menu-block-main-menu .menu-name-main-menu > ul > li > span:hover + ul {
   top: 100%;
   opacity: 1;
   visibility: visible;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > a:hover + ul:before {
+#block-menu-block-main-menu .menu-name-main-menu > ul > li > a:hover + ul:before, #block-menu-block-main-menu .menu-name-main-menu > ul > li > span:hover + ul:before {
   width: 100%;
 }
 
@@ -1008,35 +1037,42 @@ body {
           transition: font-size 0.2s ease;
 }
 
-.hero-default, body.node-type-landing #hero, body.front #hero {
+.hero-default, body.node-type-landing #hero,
+body.page-taxonomy-term #hero, body.front #hero {
   height: 250px;
   -webkit-transition: height 0.2s ease;
           transition: height 0.2s ease;
 }
 
 @media screen and (min-width: 800px) {
-  .hero-default, body.node-type-landing #hero, body.front #hero {
+  .hero-default, body.node-type-landing #hero,
+  body.page-taxonomy-term #hero, body.front #hero {
     height: 300px;
   }
-  .hero-default h1, body.node-type-landing #hero h1, body.front #hero h1 {
+  .hero-default h1, body.node-type-landing #hero h1,
+  body.page-taxonomy-term #hero h1, body.front #hero h1 {
     font-size: 3.75rem;
   }
 }
 
 @media screen and (min-width: 960px) {
-  .hero-default, body.node-type-landing #hero, body.front #hero {
+  .hero-default, body.node-type-landing #hero,
+  body.page-taxonomy-term #hero, body.front #hero {
     height: 450px;
   }
-  .hero-default h1, body.node-type-landing #hero h1, body.front #hero h1 {
+  .hero-default h1, body.node-type-landing #hero h1,
+  body.page-taxonomy-term #hero h1, body.front #hero h1 {
     font-size: 5rem;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .hero-default, body.node-type-landing #hero, body.front #hero {
+  .hero-default, body.node-type-landing #hero,
+  body.page-taxonomy-term #hero, body.front #hero {
     height: 600px;
   }
-  .hero-default h1, body.node-type-landing #hero h1, body.front #hero h1 {
+  .hero-default h1, body.node-type-landing #hero h1,
+  body.page-taxonomy-term #hero h1, body.front #hero h1 {
     font-size: 6.25rem;
   }
 }
@@ -1059,6 +1095,24 @@ body.node-type-wufoo #hero {
   body.node-type-blogpost #hero h1,
   body.node-type-wufoo #hero h1 {
     font-size: 3.75rem;
+  }
+}
+
+body.page-taxonomy-term #hero h1 {
+  font-size: 0;
+}
+
+body.page-taxonomy-term #content {
+  padding: 1em;
+}
+
+@media screen and (min-width: 720px) {
+  body.page-taxonomy-term #content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  body.page-taxonomy-term .node-sermon {
+    margin-bottom: 3em;
   }
 }
 
@@ -1113,31 +1167,91 @@ input[type='submit']:hover {
   background-color: #152d40;
 }
 
-.sermons-list .series-image {
-  padding: 2em;
-  background-size: cover;
+#footer {
+  background: #152d40;
+  padding: 2em 0;
 }
 
-.sermons-list .series-image img {
+#footer .social-links {
+  width: 100%;
+  display: block;
   text-align: center;
-  margin: 0 auto;
 }
 
-.sermons-list .sermons-by-series {
-  padding: 1em;
+#footer .social-links li {
+  display: inline-block;
+  font-size: 0;
 }
 
-.sermons-list .node-sermon {
+#footer .social-links a {
+  margin: 0 10px 0 0;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
   position: relative;
+  -webkit-transition: border 0.2s ease;
+          transition: border 0.2s ease;
+}
+
+#footer .social-links a:after {
+  content: '';
+  position: absolute;
+  font-family: icomoon;
+  font-size: 20px;
+  color: #aaa;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 13px;
+  -webkit-transition: color 0.2s ease;
+          transition: color 0.2s ease;
+}
+
+#footer .social-links a.facebook:after {
+  content: '\e90e';
+}
+
+#footer .social-links a.twitter:after {
+  content: '\e910';
+}
+
+#footer .social-links a:hover {
+  border-color: #fff;
+}
+
+#footer .social-links a:hover:after {
+  color: #fff;
+}
+
+#footer .social-links a span {
+  overflow: hidden;
+  text-indent: 100%;
+  display: inline-block;
+}
+
+#footer address {
+  margin-top: 20px;
+  font-style: normal;
+  text-align: center;
+}
+
+#footer address p {
+  color: #fff;
+  margin: 0;
+}
+
+.node-sermon {
   margin-bottom: 20px;
+  position: relative;
 }
 
-.sermons-list .node-sermon h2 {
+.node-sermon h2 {
   font-weight: 200;
-  margin-right: 50px;
 }
 
-.sermons-list .node-sermon .field-date {
+.node-sermon .field-date {
   margin-right: 50px;
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -1146,7 +1260,7 @@ input[type='submit']:hover {
   color: #0077C0;
 }
 
-.sermons-list .node-sermon a.sermon-body-toggle {
+.node-sermon a.sermon-body-toggle {
   position: absolute;
   color: #949494;
   display: block;
@@ -1160,7 +1274,7 @@ input[type='submit']:hover {
   border-radius: 100px;
 }
 
-.sermons-list .node-sermon a.sermon-body-toggle:after {
+.node-sermon a.sermon-body-toggle:after {
   position: absolute;
   content: '\f107';
   font-family: 'icomoon';
@@ -1175,9 +1289,27 @@ input[type='submit']:hover {
           transition: transform 0.2s ease;
 }
 
-.sermons-list .node-sermon a.sermon-body-toggle.open:after {
+.node-sermon a.sermon-body-toggle.open:after {
   -webkit-transform: rotate3d(0, 0, 1, -180deg);
           transform: rotate3d(0, 0, 1, -180deg);
+}
+
+.sermons-list .series-image {
+  padding: 2em;
+  background-size: cover;
+}
+
+.sermons-list .series-image img {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.sermons-list .sermons-by-series {
+  padding: 1em;
+}
+
+.sermons-list .node-sermon h2 {
+  margin-right: 50px;
 }
 
 .sermons-list .node-sermon .sermon-body {
@@ -1487,8 +1619,8 @@ body.front #hero:after {
 }
 
 #block-portico-structure-location {
-  background: #152d40;
   display: block;
+  background: #152d40;
   position: relative;
 }
 
@@ -1500,7 +1632,6 @@ body.front #hero:after {
 
 #block-portico-structure-location .container {
   color: #fff;
-  position: absolute;
   top: 0;
   left: 20%;
   width: 300px;
@@ -1514,19 +1645,22 @@ body.front #hero:after {
 
 @media screen and (min-width: 720px) {
   #block-portico-structure-location .container {
-    padding: 40px 30px;
+    padding: 30px 30px;
+    position: absolute;
   }
 }
 
 @media screen and (min-width: 960px) {
   #block-portico-structure-location .container {
-    padding: 50px;
+    padding: 30px;
+    background: rgba(21, 45, 64, 0.9);
   }
 }
 
 #block-portico-structure-location .container .heading {
   display: block;
-  font-style: italic;
+  font-style: normal;
+  font-weight: 700;
   margin-bottom: 30px;
 }
 
@@ -1551,6 +1685,7 @@ body.front #hero:after {
 }
 
 #block-portico-structure-sermon-promo {
+  background-color: #152d40;
   background-attachment: fixed;
   background-position: center top;
   background-size: cover;
@@ -1559,21 +1694,10 @@ body.front #hero:after {
 #block-portico-structure-sermon-promo > .content {
   max-width: 1200px;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: stretch;
-  -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-}
-
-#block-portico-structure-sermon-promo .left, #block-portico-structure-sermon-promo .right {
-  width: 50%;
 }
 
 #block-portico-structure-sermon-promo .left {
+  position: relative;
   padding: 2em;
 }
 
@@ -1582,12 +1706,16 @@ body.front #hero:after {
 }
 
 #block-portico-structure-sermon-promo .right {
-  padding: 2em;
+  padding: 1em;
 }
 
 #block-portico-structure-sermon-promo .right .inner {
-  padding: 2em;
+  padding: 1em;
   height: 100%;
+  background: #eee;
+  background: rgba(238, 238, 238, 0.8);
+  border: 1px solid #777;
+  border-radius: 5px;
 }
 
 #block-portico-structure-sermon-promo .node-sermon h2 {
@@ -1609,13 +1737,55 @@ body.front #hero:after {
   -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
           transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
   font-weight: bold;
-  margin-right: 1em;
+  margin-bottom: 20px;
 }
 
 #block-portico-structure-sermon-promo a:hover {
   border-color: #0077C0;
   background-color: #0077C0;
   color: #fff;
+}
+
+@media screen and (min-width: 720px) {
+  #block-portico-structure-sermon-promo > .content {
+    padding: 5em 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
+  #block-portico-structure-sermon-promo .left, #block-portico-structure-sermon-promo .right {
+    padding: 2em;
+    width: 50%;
+  }
+  #block-portico-structure-sermon-promo .left img {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  #block-portico-structure-sermon-promo .right .inner {
+    padding: 2em;
+  }
+  #block-portico-structure-sermon-promo .right .node-sermon {
+    margin-top: 40px;
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  #block-portico-structure-sermon-promo .right {
+    padding-left: 8em;
+  }
+  #block-portico-structure-sermon-promo .right a:last-child {
+    margin-left: 20px;
+    margin-bottom: 3em;
+  }
 }
 
 .jp-audio {
@@ -1838,14 +2008,47 @@ body.front #hero:after {
 }
 
 .leadership-wrapper .leadership-type .node-person {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 31.76157%;
+  height: 440px;
+  padding: 0 2em;
 }
 
-.leadership-wrapper .leadership-type .node-person:last-child {
-  margin-right: 0;
+@media screen and (min-width: 600px) {
+  .leadership-wrapper .leadership-type .node-person {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+  }
+  .leadership-wrapper .leadership-type .node-person:last-child {
+    margin-right: 0;
+  }
+  .leadership-wrapper .leadership-type .node-person:nth-child(2n) {
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .leadership-wrapper .leadership-type .node-person {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%;
+  }
+  .leadership-wrapper .leadership-type .node-person:last-child {
+    margin-right: 0;
+  }
+  .leadership-wrapper .leadership-type .node-person:nth-child(2n) {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%;
+  }
+  .leadership-wrapper .leadership-type .node-person:nth-child(2n):last-child {
+    margin-right: 0;
+  }
+  .leadership-wrapper .leadership-type .node-person:nth-child(3n) {
+    margin-right: 0;
+  }
 }
 
 .filter-bar {
