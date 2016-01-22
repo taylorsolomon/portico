@@ -2259,3 +2259,23 @@ body.front #hero:after {
   margin-bottom: 0;
   text-transform: uppercase;
 }
+
+#portico-alert .text a {
+  color: #152d40;
+  padding: 0.5em 1.5em;
+  display: inline-block;
+  border: 2px solid #152d40;
+  -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+          transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+  font-weight: bold;
+  margin-top: 0.6em;
+  font-size: 0.6em;
+  background: rgba(21, 45, 64, 0.9);
+  color: #fff;
+}
+
+#portico-alert .text a:hover {
+  border-color: #0077C0;
+  background-color: #0077C0;
+  color: #fff;
+}

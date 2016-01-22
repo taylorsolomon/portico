@@ -27,5 +27,13 @@
       margin-bottom: 0;
       text-transform: uppercase;
     }
+
+    a {
+      @include button;
+      margin-top: 0.6em;
+      font-size: 0.6em;
+      background: rgba($blue-dark, 0.9);
+      color: $white;
+    }
   }
 }
