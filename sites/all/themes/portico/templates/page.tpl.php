@@ -79,10 +79,12 @@
       <a class='home-link' href="<?php print url('<front>'); ?>"><span>Portico Church Arlington</span></a>
 
       <a href="#" id='trigger-menu'><span>Open Menu</span></a>
-      <?php print render($page['header']); ?>
 
     </div> <!-- /.section, /#header -->
 
+    <div id='header'>
+      <?php print render($page['header']); ?>
+    </div>
 
     <div id="hero">
       <?php print render($title_prefix); ?>

@@ -20,6 +20,11 @@ function portico_structure_block_info() {
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
 
+  $blocks['alerts'] = array(
+    'info' => t('Alerts Block'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+
   return $blocks;
 }
 
@@ -81,9 +86,64 @@ function portico_structure_block_view($delta = '') {
       $block['content'] = portico_structure_sermon_promo();
       break;
 
+    case 'alerts':
+      $block['subject'] = '';
+      $block['content'] = portico_structure_alerts();
+      break;
+
   }
 
   return $block;
+}
+
+/**
+ * [portico_structure_alerts description]
+ * @return [type] [description]
+ */
+function portico_structure_alerts() {
+
+  $efq = new EntityFieldQuery();
+  $efq->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'alert')
+      ->propertyCondition('status', NODE_PUBLISHED)
+      ->range(0,1)
+      ->propertyOrderBy('created', 'DESC');
+
+  $result = $efq->execute();
+  if (empty($result['node'])) {
+    return FALSE;
+  }
+
+  $result_node = reset($result['node']);
+  $node = node_load($result_node->nid);
+
+  $image = field_get_items('node', $node, 'field_image');
+  $image = reset($image);
+
+  if (!empty($image)) {
+
+    try {
+      $image_url = file_create_url($image['uri']);
+    } catch (Exception $e) {}
+
+    $css = '
+      #portico-alert {
+        background-image: url("' . $image_url . '");
+      }
+    ';
+
+    drupal_add_css($css, 'inline');
+  }
+
+  $text = field_get_items('node', $node, 'body');
+  if (!empty($text)) {
+    $text = reset($text);
+
+  } else {
+    $text = '';
+  }
+
+  return array('#markup' => '<div id="portico-alert"><div class="text">' . $text['safe_value'] . '</div></div>');
 }
 
 /**
@@ -127,6 +187,7 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
     $image = entity_metadata_yank_raw($wrapper, $field);
 
     $style_name = '1600-500';
+
     drupal_alter('bg', $style_name, $entity);
 
     if (!empty($image)) {

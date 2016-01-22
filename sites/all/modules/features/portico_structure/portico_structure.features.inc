@@ -139,6 +139,14 @@ function portico_structure_image_default_styles() {
  */
 function portico_structure_node_info() {
   $items = array(
+    'alert' => array(
+      'name' => t('Alert'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'landing' => array(
       'name' => t('Landing'),
       'base' => 'node_content',

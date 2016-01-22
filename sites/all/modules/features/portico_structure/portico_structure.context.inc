@@ -70,6 +70,12 @@ function portico_structure_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'portico_structure-alerts' => array(
+          'module' => 'portico_structure',
+          'delta' => 'alerts',
+          'region' => 'header',
+          'weight' => '-10',
+        ),
         'menu_block-main-menu' => array(
           'module' => 'menu_block',
           'delta' => 'main-menu',
@@ -81,12 +87,6 @@ function portico_structure_context_default_contexts() {
           'delta' => 'hero_image_title',
           'region' => 'hero',
           'weight' => '-9',
-        ),
-        'facetapi-SOjl8INR3lfpVhEkYsOj4lUoFa8oXfFd' => array(
-          'module' => 'facetapi',
-          'delta' => 'SOjl8INR3lfpVhEkYsOj4lUoFa8oXfFd',
-          'region' => 'content',
-          'weight' => '-10',
         ),
       ),
     ),

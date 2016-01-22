@@ -27,6 +27,29 @@ function portico_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__alert';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'title' => array(
+          'weight' => '8',
+        ),
+        'path' => array(
+          'weight' => '1',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__alert'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__landing';
   $strongarm->value = array(
     'view_modes' => array(
@@ -223,6 +246,15 @@ function portico_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_alert';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_alert'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_landing';
   $strongarm->value = array(
     0 => 'main-menu',
@@ -255,6 +287,13 @@ function portico_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_alert';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_alert'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_landing';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_landing'] = $strongarm;
@@ -279,6 +318,15 @@ function portico_structure_strongarm() {
   $strongarm->name = 'menu_parent_sermon';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_sermon'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_alert';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_alert'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -319,6 +367,13 @@ function portico_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_alert';
+  $strongarm->value = '1';
+  $export['node_preview_alert'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_landing';
   $strongarm->value = '1';
   $export['node_preview_landing'] = $strongarm;
@@ -343,6 +398,13 @@ function portico_structure_strongarm() {
   $strongarm->name = 'node_preview_sermon';
   $strongarm->value = '1';
   $export['node_preview_sermon'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_alert';
+  $strongarm->value = 0;
+  $export['node_submitted_alert'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
