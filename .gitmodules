@@ -1,3 +1,6 @@
 [submodule "sites/all/libraries/jplayer"]
 	path = sites/all/libraries/jplayer
 	url = https://github.com/happyworm/jPlayer.git
+[submodule "sites/all/libraries/getID3"]
+	path = sites/all/libraries/getID3
+	url = https://github.com/JamesHeinrich/getID3.git
