@@ -33,6 +33,14 @@ function portico_structure_menu() {
     'access arguments' => array('administer configuration'),
     'type' => MENU_CALLBACK
   );
+
+  $items['sermon-feed'] = array(
+    'title' => 'Portico Arlington Podcast Feed',
+    'page callback' => 'portico_feed',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
 }
 
@@ -189,20 +197,7 @@ function portico_structure_entity_view_alter(&$build, $type) {
  */
 function portico_structure_add_sermons(&$build) {
 
-  $q = new EntityFieldQuery;
-  $q->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'sermon')
-    ->propertyCondition('status', NODE_PUBLISHED)
-    ->fieldOrderBy('field_date', 'value', 'DESC')
-    ->addTag('portico_structure_sermons');
-
-  $r = $q->execute();
-
-  if (empty($r['node'])) {
-    return FALSE;
-  }
-
-  $nodes = entity_load('node', array_keys($r['node']));
+  $nodes = portico_structure_get_sermons();
 
   $viewed = _split_and_view_by_series($nodes);
 
@@ -368,6 +363,146 @@ function _split_and_view_by_series($nodes) {
       $output[$tid_candidate]['series-image']['#attributes']['style'] =
         'background-image: url(' . file_create_url($bg_image) . ');';
     }
+  }
+
+  return $output;
+}
+
+/**
+ * Construct an itunes feed.
+ * @return [type] [description]
+ */
+function portico_feed() {
+  $output = '';
+  $sermons = portico_structure_get_sermons();
+
+  $channel_data = array(
+    'title' => 'Portico Church Arlington',
+    'link' => 'http://www.porticoarlington.org',
+    'language' => 'en-us',
+    'copyright' => '&#x2117; &amp; &#xA9; 2016 Portico Church Arlington',
+    'description' => 'Portico Church Arlington Podcasts',
+    'itunes:image href="' . '' . '"' => 'self_close',
+    'itunes:subtitle' => 'Sunday message audio from Portico Church Arlington',
+    'itunes:author' => 'Portico Church Arlington',
+    'itunes:summary' => 'Portico Church Arlington Podcasts',
+    'itunes:explicit' => 'no',
+    'itunes:keywords' => 'Jesus,Arlington,Portico,christianity,church,gospel,sermon,Christ',
+    'itunes:owner' => array(
+      'itunes:name' => 'Portico Church Arlington',
+      'itunes:email' => 'jreeve@porticoarlington.org',
+    ),
+    'itunes:category text="Religion &amp; Spirituality"' => array(
+      'itunes:category text="Christianity"' => 'self_close',
+    ),
+  );
+
+  $output .= '<?xml version="1.0" encoding="UTF-8"?>';
+  $output .= '<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">';
+    $output .= '<channel>';
+
+      $output .= portico_rss_tag_generate($channel_data);
+      $output .= portico_rss_format_sermons($sermons);
+
+    $output .= '</channel>';
+  $output .= '</rss>';
+
+  drupal_add_http_header('Content-Type', 'application/rss+xml; charset=utf-8');
+
+  print $output;
+}
+
+/**
+ * [portico_rss_tag_generate description]
+ * @param  [type] $data [description]
+ * @return [type]       [description]
+ */
+function portico_rss_tag_generate($data) {
+  $output = '';
+
+  foreach ($data as $tag => $value) {
+
+    if ($value == 'self_close') {
+      $output .= '<' . $tag . "/>";
+      continue;
+    }
+
+    $output .= '<' . $tag . ">";
+
+    if (is_array($value)) {
+      $output .= portico_rss_tag_generate($value);
+    } else {
+      $output .= $value;
+    }
+
+    $output .= '</' . $tag . '>';
+  }
+  return $output;
+}
+
+/**
+ * [portico_structure_get_sermons description]
+ * @return [type] [description]
+ */
+function portico_structure_get_sermons() {
+  $q = new EntityFieldQuery;
+  $q->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'sermon')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldOrderBy('field_date', 'value', 'DESC')
+    ->addTag('portico_structure_sermons');
+
+  $r = $q->execute();
+
+  if (empty($r['node'])) {
+    return FALSE;
+  }
+
+  $nodes = entity_load('node', array_keys($r['node']));
+  return $nodes;
+}
+
+/**
+ * [portico_rss_format_sermons description]
+ * @param  [type] $sermons [description]
+ * @return [type]          [description]
+ */
+function portico_rss_format_sermons($sermons)  {
+  // global $base_path;
+  require_once('sites/all/libraries/getID3/getid3/getid3.php');
+
+  $output = '';
+  if (empty($sermons)) {
+    return $output;
+  }
+
+  $getID3 = new getID3;
+
+  foreach ($sermons as $sermon) {
+    $file = $sermon->field_audio['und'][0];
+    $path = drupal_realpath($file['uri']);
+    $url = file_create_url($file['uri']);
+    $file_info = $getID3->analyze($path);
+
+    $guid = 'sermon' . '-' . $sermon->nid . '-' . $file['filename'];
+    $pubDate = date('r', $sermon->field_date['und'][0]['value']);
+    $summary = empty($sermon->field_description) ? '' : $sermon->field_description['und'][0]['safe_value'];
+
+    $sermon_data = array(
+      'item' => array(
+        'title' => $sermon->title,
+        'guid' => $guid,
+        'pubDate' => $pubDate,
+        'itunes:author' => 'Portico Church Arlington',
+        'itunes:subtitle' => '',
+        'itunes:summary' => empty($summary) ? '' : '<![CDATA[' .$summary. ']]>',
+        'itunes:duration' => $file_info['playtime_string'],
+        'itunes:image href="' . '' . '"' => 'self_close',
+        'enclosure url="' . $url . '" length="' . $file_info['filesize'] . '" type="' . $file_info['mime_type'] . '"' => 'self_close',
+      ),
+    );
+
+    $output .= portico_rss_tag_generate($sermon_data);
   }
 
   return $output;
