@@ -107,7 +107,10 @@ if (empty($content['field_image'])) {
       }
     ?>
 
-    <h2><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+    <?php if ($view_mode == 'teaser'): ?>
+      <h2><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+    <?php endif; ?>
+
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['links']);

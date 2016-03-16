@@ -356,7 +356,6 @@ body.node-type-wufoo {
   }
 }
 
-
 body.page-taxonomy-term {
   #hero h1 {
     font-size:0;
@@ -364,7 +363,6 @@ body.page-taxonomy-term {
   #content {
     padding: 1em;
   }
-
 
   @include media($sidebar-break) {
     #content {

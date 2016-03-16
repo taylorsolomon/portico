@@ -2219,6 +2219,33 @@ body.front #hero:after {
   }
 }
 
+.node-type-blogpost .content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2em;
+}
+
+.node-type-blogpost .field-category {
+  margin-top: -2em;
+  margin-bottom: 20px;
+}
+
+.node-type-blogpost .field-category::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.node-type-blogpost .field-category a {
+  float: right;
+  padding: 8px 20px;
+  font-size: 0.8em;
+  background-color: rgba(0, 119, 192, 0.9);
+  color: #fff;
+  font-weight: bold;
+  text-align: right;
+}
+
 #header {
   padding-top: 54px;
   background: #152d40;

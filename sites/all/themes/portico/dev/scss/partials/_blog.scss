@@ -178,7 +178,28 @@
     }
   }
 }
-// 
-// .node-blogpost.node-teaser {
-//   @extend .paragraphs-item-text;
-// }
+
+.node-type-blogpost {
+  
+  .content-wrapper {
+    max-width: $break1;
+    margin: 0 auto;
+    @include pad(2em);
+  }
+
+  .field-category {
+    @include clearfix;
+    margin-top: -2em;
+    margin-bottom: 20px;
+
+    a {
+      float:right;
+      padding: 8px 20px;
+      font-size: 0.8em;
+      background-color: rgba($blue, 0.9);
+      color: $white;
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+}
