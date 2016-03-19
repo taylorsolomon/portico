@@ -1224,7 +1224,7 @@ input[type='submit']:hover {
 #footer .social-links a:after {
   content: '';
   position: absolute;
-  font-family: icomoon;
+  font-family: 'icomoon';
   font-size: 20px;
   color: #aaa;
   text-align: center;
@@ -1241,6 +1241,10 @@ input[type='submit']:hover {
 
 #footer .social-links a.twitter:after {
   content: '\e910';
+}
+
+#footer .social-links a.instagram:after {
+  content: '\e90f';
 }
 
 #footer .social-links a:hover {

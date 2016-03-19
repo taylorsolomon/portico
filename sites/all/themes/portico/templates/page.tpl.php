@@ -128,16 +128,23 @@
 
       <ul class='social-links'>
         <li>
-          <a class='twitter' href='https://twitter.com/porticoARL'>
+          <a class='twitter' href='https://twitter.com/porticoARL' target='_blank'>
             <span>Twitter</span>
           </a>
         </li>
 
         <li>
-          <a class='facebook' href='https://www.facebook.com/porticoarlington'>
+          <a class='facebook' href='https://www.facebook.com/porticoarlington' target='_blank'>
             <span>Facebook</span>
           </a>
         </li>
+
+        <li>
+          <a class='instagram' href='https://www.instagram.com/porticoarlington' target='_blank'>
+            <span>Instagram</span>
+          </a>
+        </li>
+
       </ul>
 
       <address>
