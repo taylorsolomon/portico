@@ -1116,6 +1116,32 @@ body.page-taxonomy-term #content {
   }
 }
 
+body.node-type-page.subtype-sermons #hero {
+  height: auto;
+}
+
+body.node-type-page.subtype-sermons #hero .region-hero {
+  width: 100%;
+}
+
+body.node-type-page.subtype-sermons #hero h1 {
+  display: none;
+}
+
+body.node-type-page.subtype-sermons #hero #block-portico-structure-hero-image-title {
+  background-color: transparent;
+}
+
+body.node-type-page.subtype-sermons #hero .content {
+  background-color: #152d40;
+}
+
+@media screen and (min-width: 800px) {
+  body.node-type-page.subtype-sermons #hero .content {
+    background-color: transparent;
+  }
+}
+
 .content > .field-body, .wufoo-form-wrapper {
   max-width: 800px;
   margin: 0 auto;
@@ -1684,32 +1710,38 @@ body.front #hero:after {
   max-width: none;
 }
 
-#block-portico-structure-sermon-promo {
+#block-portico-structure-sermon-promo,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title {
   background-color: #152d40;
   background-attachment: fixed;
   background-position: center top;
   background-size: cover;
 }
 
-#block-portico-structure-sermon-promo > .content {
+#block-portico-structure-sermon-promo > .content,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title > .content {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-#block-portico-structure-sermon-promo .left {
+#block-portico-structure-sermon-promo .left,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .left {
   position: relative;
   padding: 2em;
 }
 
-#block-portico-structure-sermon-promo .left img {
+#block-portico-structure-sermon-promo .left img,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .left img {
   margin: 0 auto;
 }
 
-#block-portico-structure-sermon-promo .right {
+#block-portico-structure-sermon-promo .right,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .right {
   padding: 1em;
 }
 
-#block-portico-structure-sermon-promo .right .inner {
+#block-portico-structure-sermon-promo .right .inner,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .right .inner {
   padding: 1em;
   height: 100%;
   background: #eee;
@@ -1718,18 +1750,21 @@ body.front #hero:after {
   border-radius: 5px;
 }
 
-#block-portico-structure-sermon-promo .node-sermon h2 {
+#block-portico-structure-sermon-promo .node-sermon h2,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .node-sermon h2 {
   margin-bottom: 0;
 }
 
-#block-portico-structure-sermon-promo .node-sermon .field-date {
+#block-portico-structure-sermon-promo .node-sermon .field-date,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .node-sermon .field-date {
   margin: 0.5em 0 1em;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.8em;
 }
 
-#block-portico-structure-sermon-promo a {
+#block-portico-structure-sermon-promo a,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a {
   color: #152d40;
   padding: 0.5em 1.5em;
   display: inline-block;
@@ -1740,14 +1775,16 @@ body.front #hero:after {
   margin-bottom: 20px;
 }
 
-#block-portico-structure-sermon-promo a:hover {
+#block-portico-structure-sermon-promo a:hover,
+body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:hover {
   border-color: #0077C0;
   background-color: #0077C0;
   color: #fff;
 }
 
 @media screen and (min-width: 720px) {
-  #block-portico-structure-sermon-promo > .content {
+  #block-portico-structure-sermon-promo > .content,
+  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title > .content {
     padding: 5em 0;
     display: -webkit-box;
     display: -webkit-flex;
@@ -1758,31 +1795,38 @@ body.front #hero:after {
         -ms-flex-align: stretch;
             align-items: stretch;
   }
-  #block-portico-structure-sermon-promo .left, #block-portico-structure-sermon-promo .right {
+  #block-portico-structure-sermon-promo .left,
+  #block-portico-structure-sermon-promo .right,
+  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .left, body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .right {
     padding: 2em;
     width: 50%;
   }
-  #block-portico-structure-sermon-promo .left img {
+  #block-portico-structure-sermon-promo .left img,
+  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .left img {
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
             transform: translateY(-50%);
   }
-  #block-portico-structure-sermon-promo .right .inner {
+  #block-portico-structure-sermon-promo .right .inner,
+  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .right .inner {
     padding: 2em;
   }
-  #block-portico-structure-sermon-promo .right .node-sermon {
+  #block-portico-structure-sermon-promo .right .node-sermon,
+  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .right .node-sermon {
     margin-top: 40px;
     position: relative;
   }
 }
 
 @media screen and (min-width: 960px) {
-  #block-portico-structure-sermon-promo .right {
+  #block-portico-structure-sermon-promo .right,
+  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .right {
     padding-left: 8em;
   }
-  #block-portico-structure-sermon-promo .right a:last-child {
+  #block-portico-structure-sermon-promo .right a:last-child,
+  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .right a:last-child {
     margin-left: 20px;
     margin-bottom: 3em;
   }

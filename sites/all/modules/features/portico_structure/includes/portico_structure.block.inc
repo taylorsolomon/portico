@@ -179,11 +179,37 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
       </video>";
 
     return array('#markup' => $markup);
+
   }
 
   try {
 
     $wrapper = entity_metadata_wrapper($type, $entity);
+
+    if (!empty($wrapper->field_subtype)) {
+      $subtype = $wrapper->field_subtype->value();
+      switch ($subtype) {
+        case 'sermons':
+            $query = new EntityFieldQuery;
+            $query->entityCondition('entity_type', 'node')
+                  ->entityCondition('bundle', 'sermon')
+                  ->range(0,1)
+                  ->propertyCondition('status', NODE_PUBLISHED)
+                  ->fieldOrderBy('field_date','value', 'DESC');
+
+            $result = $query->execute();
+            if (empty($result['node'])) {
+              // return array('#markup' => '');
+              return array();
+            }
+
+          $sermon = reset($result['node']);
+          $return = portico_structure_sermon_promo($sermon->nid);
+          return $return;
+          break;
+      }
+    }
+
     $image = entity_metadata_yank_raw($wrapper, $field);
 
     $style_name = '1600-500';
@@ -297,14 +323,16 @@ function portico_structure_location() {
  * [portico_structure_sermon_promo description]
  * @return [type] [description]
  */
-function portico_structure_sermon_promo() {
+function portico_structure_sermon_promo($nid = NULL) {
 
   $var = variable_get('portico_config', '');
 
   // Bail Quick
-  if (empty($var['sermon'])) return FALSE;
+  if (empty($var['sermon']) && empty($nid)) return FALSE;
 
-  $sermon = node_load($var['sermon']);
+  $sermon = empty($nid) ? $var['sermon'] : $nid;
+  $sermon = node_load($sermon);
+
   // Series is a required field.
   $series_tid = $sermon->field_series['und'][0]['tid'];
   $series = taxonomy_term_load($series_tid);
@@ -324,8 +352,11 @@ function portico_structure_sermon_promo() {
     return FALSE;
   }
 
-  $css = '
-    #block-portico-structure-sermon-promo {
+  $selector = empty($nid) ? '#block-portico-structure-sermon-promo' :
+    'body.node-type-page #hero';
+
+  $css = $selector . '
+     {
       background-image: url("' . $entity_image_url . '");
     }
   ';
@@ -368,7 +399,7 @@ function portico_structure_sermon_promo() {
     ),
   );
 
-  if (!empty($sermon_page)) {
+  if (!empty($sermon_page) && empty($nid)) {
     $return['sermon-area']['inner']['link2']['#markup'] =
       l('View All Messages', 'node/' . $sermon_page->nid);
   }

@@ -377,6 +377,30 @@ body.page-taxonomy-term {
 }
 
 
+body.node-type-page.subtype-sermons {
+  #hero {
+    height: auto;
+    .region-hero {
+      width: 100%;
+    }
+
+    h1 {
+      display: none;
+    }
+    
+    #block-portico-structure-hero-image-title {
+      background-color: transparent;
+    }
+
+    .content {
+      background-color: $blue-dark;
+      @include media($break1) {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
 .content > .field-body, .wufoo-form-wrapper {
   max-width: $break1;
   margin: 0 auto;
