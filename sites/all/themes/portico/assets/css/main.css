@@ -591,6 +591,29 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1em;
 }
 
+blockquote, q {
+  display: block;
+  padding: 1em;
+  float: right;
+  font-size: 1.2em;
+  font-style: italic;
+  color: #0077C0;
+}
+
+blockquote p, q p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+@media screen and (min-width: 800px) {
+  blockquote, q {
+    width: 50%;
+    padding: 0;
+    margin: 1em 0 1em 2em;
+    text-align: right;
+  }
+}
+
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon.eot?nb9s50");
