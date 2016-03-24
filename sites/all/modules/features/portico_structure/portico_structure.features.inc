@@ -189,6 +189,11 @@ function portico_structure_node_info() {
  */
 function portico_structure_paragraphs_info() {
   $items = array(
+    'content_reference' => array(
+      'name' => 'Content Reference',
+      'bundle' => 'content_reference',
+      'locked' => '1',
+    ),
     'full_width_image' => array(
       'name' => 'Full Width Image',
       'bundle' => 'full_width_image',

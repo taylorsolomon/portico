@@ -250,6 +250,7 @@ function portico_structure_field_default_field_instances() {
     'settings' => array(
       'add_mode' => 'select',
       'allowed_bundles' => array(
+        'content_reference' => 'content_reference',
         'full_width_image' => 'full_width_image',
         'grid' => 'grid',
         'sidebar_list' => -1,
@@ -261,6 +262,7 @@ function portico_structure_field_default_field_instances() {
         'video' => -1,
       ),
       'bundle_weights' => array(
+        'content_reference' => 11,
         'full_width_image' => 2,
         'grid' => -10,
         'sidebar_list' => 6,
@@ -977,6 +979,51 @@ function portico_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'paragraphs_item-content_reference-field_content'.
+  $field_instances['paragraphs_item-content_reference-field_content'] = array(
+    'bundle' => 'content_reference',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'teaser',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 0,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'fences_wrapper' => 'div',
+    'field_name' => 'field_content',
+    'label' => 'Content',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'paragraphs_item-full_width_image-field_image'.
   $field_instances['paragraphs_item-full_width_image-field_image'] = array(
     'bundle' => 'full_width_image',
@@ -1675,6 +1722,7 @@ function portico_structure_field_default_field_instances() {
   t('Audio');
   t('Body');
   t('Columns');
+  t('Content');
   t('Date');
   t('Give the person a weight to show up earlier or later in a list. The smaller the number, the earlier they show up. Negative numbers are ok.');
   t('Heading');
