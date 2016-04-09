@@ -435,7 +435,10 @@ function portico_rss_tag_generate($data) {
       $output .= $value;
     }
 
-    $output .= '</' . $tag . '>';
+    $endtag = explode(' ', $tag);
+    $endtag = reset($endtag);
+
+    $output .= '</' . $endtag . '>';
   }
   return $output;
 }
