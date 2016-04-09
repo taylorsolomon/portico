@@ -1,10 +1,14 @@
 var porticoConfig = {
-
-  test: true,
+  test: false,
 },
 themePath = '/sites/all/themes/portico',
 assetPath = '/sites/all/themes/portico/assets/js/vendor';
 
+/**
+ * [loadAsset description]
+ * @param {[type]}   filename [description]
+ * @param {Function} callback [description]
+ */
 function loadAsset(filename, callback){
   var script = document.createElement('script');
   script.setAttribute("type","text/javascript");
@@ -37,6 +41,9 @@ function loadAsset(filename, callback){
 
       loadAsset(themePath + '/bower_components/slideout.js/dist/slideout.js', mobileMenu);
 
+      // Call sticky header
+      stickyHeader();
+
       // Sermon toggle JS
       if ($('.sermon-body-toggle').length) {
         $('.sermon-body-toggle').on('click touchstart', function(e) {
@@ -57,7 +64,7 @@ function loadAsset(filename, callback){
             $(this).removeClass('open').siblings('.blog-facets-wrapper').height('');
           } else {
             var height = $(this).siblings('.blog-facets-wrapper').children('.blog-facets').height();
-            
+
             $(this).addClass('open').siblings('.blog-facets-wrapper').height(height);
           }
         });
@@ -112,6 +119,29 @@ function loadAsset(filename, callback){
       });
     };
 
+    /**
+     * Small sticky header implementation
+     * @return {[type]} [description]
+     */
+    function stickyHeader() {
 
+      var heightOffset = 200,
+          isDesktop = $(window).width() > 720 ? true : false;
+
+      if (isDesktop) {
+
+        var stickyMenu = $('.menu-name-main-menu').clone().addClass('sticky');
+        $('body').append(stickyMenu);
+
+        $(window).on('scroll', function() {
+          var fromTop = $(document).scrollTop();
+          if (fromTop - heightOffset >= 0) {
+            stickyMenu.addClass('down');
+          } else {
+            stickyMenu.removeClass('down');
+          }
+        });
+      }
+    }
 
   })( jQuery, window, document );

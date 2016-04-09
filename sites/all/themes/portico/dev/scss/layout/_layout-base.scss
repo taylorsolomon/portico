@@ -135,7 +135,7 @@ body {
   }
 }
 
-#block-menu-block-main-menu .menu-name-main-menu {
+.menu-name-main-menu {
   display:none;
   position: absolute;
   z-index: 2;
@@ -146,6 +146,19 @@ body {
 
   @include media($break2) {
     display:block;
+
+    &.sticky {
+      display: block;
+      visibility:hidden;
+      opacity: 0;
+      transition: opacity $ts $te;
+      position: fixed;
+
+      &.down {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
   }
 
   a {
@@ -221,7 +234,6 @@ body {
           bottom: 0;
           left: 0;
           height: 2px;
-
           width: 0;
           display:block;
           content: '';

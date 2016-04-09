@@ -888,7 +888,7 @@ body {
   font-size: 0;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu {
+.menu-name-main-menu {
   display: none;
   position: absolute;
   z-index: 2;
@@ -899,24 +899,36 @@ body {
 }
 
 @media screen and (min-width: 960px) {
-  #block-menu-block-main-menu .menu-name-main-menu {
+  .menu-name-main-menu {
     display: block;
+  }
+  .menu-name-main-menu.sticky {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease;
+            transition: opacity 0.2s ease;
+    position: fixed;
+  }
+  .menu-name-main-menu.sticky.down {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
-#block-menu-block-main-menu .menu-name-main-menu a {
+.menu-name-main-menu a {
   color: #fff;
   font-weight: bold;
   display: block;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul {
+.menu-name-main-menu > ul {
   display: block;
   float: right;
   margin-right: 50px;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li {
+.menu-name-main-menu > ul > li {
   display: inline-block;
   margin: 0 0.5em;
   -webkit-transition: margin 0.2s ease;
@@ -925,12 +937,12 @@ body {
 }
 
 @media screen and (min-width: 960px) {
-  #block-menu-block-main-menu .menu-name-main-menu > ul > li {
+  .menu-name-main-menu > ul > li {
     margin: 0 0.3em;
   }
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > a, #block-menu-block-main-menu .menu-name-main-menu > ul > li > span {
+.menu-name-main-menu > ul > li > a, .menu-name-main-menu > ul > li > span {
   display: block;
   padding: 1.2em;
   color: #fff;
@@ -941,21 +953,21 @@ body {
   font-weight: 700;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > a:hover, #block-menu-block-main-menu .menu-name-main-menu > ul > li > span:hover {
+.menu-name-main-menu > ul > li > a:hover, .menu-name-main-menu > ul > li > span:hover {
   color: #5ac0ff;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > a:hover + ul, #block-menu-block-main-menu .menu-name-main-menu > ul > li > span:hover + ul {
+.menu-name-main-menu > ul > li > a:hover + ul, .menu-name-main-menu > ul > li > span:hover + ul {
   top: 100%;
   opacity: 1;
   visibility: visible;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > a:hover + ul:before, #block-menu-block-main-menu .menu-name-main-menu > ul > li > span:hover + ul:before {
+.menu-name-main-menu > ul > li > a:hover + ul:before, .menu-name-main-menu > ul > li > span:hover + ul:before {
   width: 100%;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > ul {
+.menu-name-main-menu > ul > li > ul {
   position: absolute;
   -webkit-transition: top 0.2s ease, opacity 0.2s ease;
           transition: top 0.2s ease, opacity 0.2s ease;
@@ -969,7 +981,7 @@ body {
   padding-bottom: 10px;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > ul:before {
+.menu-name-main-menu > ul > li > ul:before {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -982,22 +994,22 @@ body {
           transition: width 0.2s ease-out 0.1s;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > ul:hover {
+.menu-name-main-menu > ul > li > ul:hover {
   top: 100%;
   opacity: 1;
   visibility: visible;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > ul:hover:before {
+.menu-name-main-menu > ul > li > ul:hover:before {
   width: 100%;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > ul > li {
+.menu-name-main-menu > ul > li > ul > li {
   display: block;
   position: relative;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > ul > li:after {
+.menu-name-main-menu > ul > li > ul > li:after {
   position: absolute;
   top: 0;
   bottom: -20px;
@@ -1008,7 +1020,7 @@ body {
   z-index: 1;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > ul > li > a {
+.menu-name-main-menu > ul > li > ul > li > a {
   position: relative;
   z-index: 2;
   display: block;
@@ -1024,8 +1036,8 @@ body {
   letter-spacing: 0.5px;
 }
 
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > ul > li > a.active,
-#block-menu-block-main-menu .menu-name-main-menu > ul > li > ul > li > a:hover {
+.menu-name-main-menu > ul > li > ul > li > a.active,
+.menu-name-main-menu > ul > li > ul > li > a:hover {
   background: #0077C0;
 }
 
