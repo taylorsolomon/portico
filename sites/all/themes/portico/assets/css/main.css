@@ -1753,7 +1753,7 @@ body.front #hero:after {
 body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title {
   background-color: #152d40;
   background-attachment: fixed;
-  background-position: center top;
+  background-position: center center;
   background-size: cover;
 }
 
