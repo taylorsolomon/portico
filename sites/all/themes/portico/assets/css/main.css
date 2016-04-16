@@ -1153,6 +1153,7 @@ body.page-taxonomy-term #content {
 
 body.node-type-page.subtype-sermons #hero {
   height: auto;
+  background-position: center center;
 }
 
 body.node-type-page.subtype-sermons #hero .region-hero {

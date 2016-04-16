@@ -8,3 +8,16 @@ function portico_preprocess_html(&$vars) {
     }
   }
 }
+
+/**
+ * [portico_css_alter description]
+ * @param  [type] $css [description]
+ * @return [type]      [description]
+ */
+function portico_css_alter(&$css) {
+  // Get the path to the module
+  $path = drupal_get_path('module', 'jplayer');
+
+  // Remove the unneeded files from the css array
+  unset($css[$path . '/theme/jplayer.css']);
+}
