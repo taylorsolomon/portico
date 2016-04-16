@@ -278,16 +278,19 @@ function jplayer_field_formatter_settings_summary($field, $instance, $view_mode)
   $settings = $display['settings'];
 
   $summary = '';
-
   if ($display['type'] == 'jplayer_player') {
+    $summary = t('Single jPlayer instance');
+    if ($settings['mode'] == 'playlist') {
+      $summary = t('jPlayer Playlist');
+      if (isset($settings['continuous']) && $settings['continuous'] == 1) {
+        $summary .= t('(continuous)');
+      }
+    }
     if (isset($settings['autoplay']) && $settings['autoplay'] == 1) {
-      $summary = t('Single jPlayer instance which autoplays.');
+      $summary .= t('(autoplays)');
     }
-    else {
-      $summary = t('Single jPlayer instance.');
-    }
+    $summary .= '.';
   }
-
   return $summary;
 }
 
@@ -339,7 +342,7 @@ function _jplayer_js_attach() {
   $added = &drupal_static(__FUNCTION__, FALSE);
   if ($added) {
     // JS is already loaded.
-    return TRUE;
+    return array();
   }
 
   // Add global settings.
@@ -407,7 +410,27 @@ function _jplayer_get_css() {
     'group' => CSS_DEFAULT,
   );
 
-  return array();
+  // Right now only the default skin (module) is avaialble.
+  $skin = NULL;
+  if (!$skin) {
+    $path = drupal_get_path('module', 'jplayer');
+    return array($path . '/theme/jplayer.css' => $opts);
+  }
+  else {
+    $lib = libraries_get_path('jplayer') . '/skin/' . $skin;
+    $file = $lib . '/' . $skin . '.css';
+    if (file_exists($file)) {
+      $return = array($file => $opts);
+    }
+    else {
+      $skin = 'jplayer.' . $skin;
+      $file = $lib . '/' . $skin . '.css';
+      if (file_exists($file)) {
+        $return = array($file => $opts);
+      }
+    }
+  }
+  return $return;
 }
 
 /**
@@ -451,7 +474,7 @@ function _jplayer_get_js() {
 function _jplayer_get_swf() {
   $path = libraries_get_path('jplayer');
   $file = '/jquery.jplayer.swf';
-  $full = $path . $file;
+  $full = '/' . $path . $file;
   if (!file_exists($full)) {
     $path .= '/dist/jplayer';
     $dist = $path . $file;

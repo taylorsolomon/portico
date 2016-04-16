@@ -6,7 +6,7 @@
 ?>
 
 <div class="jp-<?php print $type; ?>">
-  <div class="jp-type-playlist">
+  <div class="jp-type-<?php print $mode; ?>">
     <div id="<?php print $player_id; ?>" class="jp-jplayer"></div>
     <div id="<?php print $player_id; ?>_interface" class="jp-interface">
       <?php if ($type == 'video'): ?>

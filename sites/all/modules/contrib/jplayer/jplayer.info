@@ -16,9 +16,9 @@ files[] = includes/jplayer_style_plugin.inc
 files[] = theme/jplayer.tpl.php
 
 
-; Information added by Drupal.org packaging script on 2015-07-27
-version = "7.x-2.0-beta1+18-dev"
+; Information added by Drupal.org packaging script on 2016-02-16
+version = "7.x-2.0-beta1+22-dev"
 core = "7.x"
 project = "jplayer"
-datestamp = "1437963840"
+datestamp = "1455634144"
 

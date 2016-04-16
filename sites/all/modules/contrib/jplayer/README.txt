@@ -145,3 +145,30 @@ http://www.jplayer.org/support/
 
 If the problem is with the jPlayer Drupal module, please file a support request
 at http://drupal.org/project/issues/jplayer.
+
+FAQ
+___
+
+Q: Player is not visible onscreen
+A1: is the widget type for the field set to 'jPlayer'? If in doubt, check the
+ html for the page includes elements with classes such as jp-audio or
+ jp-playlist in the expected area).
+A2: has the jplayer module's CSS been included on the page?
+A3: has the jPlayer JS been included on the page?
+
+Q: Player apparently there but is completely unresponsive (no JS events attached
+ to controls)
+A1: check to see that JavaScript enabled on your browser
+A2: Check that you are not relying on a version of Flash being installed that
+ isn't present or is too old.
+A3: check you are using jQuery >= 1.4 and jQuery <= 2.0.
+
+Q: Player active (JS events applied, buttons respond when clicked), but won't
+ play
+A1: Check that the browser and platform you're testing with is able to play the
+ files you're giving it when given a direct link. For example, some Linux-based
+  platforms have no support for mp3 file playback out of the box.
+A2: See http://jplayer.org/ for supported file formats.
+
+Q: Which versions of the jPlayer library are known to work with the module?
+A1: The Drupal 7 jplayer module has been tested against jPlayer version 2.9.2.
