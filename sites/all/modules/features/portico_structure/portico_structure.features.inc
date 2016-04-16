@@ -142,7 +142,7 @@ function portico_structure_node_info() {
     'alert' => array(
       'name' => t('Alert'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Alerts are banners that show up on the top of every page. Use this for communicating slow closures and stuff.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -174,7 +174,7 @@ function portico_structure_node_info() {
     'sermon' => array(
       'name' => t('Sermon'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Sermons are typically created on Sundays. Audio gets uploaded to a new sermon.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

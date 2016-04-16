@@ -101,7 +101,7 @@ if (empty($content['field_image'])) {
   <div class='content-wrapper <?php print $no_image; ?>'>
 
     <?php
-      if ($content['field_portico_now_category'] &&
+      if (!empty($content['field_portico_now_category']) &&
           empty($content['field_portico_now_category']['#printed'])) {
         print render($content['field_portico_now_category']);
       }

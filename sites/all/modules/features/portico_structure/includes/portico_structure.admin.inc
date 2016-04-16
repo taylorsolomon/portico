@@ -154,3 +154,149 @@ function portico_config_submit($form, &$form_state) {
   variable_set('portico_config', $values);
   drupal_set_message(t('Configuration Saved.'), 'status', FALSE);
 }
+
+/**
+ * [portico_now_table description]
+ * @param  [type] $form       [description]
+ * @param  [type] $form_state [description]
+ * @return [type]             [description]
+ */
+function portico_now_table($form, $form_state) {
+  $weights = variable_get('portico_structure_portico_now_weights', array());
+
+  $nids = db_select('node', 'n')
+        ->condition('n.type', 'portico_now')
+        ->fields('n',array('nid'))
+        ->execute()
+        ->fetchCol();
+
+  $nodes = node_load_multiple($nids);
+  $destination = drupal_get_destination();
+
+  $form['rows']['#tree'] = TRUE;
+
+  foreach ($nodes as $node) {
+
+    $form['rows'][$node->nid] = array(
+      // 'class' => array('draggable'),
+      'title' => array(
+        '#markup' => $node->title
+        // '#suffix' => ' ' . theme('mark', array('type' => node_mark($node->nid, $node->changed))),
+      ),
+      'status' => array(
+        '#type' => 'markup',
+        '#markup' => $node->status ? 'Published' : 'Not Published',
+      ),
+      'weight' => array(
+        '#type' => 'weight',
+        '#default_value' => empty($weights[$node->nid]['weight']) ? -50 : $weights[$node->nid]['weight'],
+        '#delta' => 50,
+      ),
+    );
+
+    $operations = array(
+      'edit' => array(
+        'title' => t('edit'),
+        'href' => 'node/' . $node->nid . '/edit',
+        'query' => $destination,
+      ),
+      'delete' => array(
+        'title' => t('delete'),
+        'href' => 'node/' . $node->nid . '/delete',
+        'query' => $destination,
+      ),
+    );
+
+    $form['rows'][$node->nid]['operations'] = array();
+    // Render an unordered list of operations links.
+    $form['rows'][$node->nid]['operations'] = array(
+      '#theme' => 'links__node_operations',
+      '#links' => $operations,
+      '#attributes' => array('class' => array('links', 'inline')),
+    );
+  }
+
+  uasort($form['rows'], '_weight_form_sort');
+
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array('#type' => 'submit', '#value' => t('Save Changes'));
+
+  return $form;
+}
+
+/**
+ * [_weight_form_sort description]
+ * @param  [type] $a [description]
+ * @param  [type] $b [description]
+ * @return [type]    [description]
+ */
+function _weight_form_sort($a,$b) {
+  return $a['weight']['#default_value']>$b['weight']['#default_value'];
+}
+
+/**
+ * [portico_now_table_submit description]
+ * @param  [type] $form       [description]
+ * @param  [type] $form_state [description]
+ * @return [type]             [description]
+ */
+function portico_now_table_submit($form, $form_state) {
+  variable_set('portico_structure_portico_now_weights', $form_state['values']['rows']);
+}
+
+/**
+ * [theme_portico_now_table description]
+ * @param  [type] $form [description]
+ * @return [type]       [description]
+ */
+function theme_portico_now_table(&$vars) {
+    // the variable that will hold our form HTML output
+    $output = '';
+    $table_rows = array();
+
+    $form = &$vars['form'];
+
+    //loop through each "row" in the table array
+    foreach(element_children($form['rows']) as $nid) {
+        // this array will hold the table cells for a row
+        $this_row = array();
+
+        // first, add the "name" markup
+        $this_row[] = drupal_render($form['rows'][$nid]['title']);
+        $this_row[] = drupal_render($form['rows'][$nid]['status']);
+
+        // Add the weight field to the row
+        // the Javascript to make our table drag and drop will end up hiding this cell
+        $form['rows'][$nid]['weight']['#attributes']['class'] = array('portico-now-weight');
+        $this_row[] = drupal_render($form['rows'][$nid]['weight']);
+        $this_row[] = drupal_render($form['rows'][$nid]['operations']);
+
+        //Add the row to the array of rows
+        $table_rows[] = array('data' => $this_row, 'class' => array('draggable'));
+    }
+
+    // Make sure the header count matches the column count
+    $header = array(
+      t('Name'),
+      t('Status'),
+      t('Weight'),
+      t('Operations'),
+    );
+
+    $table_id = 'portico-now-table-id';
+
+    // over-write the 'rows' form element with the markup generated from our table
+    $form['rows'] = array(
+      '#markup' => theme('table', array('header' => $header, 'rows' => $table_rows, 'attributes' => array('id' => $table_id))),
+    );
+
+    // render the form
+    // note, this approach to theming the form allows you to add other elements in the method
+    // that generates the form, and they will automatically be rendered correctly
+    $output .= drupal_render_children($form);
+
+    // this function is what brings in the javascript to make our table drag-and-droppable
+    drupal_add_tabledrag($table_id, 'order', 'sibling', 'portico-now-weight');
+
+    return $output;
+}

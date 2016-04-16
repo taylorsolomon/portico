@@ -27,6 +27,14 @@ function portico_structure_menu() {
     'type' => MENU_LOCAL_TASK,
   );
 
+  $items['admin/content/portico-now'] = array(
+    'title' => t('PorticoNOW'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('portico_now_table'),
+    'access arguments' => array('administer configuration'),
+    'type' => MENU_LOCAL_TASK,
+  );
+
   $items['sermon/autocomplete'] = array(
     'title' => 'Autocomplete for sermons',
     'page callback' => '_sermons_autocomplete',
@@ -42,6 +50,19 @@ function portico_structure_menu() {
   );
 
   return $items;
+}
+
+/**
+ * [portico_structure_theme description]
+ * @return [type] [description]
+ */
+function portico_structure_theme() {
+  return array(
+    'portico_now_table' => array(
+      'render element' => 'form',
+      'file' => 'includes/portico_structure.admin.inc',
+    ),
+  );
 }
 
 /**
@@ -382,7 +403,7 @@ function portico_feed() {
     'language' => 'en-us',
     'copyright' => '&#x2117; &amp; &#xA9; 2016 Portico Church Arlington',
     'description' => 'Portico Church Arlington Podcasts',
-    'itunes:image href="' . '' . '"' => 'self_close',
+    'itunes:image href="' . portico_structure_get_feed_photo() . '"' => 'self_close',
     'itunes:subtitle' => 'Sunday message audio from Portico Church Arlington',
     'itunes:author' => 'Portico Church Arlington',
     'itunes:summary' => 'Portico Church Arlington Podcasts',
@@ -498,9 +519,9 @@ function portico_rss_format_sermons($sermons)  {
         'pubDate' => $pubDate,
         'itunes:author' => 'Portico Church Arlington',
         'itunes:subtitle' => '',
-        'itunes:summary' => empty($summary) ? '' : '<![CDATA[' .$summary. ']]>',
+        'itunes:summary' => empty($summary) ? '' : '<![CDATA[' . $summary . ']]>',
         'itunes:duration' => $file_info['playtime_string'],
-        'itunes:image href="' . '' . '"' => 'self_close',
+        'itunes:image href="' . portico_structure_get_feed_photo() . '"' => 'self_close',
         'enclosure url="' . $url . '" length="' . $file_info['filesize'] . '" type="' . $file_info['mime_type'] . '"' => 'self_close',
       ),
     );
@@ -509,4 +530,12 @@ function portico_rss_format_sermons($sermons)  {
   }
 
   return $output;
+}
+
+/**
+ * [portico_structure_get_feed_photo description]
+ * @return [type] [description]
+ */
+function portico_structure_get_feed_photo() {
+  return 'sites/all/themes/portico/assets/images/portico-feed.jpg';
 }

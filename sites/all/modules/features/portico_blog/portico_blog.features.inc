@@ -21,7 +21,7 @@ function portico_blog_node_info() {
     'blogpost' => array(
       'name' => t('Blogpost'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Blogposts show up on the blog. '),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

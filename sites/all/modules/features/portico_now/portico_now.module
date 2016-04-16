@@ -47,27 +47,17 @@ function portico_now_entity_view_alter(&$build, $type) {
  * @return [type]        [description]
  */
 function portico_now_aggregate_nodes(&$build) {
+  $nids = variable_get('portico_structure_portico_now_weights');
 
-  $query = new EntityFieldQuery;
-  $query->entityCondition('entity_type', 'node')
-        ->entityCondition('bundle', 'portico_now')
-        ->propertyCondition('status', NODE_PUBLISHED)
-        ->propertyOrderBy('created', 'DESC')
-        ->pager(10)
-        ->addMetaData('account', user_load(1)); // Run the query as user 1.
-
-  $result = $query->execute();
-
-  if (empty($result['node'])) {
+  if (empty($nids)) {
     return $build;
   }
 
-  $keys = array_keys($result['node']);
+  $keys = array_keys($nids);
   $loaded = entity_load('node', $keys);
   $viewed = entity_view('node', $loaded, 'teaser');
 
   $build['nodes'] = $viewed;
-  $build['pager']['#markup'] = theme('pager', $query->pager);
 
 }
 
