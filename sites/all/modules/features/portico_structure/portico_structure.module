@@ -419,11 +419,13 @@ function portico_feed() {
   );
 
   $output .= '<?xml version="1.0" encoding="UTF-8"?>';
-  $output .= '<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">';
+  $output .= '<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">';
     $output .= '<channel>';
 
       $output .= portico_rss_tag_generate($channel_data);
       $output .= portico_rss_format_sermons($sermons);
+
+      $output .= '<atom:link href="http://porticoarlington.org/sermon-feed" rel="self" type="application/rss+xml" />';
 
     $output .= '</channel>';
   $output .= '</rss>';
@@ -508,21 +510,21 @@ function portico_rss_format_sermons($sermons)  {
     $url = file_create_url($file['uri']);
     $file_info = $getID3->analyze($path);
 
-    $guid = 'sermon' . '-' . $sermon->nid . '-' . $file['filename'];
+    $guid = 'sermon' . '-' . $sermon->nid;
     $pubDate = date('r', $sermon->field_date['und'][0]['value']);
     $summary = empty($sermon->field_description) ? '' : $sermon->field_description['und'][0]['safe_value'];
 
     $sermon_data = array(
       'item' => array(
         'title' => $sermon->title,
-        'guid' => $guid,
+        'guid isPermaLink="false"' => $guid,
         'pubDate' => $pubDate,
         'itunes:author' => 'Portico Church Arlington',
         'itunes:subtitle' => '',
         'itunes:summary' => empty($summary) ? '' : '<![CDATA[' . $summary . ']]>',
         'itunes:duration' => $file_info['playtime_string'],
         'itunes:image href="' . portico_structure_get_feed_photo() . '"' => 'self_close',
-        'enclosure url="' . $url . '" length="' . $file_info['filesize'] . '" type="' . $file_info['mime_type'] . '"' => 'self_close',
+        'enclosure url="' . rawurlencode($url) . '" length="' . $file_info['filesize'] . '" type="' . $file_info['mime_type'] . '"' => 'self_close',
       ),
     );
 
@@ -537,5 +539,5 @@ function portico_rss_format_sermons($sermons)  {
  * @return [type] [description]
  */
 function portico_structure_get_feed_photo() {
-  return 'sites/all/themes/portico/assets/images/portico-feed.jpg';
+  return 'http://porticoarlington.org/sites/all/themes/portico/assets/images/portico-feed.jpg';
 }
