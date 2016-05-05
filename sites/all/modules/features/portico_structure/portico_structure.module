@@ -422,10 +422,10 @@ function portico_feed() {
   $output .= '<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">';
     $output .= '<channel>';
 
+      $output .= '<atom:link href="http://porticoarlington.org/sermon-feed" rel="self" type="application/rss+xml" />';
+
       $output .= portico_rss_tag_generate($channel_data);
       $output .= portico_rss_format_sermons($sermons);
-
-      $output .= '<atom:link href="http://porticoarlington.org/sermon-feed" rel="self" type="application/rss+xml" />';
 
     $output .= '</channel>';
   $output .= '</rss>';
@@ -508,6 +508,7 @@ function portico_rss_format_sermons($sermons)  {
     $file = $sermon->field_audio['und'][0];
     $path = drupal_realpath($file['uri']);
     $url = file_create_url($file['uri']);
+    $url = str_replace(' ', '%20', $url);
     $file_info = $getID3->analyze($path);
 
     $guid = 'sermon' . '-' . $sermon->nid;
@@ -524,7 +525,7 @@ function portico_rss_format_sermons($sermons)  {
         'itunes:summary' => empty($summary) ? '' : '<![CDATA[' . $summary . ']]>',
         'itunes:duration' => $file_info['playtime_string'],
         'itunes:image href="' . portico_structure_get_feed_photo() . '"' => 'self_close',
-        'enclosure url="' . rawurlencode($url) . '" length="' . $file_info['filesize'] . '" type="' . $file_info['mime_type'] . '"' => 'self_close',
+        'enclosure url="' . $url . '" length="' . $file_info['filesize'] . '" type="' . $file_info['mime_type'] . '"' => 'self_close',
       ),
     );
 
