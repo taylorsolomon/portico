@@ -223,7 +223,10 @@ function portico_structure_add_sermons(&$build) {
   // $viewed = entity_view('node', $nodes, 'teaser');
   unset($viewed['node']['#sorted']);
   $build['sermons'] = $viewed;
-
+  $build['pager'] = array(
+    '#markup' => theme('pager'),
+    '#weight' => 10,
+  );
 }
 
 /**
@@ -396,7 +399,7 @@ function _split_and_view_by_series($nodes) {
  */
 function portico_feed() {
   $output = '';
-  $sermons = portico_structure_get_sermons();
+  $sermons = portico_structure_get_sermons(FALSE);
 
   $channel_data = array(
     'title' => 'Portico Church Arlington',
@@ -471,13 +474,17 @@ function portico_rss_tag_generate($data) {
  * [portico_structure_get_sermons description]
  * @return [type] [description]
  */
-function portico_structure_get_sermons() {
+function portico_structure_get_sermons($pager = TRUE) {
   $q = new EntityFieldQuery;
   $q->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'sermon')
     ->propertyCondition('status', NODE_PUBLISHED)
     ->fieldOrderBy('field_date', 'value', 'DESC')
     ->addTag('portico_structure_sermons');
+
+  if ($pager) {
+    $q->pager(10,0);
+  }
 
   $r = $q->execute();
 
