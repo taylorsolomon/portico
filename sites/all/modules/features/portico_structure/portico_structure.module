@@ -219,14 +219,11 @@ function portico_structure_entity_view_alter(&$build, $type) {
 function portico_structure_add_sermons(&$build) {
 
   $nodes = portico_structure_get_sermons();
-
   $viewed = _split_and_view_by_series($nodes);
-
   // $viewed = entity_view('node', $nodes, 'teaser');
-
   unset($viewed['node']['#sorted']);
-
   $build['sermons'] = $viewed;
+
 }
 
 /**
@@ -309,7 +306,11 @@ function portico_structure_add_leadership(&$build) {
   }
 }
 
-
+/**
+ * [_split_and_view_by_series description]
+ * @param  [type] $nodes [description]
+ * @return [type]        [description]
+ */
 function _split_and_view_by_series($nodes) {
   $working = array_values($nodes);
   $terms = array();
