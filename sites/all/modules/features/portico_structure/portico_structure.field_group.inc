@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function portico_structure_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -37,7 +37,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_details|node|alert|form'] = $field_group;
+  $field_groups['group_details|node|alert|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -65,7 +65,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_details|node|landing|form'] = $field_group;
+  $field_groups['group_details|node|landing|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -95,7 +95,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_details|node|page|form'] = $field_group;
+  $field_groups['group_details|node|page|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -114,7 +114,8 @@ function portico_structure_field_group_info() {
       1 => 'field_type',
       2 => 'field_weight',
       3 => 'field_image',
-      4 => 'title',
+      4 => 'field_role',
+      5 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -126,7 +127,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_details|node|person|form'] = $field_group;
+  $field_groups['group_details|node|person|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -157,7 +158,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_details|node|sermon|form'] = $field_group;
+  $field_groups['group_details|node|sermon|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -182,7 +183,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_main|node|alert|form'] = $field_group;
+  $field_groups['group_main|node|alert|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -208,7 +209,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_main|node|landing|form'] = $field_group;
+  $field_groups['group_main|node|landing|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -233,7 +234,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_main|node|page|form'] = $field_group;
+  $field_groups['group_main|node|page|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -258,7 +259,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_main|node|person|form'] = $field_group;
+  $field_groups['group_main|node|person|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -284,7 +285,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_main|node|sermon|form'] = $field_group;
+  $field_groups['group_main|node|sermon|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -311,7 +312,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_passage|node|sermon|form'] = $field_group;
+  $field_groups['group_passage|node|sermon|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -338,7 +339,14 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $export['group_sections|node|landing|form'] = $field_group;
+  $field_groups['group_sections|node|landing|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Details');
+  t('Main');
+  t('Passage');
+  t('Sections');
+
+  return $field_groups;
 }

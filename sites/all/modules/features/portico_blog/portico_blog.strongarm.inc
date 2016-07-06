@@ -38,13 +38,13 @@ function portico_blog_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'metatags' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
       ),
       'display' => array(),
