@@ -2,9 +2,7 @@ html {
   box-sizing: border-box;
 }
 
-*,
-*::after,
-*::before {
+*, *::after, *::before {
   box-sizing: inherit;
 }
 
@@ -289,7 +287,8 @@ select {
  *    `input` and others.
  */
 button,
-html input[type="button"], input[type="reset"],
+html input[type="button"],
+input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
@@ -464,6 +463,7 @@ ul li, ul.menu li {
 
 ul.pager {
   margin: 3em 0;
+  line-height: 3em;
 }
 
 ul.pager a {
@@ -485,6 +485,10 @@ p {
   margin: 0 0 1em 0;
   line-height: 1.8;
   font-size: 1rem;
+}
+
+p:last-child {
+  margin: 0 !important;
 }
 
 ul, ul.menu {
@@ -581,13 +585,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.3em;
 }
 
-.field-body h1,
-.field-body h2,
-.field-body h3,
-.field-body h4,
-.field-body h5,
-.field-body h6,
-.field-description h1, .field-description h2, .field-description h3, .field-description h4, .field-description h5, .field-description h6 {
+.field-body h1, .field-body h2, .field-body h3, .field-body h4, .field-body h5, .field-body h6,
+.field-description h1,
+.field-description h2,
+.field-description h3,
+.field-description h4,
+.field-description h5,
+.field-description h6 {
   margin-bottom: 1em;
 }
 
@@ -1036,8 +1040,7 @@ body {
   letter-spacing: 0.5px;
 }
 
-.menu-name-main-menu > ul > li > ul > li > a.active,
-.menu-name-main-menu > ul > li > ul > li > a:hover {
+.menu-name-main-menu > ul > li > ul > li > a.active, .menu-name-main-menu > ul > li > ul > li > a:hover {
   background: #0077C0;
 }
 
@@ -1047,15 +1050,12 @@ body {
   background-image: linear-gradient(to left, #16222A, #3A6073);
   min-height: 250px;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
@@ -1073,7 +1073,10 @@ body {
 }
 
 .hero-default, body.node-type-landing #hero,
-body.page-taxonomy-term #hero, body.front #hero {
+body.page-taxonomy-term #hero,
+body.node-type-page #hero,
+body.node-type-blogpost #hero,
+body.node-type-wufoo #hero, body.front #hero {
   height: 250px;
   -webkit-transition: height 0.2s ease;
           transition: height 0.2s ease;
@@ -1081,56 +1084,57 @@ body.page-taxonomy-term #hero, body.front #hero {
 
 @media screen and (min-width: 800px) {
   .hero-default, body.node-type-landing #hero,
-  body.page-taxonomy-term #hero, body.front #hero {
+  body.page-taxonomy-term #hero,
+  body.node-type-page #hero,
+  body.node-type-blogpost #hero,
+  body.node-type-wufoo #hero, body.front #hero {
     height: 300px;
   }
   .hero-default h1, body.node-type-landing #hero h1,
-  body.page-taxonomy-term #hero h1, body.front #hero h1 {
+  body.page-taxonomy-term #hero h1,
+  body.node-type-page #hero h1,
+  body.node-type-blogpost #hero h1,
+  body.node-type-wufoo #hero h1, body.front #hero h1 {
     font-size: 3.75rem;
   }
 }
 
 @media screen and (min-width: 960px) {
   .hero-default, body.node-type-landing #hero,
-  body.page-taxonomy-term #hero, body.front #hero {
+  body.page-taxonomy-term #hero,
+  body.node-type-page #hero,
+  body.node-type-blogpost #hero,
+  body.node-type-wufoo #hero, body.front #hero {
     height: 450px;
   }
   .hero-default h1, body.node-type-landing #hero h1,
-  body.page-taxonomy-term #hero h1, body.front #hero h1 {
+  body.page-taxonomy-term #hero h1,
+  body.node-type-page #hero h1,
+  body.node-type-blogpost #hero h1,
+  body.node-type-wufoo #hero h1, body.front #hero h1 {
     font-size: 5rem;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .hero-default, body.node-type-landing #hero,
-  body.page-taxonomy-term #hero, body.front #hero {
+  body.page-taxonomy-term #hero,
+  body.node-type-page #hero,
+  body.node-type-blogpost #hero,
+  body.node-type-wufoo #hero, body.front #hero {
     height: 600px;
   }
   .hero-default h1, body.node-type-landing #hero h1,
-  body.page-taxonomy-term #hero h1, body.front #hero h1 {
+  body.page-taxonomy-term #hero h1,
+  body.node-type-page #hero h1,
+  body.node-type-blogpost #hero h1,
+  body.node-type-wufoo #hero h1, body.front #hero h1 {
     font-size: 6.25rem;
   }
 }
 
-.hero-short, body.node-type-page #hero,
-body.node-type-blogpost #hero,
-body.node-type-wufoo #hero {
-  height: 250px;
-  -webkit-transition: height 0.2s ease;
-          transition: height 0.2s ease;
-}
-
-@media screen and (min-width: 800px) {
-  .hero-short, body.node-type-page #hero,
-  body.node-type-blogpost #hero,
-  body.node-type-wufoo #hero {
-    height: 350px;
-  }
-  .hero-short h1, body.node-type-page #hero h1,
-  body.node-type-blogpost #hero h1,
-  body.node-type-wufoo #hero h1 {
-    font-size: 3.75rem;
-  }
+body.page-taxonomy-term #hero {
+  background-position: center center;
 }
 
 body.page-taxonomy-term #hero h1 {
@@ -1363,6 +1367,7 @@ input[type='submit']:hover {
 .sermons-list .series-image {
   padding: 2em;
   background-size: cover;
+  background-position: center;
 }
 
 .sermons-list .series-image img {
@@ -1446,7 +1451,6 @@ body.front #hero video {
   height: auto;
   z-index: -100;
   -webkit-transform: translateX(-50%) translateY(-50%);
-      -ms-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%);
   background-size: cover;
   display: none;
@@ -1643,45 +1647,48 @@ body.front #hero:after {
     margin: 0 auto;
   }
   .paragraphs-item-grid .paragraphs-item-text {
-    padding: 3em 1em;
+    padding: 0em 1em;
   }
-  .paragraphs-item-grid ul {
+  .paragraphs-item-grid ul.field-sections {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+    position: relative;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    padding: 3em 0;
+  }
+  .paragraphs-item-grid ul.field-sections:before {
+    width: 90%;
+    border-top: 2px solid #dedede;
+    height: 2px;
     display: block;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
   }
-  .paragraphs-item-grid ul::after {
-    clear: both;
-    content: "";
-    display: table;
+  .paragraphs-item-grid ul.field-sections > li {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: block;
   }
   .paragraphs-item-grid.columns-2 {
     max-width: 1000px;
   }
-  .paragraphs-item-grid.columns-2 li {
-    display: block;
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 48.82117%;
+  .paragraphs-item-grid img {
+    margin: 0 auto;
   }
-  .paragraphs-item-grid.columns-2 li:last-child {
-    margin-right: 0;
-  }
-  .paragraphs-item-grid.columns-2 li:nth-child(2n) {
-    margin-right: 0;
-  }
-  .paragraphs-item-grid.columns-3 .field-sections > li {
-    display: block;
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 31.76157%;
-  }
-  .paragraphs-item-grid.columns-3 .field-sections > li:last-child {
-    margin-right: 0;
-  }
-  .paragraphs-item-grid.columns-3 .field-sections > li:nth-child(3n) {
-    margin-right: 0;
-  }
+}
+
+div.field-sections:last-child ul.field-sections:before {
+  display: none;
 }
 
 #block-portico-structure-location {
@@ -1827,17 +1834,15 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title > .content {
     padding: 5em 0;
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: stretch;
-    -webkit-align-items: stretch;
         -ms-flex-align: stretch;
             align-items: stretch;
   }
-  #block-portico-structure-sermon-promo .left,
-  #block-portico-structure-sermon-promo .right,
-  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .left, body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .right {
+  #block-portico-structure-sermon-promo .left, #block-portico-structure-sermon-promo .right,
+  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .left,
+  body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title .right {
     padding: 2em;
     width: 50%;
   }
@@ -1846,7 +1851,6 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
             transform: translateY(-50%);
   }
   #block-portico-structure-sermon-promo .right .inner,
@@ -2196,6 +2200,9 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 
 .blog-facets {
   background: #0077C0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .blog-facets::after {
@@ -2290,9 +2297,10 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
     z-index: 1;
   }
   .facet-wrapper {
-    width: 50%;
-    float: left;
-    padding: 2em 4em 0;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    padding: 2em 4em 4em;
   }
   .facet-wrapper.dates > .item-list > ul > li {
     float: left;
@@ -2330,6 +2338,12 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   text-align: right;
 }
 
+.addthis_sharing_toolbox {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 #header {
   padding-top: 54px;
   background: #152d40;
@@ -2347,11 +2361,9 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   background-size: cover;
   padding: 20px;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
 }

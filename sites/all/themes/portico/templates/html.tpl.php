@@ -79,6 +79,9 @@ WebFontConfig = {
   s.parentNode.insertBefore(wf, s);
 })(); </script>
 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577c6c44b85cf240"></script>
+
 <div id='off-screen-nav'></div>
 </body>
 </html>

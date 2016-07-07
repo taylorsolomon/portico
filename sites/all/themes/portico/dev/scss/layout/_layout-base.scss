@@ -362,8 +362,11 @@ body.node-type-wufoo  {
 }
 
 body.page-taxonomy-term {
-  #hero h1 {
-    font-size:0;
+  #hero {
+    background-position: center center;
+    h1 {
+      font-size:0;
+    }
   }
   #content {
     padding: 1em;

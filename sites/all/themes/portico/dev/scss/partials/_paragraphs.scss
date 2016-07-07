@@ -109,39 +109,53 @@
   @include media($break1) {
     @include pad(0 1em);
   }
+
   @include media($break2) {
     max-width: $max;
     margin: 0 auto;
 
     .paragraphs-item-text {
-      @include pad(3em 1em);
+      @include pad(0em 1em);
     }
 
-    ul {
-      @include row;
+    ul.field-sections {
+      display:flex;
+      flex-flow: row wrap;
+      position: relative;
+      align-items: stretch;
+      @include pad(3em 0);
+
+      &:before {
+        width: 90%;
+        border-top: 2px solid #dedede;
+        height: 2px;
+        display:block;
+        content: '';
+        position: absolute;
+        bottom:0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      > li {
+        flex:1;
+        display: block;
+      }
     }
 
     &.columns-2 {
       max-width: ($max - 200px);
-
-      li {
-        display: block;
-        @include span-columns(6);
-        &:nth-child(2n) {
-          @include omega;
-        }
-      }
     }
 
-    &.columns-3 {
-
-      .field-sections > li {
-        display: block;
-        @include span-columns(4);
-        &:nth-child(3n) {
-          @include omega;
-        }
-      }
+    img {
+      margin: 0 auto;
     }
+  }
+}
+
+
+div.field-sections:last-child ul.field-sections {
+  &:before {
+    display:none;
   }
 }

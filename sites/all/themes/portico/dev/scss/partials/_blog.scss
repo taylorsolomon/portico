@@ -60,6 +60,7 @@
 .blog-facets {
   background: $blue;
   @include clearfix();
+  display: flex;
 
   ul {
     margin:0;
@@ -163,9 +164,8 @@
   }
 
   .facet-wrapper {
-    width: 50%;
-    float:left;
-    padding: 2em 4em 0;
+    flex:1;
+    padding: 2em 4em 4em;
   }
 
   .facet-wrapper.dates {
@@ -180,7 +180,7 @@
 }
 
 .node-type-blogpost {
-  
+
   .content-wrapper {
     max-width: $break1;
     margin: 0 auto;
@@ -202,4 +202,10 @@
       text-align: right;
     }
   }
+}
+
+.addthis_sharing_toolbox {
+  position: absolute;
+  right:0;
+  bottom:0;
 }

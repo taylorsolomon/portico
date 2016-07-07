@@ -95,11 +95,11 @@ if (empty($content['field_image'])) {
       <?php if ($content['field_category']): ?>
         <?php print render($content['field_category']); ?>
       <?php endif; ?>
+      <div class='addthis_sharing_toolbox' data-url="<?php print url($node_url, array('absolute' => TRUE)); ?>" data-title="<?php print $title; ?>"></div>
     </div>
   <?php endif; ?>
 
   <div class='content-wrapper <?php print $no_image; ?>'>
-
     <?php
       if (!empty($content['field_category']) &&
           empty($content['field_category']['#printed'])) {

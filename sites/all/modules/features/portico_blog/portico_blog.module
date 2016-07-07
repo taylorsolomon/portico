@@ -60,7 +60,7 @@ function portico_blog_entity_view_alter(&$build, $type) {
  */
 function portico_blog_bg_alter(&$style_name, $entity) {
   if (!empty($entity->type) && $entity->type == 'blogpost') {
-    $style_name = '1600-350';
+    // $style_name = '1600-350';
   }
 }
 
