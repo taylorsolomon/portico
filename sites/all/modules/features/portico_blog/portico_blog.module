@@ -86,6 +86,7 @@ function portico_blog_add_blogposts(&$build) {
   $index = search_api_index_load('blog_index');
   $query = new SearchApiQuery($index);
   $query->range($offset, $limit);
+  $query->sort('field_date', 'DESC');
   $result = $query->execute();
 
   if (empty($result['results'])) {
