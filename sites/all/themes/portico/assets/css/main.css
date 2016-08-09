@@ -483,7 +483,7 @@ a {
 
 p {
   margin: 0 0 1em 0;
-  line-height: 1.8;
+  line-height: 1.5;
   font-size: 1rem;
 }
 
@@ -491,15 +491,35 @@ p:last-child {
   margin: 0 !important;
 }
 
-ul, ul.menu {
-  line-height: 1;
-  margin: 0;
-}
-
-ul li, ul.menu li {
+ol, ul, ul.menu {
   line-height: 1;
   margin: 0;
   padding: 0;
+}
+
+ol li, ul li, ul.menu li {
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+ol {
+  counter-reset: section;
+  list-style-type: none;
+}
+
+ol li {
+  padding-left: 1em;
+  margin-left: 0.5em;
+  position: relative;
+}
+
+ol li:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  counter-increment: section;
+  content: counters(section, ".") " ";
 }
 
 /*
@@ -556,15 +576,41 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
 }
 
-.field-body ul,
-.field-description ul {
-  margin-bottom: 1.3em;
+.field-body ul, .field-body ol,
+.field-description ul,
+.field-description ol {
+  margin-bottom: 1.5em;
+}
+
+.field-body ul li, .field-body ol li,
+.field-description ul li,
+.field-description ol li {
+  position: relative;
+  line-height: 1.5;
+  margin-left: 0.25em;
+  margin-bottom: 1em;
+}
+
+.field-body ul li:before, .field-body ol li:before,
+.field-description ul li:before,
+.field-description ol li:before {
+  color: #0077C0;
+  position: absolute;
+  left: 0;
+}
+
+.field-body ol li,
+.field-description ol li {
+  padding-left: 2em;
+}
+
+.field-body ol li:before,
+.field-description ol li:before {
+  font-weight: bold;
 }
 
 .field-body ul li,
 .field-description ul li {
-  position: relative;
-  line-height: 1.5;
   padding-left: 1em;
   margin-left: 0.5em;
 }
@@ -573,16 +619,13 @@ h1, h2, h3, h4, h5, h6 {
 .field-description ul li:before {
   content: '\f111';
   font-family: 'icomoon';
-  color: #0077C0;
-  position: absolute;
-  left: 0;
   font-size: 8px;
   top: 6px;
 }
 
 .field-body p,
 .field-description p {
-  margin-bottom: 1.3em;
+  margin-bottom: 1.5em;
 }
 
 .field-body h1, .field-body h2, .field-body h3, .field-body h4, .field-body h5, .field-body h6,
@@ -606,7 +649,7 @@ blockquote, q {
 
 blockquote p, q p {
   font-size: 1.2em;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 @media screen and (min-width: 800px) {
@@ -2256,7 +2299,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 
 .facet-wrapper.dates .item-list > ul li li {
   margin-bottom: 0;
-  line-height: 1.3;
+  line-height: 1.5;
 }
 
 .facet-wrapper.dates .item-list > ul li a {
@@ -2378,7 +2421,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   letter-spacing: 0px;
   font-size: 1.5em;
   font-weight: bold;
-  line-height: 1.3;
+  line-height: 1.5;
   margin-bottom: 0;
   text-transform: uppercase;
 }

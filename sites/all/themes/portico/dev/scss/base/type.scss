@@ -16,7 +16,7 @@ a {
 p {
 
   margin:0 0 1em 0;
-  line-height: 1.8;
+  line-height: 1.5;
   font-size: rem(16px);
 
   &:last-child {
@@ -28,9 +28,11 @@ p {
 
 
 
-ul, ul.menu {
+ol, ul, ul.menu {
   line-height: 1;
   margin:0;
+  padding:0;
+
   li {
     line-height: 1;
     margin:0;
@@ -38,8 +40,23 @@ ul, ul.menu {
   }
 }
 
+ol {
+  counter-reset: section;
+  list-style-type: none;
 
+  li {
+    padding-left: 1em;
+    margin-left: 0.5em;
+    position: relative;
 
+    &:before {
+      position:absolute;
+      top: 0;left: 0;
+      counter-increment: section;
+      content: counters(section,".") " ";
+    }
+  }
+}
 
 /*
  * Edit Tabs
@@ -118,32 +135,49 @@ h1,h2,h3,h4,h5,h6 {
 .field-body,
 .field-description {
 
-  ul {
-    margin-bottom: 1.3em;
+  ul,ol {
+    margin-bottom: 1.5em;
 
     li {
       position: relative;
       line-height: 1.5;
-      padding-left: 1em;
-      margin-left: 0.5em;
+      margin-left: 0.25em;
+      margin-bottom: 1em;
 
       &:before {
-        content: '\f111';
-        font-family: 'icomoon';
         color: $blue;
         position: absolute;
         left: 0;
+      }
+    }
+  }
+
+  ol {
+    li {
+      padding-left: 2em;
+      &:before {
+        font-weight: bold;
+      }
+    }
+  }
+
+  ul {
+    li {
+      padding-left: 1em;
+      margin-left: 0.5em;
+      &:before {
+        content: '\f111';
+        font-family: 'icomoon';
         font-size: 8px;
         top: 6px;
       }
-
     }
-
   }
 
   p {
-    margin-bottom: 1.3em;
+    margin-bottom: 1.5em;
   }
+  
   h1,h2,h3,h4,h5,h6 {
     margin-bottom: 1em;
   }
@@ -160,7 +194,7 @@ blockquote, q {
 
   p {
     font-size: 1.2em;
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   @include media($break1) {
