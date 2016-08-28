@@ -13,17 +13,17 @@ function portico_structure_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_details|node|alert|form';
+  $field_group->identifier = 'group_details|node|landing|form';
   $field_group->group_name = 'group_details';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'alert';
+  $field_group->bundle = 'landing';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_main';
   $field_group->data = array(
     'label' => 'Details',
     'weight' => '7',
     'children' => array(
-      0 => 'body',
+      0 => 'field_sections',
       1 => 'field_image',
       2 => 'title',
     ),
@@ -37,35 +37,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_details|node|alert|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_details|node|landing|form';
-  $field_group->group_name = 'group_details';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'landing';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'group_main';
-  $field_group->data = array(
-    'label' => 'Details',
-    'weight' => '3',
-    'children' => array(
-      0 => 'field_image',
-      1 => 'title',
-    ),
-    'format_type' => 'tab',
-    'format_settings' => array(
-      'formatter' => 'closed',
-      'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-details field-group-tab',
-        'required_fields' => 1,
-      ),
-    ),
-  );
-  $field_groups['group_details|node|landing|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -78,7 +50,7 @@ function portico_structure_field_group_info() {
   $field_group->parent_name = 'group_main';
   $field_group->data = array(
     'label' => 'Details',
-    'weight' => '5',
+    'weight' => '7',
     'children' => array(
       0 => 'body',
       1 => 'field_subtype',
@@ -95,7 +67,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_details|node|page|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -108,7 +80,7 @@ function portico_structure_field_group_info() {
   $field_group->parent_name = 'group_main';
   $field_group->data = array(
     'label' => 'Details',
-    'weight' => '6',
+    'weight' => '9',
     'children' => array(
       0 => 'body',
       1 => 'field_type',
@@ -127,7 +99,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_details|node|person|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -140,13 +112,14 @@ function portico_structure_field_group_info() {
   $field_group->parent_name = 'group_main';
   $field_group->data = array(
     'label' => 'Details',
-    'weight' => '5',
+    'weight' => '43',
     'children' => array(
       0 => 'body',
       1 => 'field_series',
-      2 => 'field_date',
+      2 => 'field_passage',
       3 => 'field_audio',
-      4 => 'title',
+      4 => 'field_date',
+      5 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -158,32 +131,7 @@ function portico_structure_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_details|node|sermon|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_main|node|alert|form';
-  $field_group->group_name = 'group_main';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'alert';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Main',
-    'weight' => '0',
-    'children' => array(
-      0 => 'group_details',
-    ),
-    'format_type' => 'tabs',
-    'format_settings' => array(
-      'formatter' => '',
-      'instance_settings' => array(
-        'classes' => 'group-main field-group-tabs',
-      ),
-    ),
-  );
-  $field_groups['group_main|node|alert|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -199,17 +147,17 @@ function portico_structure_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'group_details',
-      1 => 'group_sections',
     ),
     'format_type' => 'tabs',
     'format_settings' => array(
       'formatter' => '',
       'instance_settings' => array(
         'classes' => 'group-main field-group-tabs',
+        'id' => '',
       ),
     ),
   );
-  $field_groups['group_main|node|landing|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -231,10 +179,11 @@ function portico_structure_field_group_info() {
       'formatter' => '',
       'instance_settings' => array(
         'classes' => 'group-main field-group-tabs',
+        'id' => '',
       ),
     ),
   );
-  $field_groups['group_main|node|page|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -256,10 +205,11 @@ function portico_structure_field_group_info() {
       'formatter' => '',
       'instance_settings' => array(
         'classes' => 'group-main field-group-tabs',
+        'id' => '',
       ),
     ),
   );
-  $field_groups['group_main|node|person|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -275,78 +225,22 @@ function portico_structure_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'group_details',
-      1 => 'group_passage',
     ),
     'format_type' => 'tabs',
     'format_settings' => array(
       'formatter' => '',
       'instance_settings' => array(
         'classes' => 'group-main field-group-tabs',
+        'id' => '',
       ),
     ),
   );
-  $field_groups['group_main|node|sermon|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_passage|node|sermon|form';
-  $field_group->group_name = 'group_passage';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'sermon';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'group_main';
-  $field_group->data = array(
-    'label' => 'Passage',
-    'weight' => '6',
-    'children' => array(
-      0 => 'field_passage',
-    ),
-    'format_type' => 'tab',
-    'format_settings' => array(
-      'formatter' => 'closed',
-      'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-passage field-group-tab',
-        'required_fields' => 1,
-      ),
-    ),
-  );
-  $field_groups['group_passage|node|sermon|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_sections|node|landing|form';
-  $field_group->group_name = 'group_sections';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'landing';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'group_main';
-  $field_group->data = array(
-    'label' => 'Sections',
-    'weight' => '4',
-    'children' => array(
-      0 => 'field_sections',
-    ),
-    'format_type' => 'tab',
-    'format_settings' => array(
-      'formatter' => 'closed',
-      'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-sections field-group-tab',
-        'required_fields' => 1,
-      ),
-    ),
-  );
-  $field_groups['group_sections|node|landing|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Details');
   t('Main');
-  t('Passage');
-  t('Sections');
 
   return $field_groups;
 }

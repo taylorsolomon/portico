@@ -21,3 +21,4 @@ features[variable][] = menu_parent_wufoo
 features[variable][] = node_options_wufoo
 features[variable][] = node_preview_wufoo
 features[variable][] = node_submitted_wufoo
+features[variable][] = pathauto_node_wufoo_pattern

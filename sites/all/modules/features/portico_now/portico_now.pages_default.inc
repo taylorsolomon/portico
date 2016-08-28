@@ -37,6 +37,14 @@ function portico_now_default_page_manager_handlers() {
           'context' => 'argument_entity_id:node_1',
           'not' => FALSE,
         ),
+        1 => array(
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'edit any portico_now content',
+          ),
+          'context' => 'logged-in-user',
+          'not' => TRUE,
+        ),
       ),
       'logic' => 'and',
     ),

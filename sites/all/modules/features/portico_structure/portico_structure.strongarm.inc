@@ -72,13 +72,13 @@ function portico_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '1',
+          'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '4',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '3',
         ),
       ),
       'display' => array(),
@@ -111,13 +111,13 @@ function portico_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '4',
+          'weight' => '2',
         ),
         'title' => array(
-          'weight' => '1',
+          'weight' => '5',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -130,36 +130,17 @@ function portico_structure_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__person';
   $strongarm->value = array(
-    'view_modes' => array(
-      'teaser' => array(
-        'custom_settings' => TRUE,
-      ),
-      'blog_teaser' => array(
-        'custom_settings' => TRUE,
-      ),
-      'full' => array(
-        'custom_settings' => FALSE,
-      ),
-      'rss' => array(
-        'custom_settings' => FALSE,
-      ),
-      'diff_standard' => array(
-        'custom_settings' => FALSE,
-      ),
-      'token' => array(
-        'custom_settings' => FALSE,
-      ),
-    ),
+    'view_modes' => array(),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '4',
+          'weight' => '6',
         ),
         'title' => array(
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '7',
         ),
       ),
       'display' => array(),
@@ -195,10 +176,10 @@ function portico_structure_strongarm() {
           'weight' => '1',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '8',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '7',
         ),
       ),
       'display' => array(),
@@ -456,9 +437,30 @@ function portico_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_alert_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_alert_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_landing_pattern';
   $strongarm->value = '';
   $export['pathauto_node_landing_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_page_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_page_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_person_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_person_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

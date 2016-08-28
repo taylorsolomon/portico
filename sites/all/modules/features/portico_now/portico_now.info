@@ -24,3 +24,6 @@ features[field_instance][] = node-portico_now-field_portico_now_category
 features[node][] = portico_now
 features[page_manager_handlers][] = node_view__http_response_d8792447-0b33-453f-94bb-55dc3e68c741
 features[taxonomy][] = portico_now_category
+features[variable][] = field_bundle_settings_node__portico_now
+features[variable][] = pathauto_node_portico_now_pattern
+features[variable][] = pathauto_taxonomy_term_portico_now_category_pattern
