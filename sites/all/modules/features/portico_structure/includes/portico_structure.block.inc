@@ -25,6 +25,11 @@ function portico_structure_block_info() {
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
 
+  $blocks['recent_posts'] = array(
+    'info' => t('Most Recent Blogpost & PorticoNOW update'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
+
   return $blocks;
 }
 
@@ -90,6 +95,10 @@ function portico_structure_block_view($delta = '') {
       $block['subject'] = '';
       $block['content'] = portico_structure_alerts();
       break;
+
+    case 'recent_posts':
+      $block['subject'] = '';
+      $block['content'] = portico_structure_recent_posts();
 
   }
 
@@ -326,7 +335,7 @@ function portico_structure_sermon_promo($hero = FALSE) {
 
   $sermon = reset($result['node']);
   $sermon = node_load($sermon->nid);
-  
+
   // Series is a required field.
   $series_tid = $sermon->field_series['und'][0]['tid'];
   $series = taxonomy_term_load($series_tid);
@@ -398,4 +407,67 @@ function portico_structure_sermon_promo($hero = FALSE) {
   }
 
   return $return;
+}
+
+/**
+ * [portico_structure_recent_posts description]
+ * @return [type] [description]
+ */
+function portico_structure_recent_posts() {
+  $nids = array();
+
+  $pnow = variable_get('portico_structure_portico_now_weights');
+
+  if (!empty($pnow)) {
+    $keys = array_keys($pnow);
+    $nids[] = reset($keys);
+  }
+
+  $blogpost_query = new EntityFieldQuery;
+  $blogpost_query->entityCondition('entity_type', 'node')
+                ->entityCondition('bundle', 'blogpost')
+                ->range(0,1)
+                ->propertyCondition('status', NODE_PUBLISHED)
+                ->fieldOrderBy('field_date','value', 'DESC');
+
+  $results = $blogpost_query->execute();
+  if (!empty($results['node'])) {
+    $keys = array_keys($results['node']);
+    $nids[] = reset($keys);
+  }
+
+  $loaded = entity_load('node', $nids);
+
+  foreach($loaded as $key => $node) {
+    if ($node->status == 0) {
+      unset($loaded[$key]);
+    }
+  }
+
+  $blognode = portico_structure_get_subtype('blog');
+  $pnownode = portico_structure_get_subtype('portico_now');
+
+  $bloglink = l('From the Blog', 'node/'.$blognode->nid);
+  $pnowlink = l('PorticoNOW', 'node/'.$pnownode->nid);
+
+  $viewed = entity_view('node', $loaded, 'teaser');
+  $viewed = $viewed['node'];
+
+  foreach($viewed as $key => &$node) {
+    if (is_array($node)) {
+      switch($node['#node']->type) {
+        case 'blogpost':
+          $node['#prefix'] = '<div class="flex-wrapper"><h3 class="section-title">'.$bloglink.'</h3>';
+          $node['#suffix'] = '</div>';
+          break;
+
+        case 'portico_now':
+          $node['#prefix'] = '<div class="flex-wrapper"><h3 class="section-title">'.$pnowlink.'</h3>';
+          $node['#suffix'] = '</div>';
+          break;
+      }
+    }
+  }
+
+  return $viewed;
 }

@@ -1919,6 +1919,87 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   }
 }
 
+#block-portico-structure-recent-posts {
+  padding-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  background-image: -webkit-linear-gradient(#152d40 0, #08121a 100%);
+  background-image: -webkit-linear-gradient(to, #08121a 100%);
+  background-image: linear-gradient(to   , #08121a 100%);
+}
+
+#block-portico-structure-recent-posts .section-title {
+  color: #fff;
+  text-align: center;
+  padding: 2em 0;
+  font-size: 1.5em;
+}
+
+#block-portico-structure-recent-posts .section-title a {
+  padding: 0.4em 2em;
+  color: #152d40;
+  padding: 0.5em 1.5em;
+  display: inline-block;
+  border: 2px solid #fff;
+  -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+          transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+}
+
+#block-portico-structure-recent-posts .section-title a:hover {
+  border-color: #0077C0;
+  background-color: #0077C0;
+  color: #fff;
+}
+
+#block-portico-structure-recent-posts .node-teaser {
+  margin-top: 0;
+}
+
+#block-portico-structure-recent-posts .flex-wrapper {
+  padding: 0 2em;
+}
+
+@media screen and (min-width: 960px) {
+  #block-portico-structure-recent-posts .content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 0 2em;
+  }
+  #block-portico-structure-recent-posts .flex-wrapper {
+    position: relative;
+    padding: 0 3em;
+    z-index: 2;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #block-portico-structure-recent-posts .flex-wrapper .section-title {
+    display: block;
+    text-align: center;
+  }
+  #block-portico-structure-recent-posts .flex-wrapper .node-teaser {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+}
+
 .jp-audio {
   height: 40px;
   position: relative;
@@ -2035,8 +2116,9 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 .node-blogpost.node-teaser {
   max-width: 800px;
   border: 1px solid #c7c7c7;
-  border-radius: 4px;
+  border-radius: 5px;
   margin: 20px 20px 40px;
+  background-color: #fff;
 }
 
 .node-portico-now .field-portico-now-category,
@@ -2056,6 +2138,12 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   position: relative;
 }
 
+.node-portico-now .image-wrapper img,
+.node-blogpost.node-teaser .image-wrapper img {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
 .node-portico-now .image-wrapper .field-portico-now-category,
 .node-portico-now .image-wrapper .field-category,
 .node-blogpost.node-teaser .image-wrapper .field-portico-now-category,
@@ -2067,7 +2155,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 
 .node-portico-now .content-wrapper,
 .node-blogpost.node-teaser .content-wrapper {
-  padding: 0 20px 10px;
+  padding: 0 20px 30px;
 }
 
 .node-portico-now .content-wrapper.no-image,

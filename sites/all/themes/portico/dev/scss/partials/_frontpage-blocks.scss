@@ -152,3 +152,93 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title {
     }
   }
 }
+
+
+#block-portico-structure-recent-posts {
+  padding-bottom: 40px;
+  position:relative;
+  overflow: hidden;
+
+  @include background-image(linear-gradient($blue-dark 0, darken($blue-dark, 10%) 100%));
+  // @include background-image(linear-gradient(45deg, $green 0, $tan 100%));
+  // &:before,&:after{
+  //   content:'';
+  //   position:absolute;
+  //   width:100%;
+  //   height:100%;
+  // }
+  // &:before{
+  //   background: $blue;
+  //   box-shadow: 0 0 1000px 500px $blue;
+  //   // z-index:1;
+  //   top: -100%;
+  //   left: -100%;
+  //   opacity: 0.8;
+  // }
+  // &:after {
+  //   background: white;
+  //   bottom: -100%;
+  //   right: -100%;
+  //   box-shadow: 0 0 400px 400px white;
+  //   opacity: 1;
+  //   border-radius: 100%;
+  // }
+
+  .section-title {
+
+    color: $white;
+    text-align: center;
+    padding: 2em 0;
+    font-size: 1.5em;
+
+    a {
+      padding: 0.4em 2em;
+      @include button($border-color: $white);
+      color:$white;
+      position: relative;
+      // font-weight: 500;
+      // &:after {
+      //   position: absolute;
+      //   right:10px;
+      //
+      //   content: '\f105';
+      //   font-family: 'icomoon';
+      // }
+    }
+  }
+
+  .node-teaser {
+    margin-top:0;
+  }
+
+  .flex-wrapper {
+    padding: 0 2em;
+  }
+
+  @include media($break2) {
+    .content {
+      display:flex;
+      flex-flow:row wrap;
+      justify-content: space-between;
+      padding: 0 2em;
+    }
+
+    .flex-wrapper {
+      position: relative;
+      padding: 0 3em;
+      z-index: 2;
+      flex: 1;
+      display:flex;
+      flex-direction: column;
+
+      .section-title {
+        display:block;
+        text-align: center;
+      }
+
+      .node-teaser {
+        flex:1;
+      }
+    }
+  }
+}

@@ -38,6 +38,12 @@ function portico_structure_context_default_contexts() {
           'region' => 'content',
           'weight' => '-9',
         ),
+        'portico_structure-recent_posts' => array(
+          'module' => 'portico_structure',
+          'delta' => 'recent_posts',
+          'region' => 'content',
+          'weight' => '-8',
+        ),
       ),
     ),
   );
