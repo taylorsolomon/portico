@@ -402,19 +402,19 @@ function portico_feed() {
   $sermons = portico_structure_get_sermons(FALSE);
 
   $channel_data = array(
-    'title' => 'Portico Church Arlington',
+    'title' => 'Portico Arlington',
     'link' => 'http://www.porticoarlington.org',
     'language' => 'en-us',
     'copyright' => '&#x2117; &amp; &#xA9; 2016 Portico Church Arlington',
-    'description' => 'Portico Church Arlington Podcasts',
+    'description' => 'Portico Arlington Podcasts',
     'itunes:image href="' . portico_structure_get_feed_photo() . '"' => 'self_close',
-    'itunes:subtitle' => 'Sunday message audio from Portico Church Arlington',
-    'itunes:author' => 'Portico Church Arlington',
-    'itunes:summary' => 'Portico Church Arlington Podcasts',
+    'itunes:subtitle' => 'Sunday Message audio from Portico Arlington',
+    'itunes:author' => 'Portico Arlington',
+    'itunes:summary' => 'Portico Arlington Podcasts',
     'itunes:explicit' => 'no',
     'itunes:keywords' => 'Jesus,Arlington,Portico,christianity,church,gospel,sermon,Christ',
     'itunes:owner' => array(
-      'itunes:name' => 'Portico Church Arlington',
+      'itunes:name' => 'Portico Arlington',
       'itunes:email' => 'jreeve@porticoarlington.org',
     ),
     'itunes:category text="Religion &amp; Spirituality"' => array(
@@ -528,7 +528,7 @@ function portico_rss_format_sermons($sermons)  {
         'title' => $sermon->title,
         'guid isPermaLink="false"' => $guid,
         'pubDate' => $pubDate,
-        'itunes:author' => 'Portico Church Arlington',
+        'itunes:author' => 'Portico Arlington',
         'itunes:subtitle' => '',
         'itunes:summary' => empty($summary) ? '' : '<![CDATA[' . $summary . ']]>',
         'itunes:duration' => $file_info['playtime_string'],
