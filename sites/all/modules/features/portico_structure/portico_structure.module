@@ -525,7 +525,7 @@ function portico_rss_format_sermons($sermons)  {
 
     $sermon_data = array(
       'item' => array(
-        'title' => $sermon->title,
+        'title' => '<![CDATA[' . $sermon->title . ']]>',
         'guid isPermaLink="false"' => $guid,
         'pubDate' => $pubDate,
         'itunes:author' => 'Portico Arlington',

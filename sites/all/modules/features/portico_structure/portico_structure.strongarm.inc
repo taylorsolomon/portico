@@ -72,13 +72,13 @@ function portico_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '8',
+          'weight' => '1',
         ),
         'metatags' => array(
-          'weight' => '4',
+          'weight' => '40',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '30',
         ),
       ),
       'display' => array(),
@@ -111,13 +111,13 @@ function portico_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '2',
+          'weight' => '4',
         ),
         'title' => array(
-          'weight' => '5',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '2',
         ),
       ),
       'display' => array(),
@@ -134,13 +134,13 @@ function portico_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '6',
+          'weight' => '4',
         ),
         'title' => array(
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '2',
         ),
       ),
       'display' => array(),
@@ -176,10 +176,10 @@ function portico_structure_strongarm() {
           'weight' => '1',
         ),
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '40',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '30',
         ),
       ),
       'display' => array(),
@@ -437,30 +437,9 @@ function portico_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_alert_pattern';
-  $strongarm->value = '';
-  $export['pathauto_node_alert_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_landing_pattern';
   $strongarm->value = '';
   $export['pathauto_node_landing_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_page_pattern';
-  $strongarm->value = '';
-  $export['pathauto_node_page_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_person_pattern';
-  $strongarm->value = '';
-  $export['pathauto_node_person_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

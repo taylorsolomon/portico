@@ -90,7 +90,7 @@ function portico_structure_ckeditor_profile_defaults() {
     [\'Bold\',\'Italic\',\'Underline\'],
     [\'-\',\'Subscript\',\'Superscript\',\'RemoveFormat\',\'-\'],
     [\'Image\',\'Table\'],
-    [\'Maximize\',\'ShowBlocks\'],
+    [\'Maximize\',\'ShowBlocks\',\'PasteFromWord\'],
     [\'Link\',\'Unlink\',\'Anchor\'],
     \'/\',
     [\'Format\',\'Styles\'],
@@ -142,7 +142,6 @@ function portico_structure_ckeditor_profile_defaults() {
             'name' => 'drupal_path',
             'desc' => 'CKEditor Link - A plugin to easily create links to Drupal internal paths',
             'path' => '%base_path%sites/all/modules/contrib/ckeditor_link/plugins/link/',
-            'buttons' => FALSE,
           ),
           'drupalbreaks' => array(
             'name' => 'drupalbreaks',
