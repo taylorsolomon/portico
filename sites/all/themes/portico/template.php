@@ -5,6 +5,10 @@ function portico_preprocess_html(&$vars) {
     $node = reset($vars['page']['content']['system_main']['nodes']);
     if (!empty($node['#node']->field_subtype['und'][0]['value'])) {
       $vars['classes_array'][] = 'subtype-' . $node['#node']->field_subtype['und'][0]['value'];
+
+      if ($node['#node']->field_subtype['und'][0]['value'] == 'portico_now') {
+        $vars['classes_array'][] = 'has-sidebar';
+      }
     }
   }
 }

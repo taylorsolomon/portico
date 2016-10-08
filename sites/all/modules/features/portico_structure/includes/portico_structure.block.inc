@@ -320,16 +320,16 @@ function portico_structure_location() {
  */
 function portico_structure_sermon_promo($hero = FALSE) {
 
-  $query = new EntityFieldQuery;
+  $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'sermon')
-        ->range(0,1)
+        ->range(0, 1)
         ->propertyCondition('status', NODE_PUBLISHED)
-        ->fieldOrderBy('field_date','value', 'DESC');
+        ->fieldOrderBy('field_date', 'value', 'DESC');
 
   $result = $query->execute();
   if (empty($result['node'])) {
-    // return array('#markup' => '');
+    // Return array('#markup' => '');.
     return FALSE;
   }
 
@@ -342,7 +342,7 @@ function portico_structure_sermon_promo($hero = FALSE) {
   $sermon_page = portico_structure_get_subtype('sermons');
 
   try {
-    // Check for parent's image
+    // Check for parent's image.
     $image = $series->field_image['und'][0];
     $derivative_uri = image_style_path('1600-400', $image['uri']);
     $style = image_style_load('1600-400');
@@ -350,7 +350,8 @@ function portico_structure_sermon_promo($hero = FALSE) {
       image_style_create_derivative($style, $image['uri'], $derivative_uri);
     $entity_image_url = file_create_url($derivative_uri);
 
-  } catch (Exception $e) {
+  }
+  catch (Exception $e) {
     return FALSE;
   }
 
@@ -396,7 +397,7 @@ function portico_structure_sermon_promo($hero = FALSE) {
           'class' => array('inner'),
         ),
         'node' => node_view($sermon, 'blog_teaser'),
-        'link' => array('#markup' => l('View Series','taxonomy/term/'.$series_tid)),
+        'link' => array('#markup' => l('View Series', 'taxonomy/term/' . $series_tid)),
       ),
     ),
   );
@@ -414,55 +415,52 @@ function portico_structure_sermon_promo($hero = FALSE) {
  * @return [type] [description]
  */
 function portico_structure_recent_posts() {
-  $nids = array();
+  $viewed = array();
 
   $pnow = variable_get('portico_structure_portico_now_weights');
 
   if (!empty($pnow)) {
     $keys = array_keys($pnow);
-    $nids[] = reset($keys);
+    $nid = reset($keys);
+    $pnow_loaded = entity_load('node', array($nid));
+    $teaser = entity_view('node', $pnow_loaded, 'blog_teaser');
+    $viewed[] = reset($teaser['node']);
   }
 
-  $blogpost_query = new EntityFieldQuery;
+  $blogpost_query = new EntityFieldQuery();
   $blogpost_query->entityCondition('entity_type', 'node')
                 ->entityCondition('bundle', 'blogpost')
-                ->range(0,1)
+                ->range(0, 1)
                 ->propertyCondition('status', NODE_PUBLISHED)
-                ->fieldOrderBy('field_date','value', 'DESC');
+                ->fieldOrderBy('field_date', 'value', 'DESC');
 
   $results = $blogpost_query->execute();
   if (!empty($results['node'])) {
     $keys = array_keys($results['node']);
-    $nids[] = reset($keys);
+    $nid = reset($keys);
   }
 
-  $loaded = entity_load('node', $nids);
-
-  foreach($loaded as $key => $node) {
-    if ($node->status == 0) {
-      unset($loaded[$key]);
-    }
-  }
+  $blog_loaded = entity_load('node', array($nid));
 
   $blognode = portico_structure_get_subtype('blog');
   $pnownode = portico_structure_get_subtype('portico_now');
 
-  $bloglink = l('From the Blog', 'node/'.$blognode->nid);
-  $pnowlink = l('PorticoNOW', 'node/'.$pnownode->nid);
+  $bloglink = l(t('From the Blog'), 'node/' . $blognode->nid);
+  $pnowlink = l(t('PorticoNOW'), 'node/' . $pnownode->nid);
 
-  $viewed = entity_view('node', $loaded, 'teaser');
-  $viewed = $viewed['node'];
+  $blog_viewed = entity_view('node', $blog_loaded, 'teaser');
+  $viewed[] = reset($blog_viewed['node']);
 
-  foreach($viewed as $key => &$node) {
+  foreach ($viewed as $key => &$node) {
     if (is_array($node)) {
-      switch($node['#node']->type) {
+      switch ($node['#node']->type) {
         case 'blogpost':
-          $node['#prefix'] = '<div class="flex-wrapper"><h3 class="section-title">'.$bloglink.'</h3>';
+          $node['#prefix'] = '<div class="flex-wrapper"><h3 class="section-title">' . $bloglink . '</h3>';
           $node['#suffix'] = '</div>';
           break;
 
         case 'portico_now':
-          $node['#prefix'] = '<div class="flex-wrapper"><h3 class="section-title">'.$pnowlink.'</h3>';
+          $node['#prefix'] = '<div class="flex-wrapper"><h3 class="section-title">' . $pnowlink . '</h3>';
           $node['#suffix'] = '</div>';
           break;
       }

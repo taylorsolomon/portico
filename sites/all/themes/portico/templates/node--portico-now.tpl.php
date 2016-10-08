@@ -87,7 +87,7 @@ if (empty($content['field_image'])) {
 }
 ?>
 
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<article id="node-<?php print $node->nid; ?>" class="node-teaser <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
   <?php if (!$no_image): ?>
     <div class="image-wrapper">

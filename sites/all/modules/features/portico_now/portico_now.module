@@ -57,25 +57,64 @@ function portico_now_aggregate_nodes(&$build) {
   $loaded = entity_load('node', $keys);
   $viewed = entity_view('node', $loaded, 'teaser');
 
-  $build['nodes'] = $viewed;
+  $build['pnow-nodes'] = $viewed['node'];
 
 }
 
 /**
- * [portico_now_preprocess_field description]
- * @param  [type] $variables [description]
- * @return [type]            [description]
+ * Implements hook_preprocess_field().
  */
 function portico_now_preprocess_field(&$variables) {
-	if($variables['element']['#field_name'] == 'field_portico_now_category') {
+  if ($variables['element']['#field_name'] == 'field_portico_now_category') {
     $variables['classes_array'][] = 'term-' . drupal_html_class($variables['items'][0]['#markup']);
-	}
+  }
 }
 
 /**
  * Implements hook_preprocess_page().
  */
 function portico_now_preprocess_page(&$vars) {
-  dpm($vars);
-  dpm($portico_structure_get_subtype('portico_now'));
+  $pnow = portico_structure_get_subtype('portico_now');
+  if (empty($pnow) || empty($vars['node'])) {
+    return;
+  }
+
+  if ($pnow->nid !== $vars['node']->nid) {
+    return;
+  }
+
+  $sidebar = array();
+  try {
+    $page = $vars['page']['content']['system_main']['nodes'][$pnow->nid];
+    if (!empty($page['pnow-nodes'])) {
+      $vars['page']['sidebar_first']['scrollsidebar'] = portico_now_get_pnow_titles($page['pnow-nodes']);
+    }
+
+  }
+  catch (Exception $e) {
+  }
+
+}
+
+/**
+ * PNOW title aggregator.
+ */
+function portico_now_get_pnow_titles($nodes) {
+  $output = $items = array();
+  foreach ($nodes as $node) {
+    if (!is_array($node)) {
+      continue;
+    }
+    
+    $title = explode('|', $node['#node']->title);
+
+    $items[] = l(trim($title[0]), current_path(), array(
+      'fragment' => 'node-' . $node['#node']->nid,
+    ));
+  }
+
+  $output['#theme'] = 'item_list';
+  $output['#items'] = $items;
+  $output['#attributes'] = array('class' => array('jump-list'));
+  return $output;
 }

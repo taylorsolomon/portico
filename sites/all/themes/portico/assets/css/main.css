@@ -1355,6 +1355,101 @@ input[type='submit']:hover {
   margin: 0;
 }
 
+body.has-sidebar #sidebar-first {
+  display: none;
+}
+
+body.has-sidebar #sidebar-first .item-list {
+  width: 300px;
+}
+
+body.has-sidebar #sidebar-first .item-list.fixed {
+  position: fixed;
+  top: 60px;
+}
+
+body.has-sidebar #sidebar-first .jump-list {
+  background: #152d40;
+  padding: 10px 0;
+  margin: 20px 0 0;
+}
+
+body.has-sidebar #sidebar-first .jump-list li {
+  margin: 0;
+  padding: 0;
+}
+
+body.has-sidebar #sidebar-first .jump-list a {
+  font-size: 14px;
+  display: block;
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #e6e6e6;
+}
+
+body.has-sidebar #sidebar-first .jump-list a:hover {
+  background: #0077C0;
+}
+
+@media screen and (min-width: 840px) {
+  body.has-sidebar .node-portico-now {
+    margin: 20px auto 40px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  body.has-sidebar #main {
+    display: block;
+    padding: 1em;
+  }
+  body.has-sidebar #main::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+  body.has-sidebar #content {
+    float: right;
+    display: block;
+    margin-left: 2.35765%;
+    width: 65.88078%;
+  }
+  body.has-sidebar #content:last-child {
+    margin-left: 0;
+  }
+  body.has-sidebar #sidebar-first {
+    display: block;
+    float: right;
+    display: block;
+    margin-left: 2.35765%;
+    width: 31.76157%;
+  }
+  body.has-sidebar #sidebar-first:last-child {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  body.has-sidebar #sidebar-first {
+    display: block;
+    float: right;
+    display: block;
+    margin-left: 2.35765%;
+    width: 23.23176%;
+  }
+  body.has-sidebar #sidebar-first:last-child {
+    margin-left: 0;
+  }
+  body.has-sidebar #content {
+    float: right;
+    display: block;
+    margin-left: 2.35765%;
+    width: 74.41059%;
+  }
+  body.has-sidebar #content:last-child {
+    margin-left: 0;
+  }
+}
+
 .node-sermon {
   margin-bottom: 20px;
   position: relative;

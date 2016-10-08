@@ -49,12 +49,7 @@ function portico_blog_default_search_api_index() {
       "datasource" : { "bundles" : [] },
       "index_directly" : 1,
       "cron_limit" : "50",
-      "fields" : {
-        "field_category" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_date" : { "type" : "date" },
-        "search_api_language" : { "type" : "string" },
-        "title" : { "type" : "text" }
-      },
+      "fields" : { "title" : { "type" : "text" } },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
           "status" : 1,
@@ -144,28 +139,9 @@ function portico_blog_default_search_api_server() {
       "database" : "default:default",
       "min_chars" : "1",
       "partial_matches" : 0,
-      "indexes" : { "blog_index" : {
-          "title" : {
+      "indexes" : { "blog_index" : { "title" : {
             "table" : "search_api_db_blog_index_text",
             "type" : "text",
-            "boost" : "1.0"
-          },
-          "search_api_language" : {
-            "table" : "search_api_db_blog_index",
-            "column" : "search_api_language",
-            "type" : "string",
-            "boost" : "1.0"
-          },
-          "field_category" : {
-            "table" : "search_api_db_blog_index_field_category",
-            "column" : "value",
-            "type" : "list\\u003Cinteger\\u003E",
-            "boost" : "1.0"
-          },
-          "field_date" : {
-            "table" : "search_api_db_blog_index",
-            "column" : "field_date",
-            "type" : "date",
             "boost" : "1.0"
           }
         }

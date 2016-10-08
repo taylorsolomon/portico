@@ -538,3 +538,81 @@ input[type='submit'] {
     }
   }
 }
+
+
+
+body.has-sidebar {
+  #sidebar-first {
+    display:none;
+
+    .item-list {
+      width: 300px;
+      &.fixed {
+        position:fixed;
+        top:60px;
+      }
+    }
+
+    .jump-list {
+      background: $blue-dark;
+      padding: 10px 0;
+      margin:20px 0 0;
+
+      li {
+        margin:0;
+        padding:0;
+      }
+
+      a {
+        font-size: 14px;
+        display:block;
+        padding: 10px 20px;
+        &:hover {
+          background: $blue;
+        }
+
+        font-weight: bold;
+        color: darken($white, 10%);
+      }
+
+
+    }
+  }
+
+  @include media($break1 + 40px) {
+    .node-portico-now {
+      margin: 20px auto 40px;
+    }
+  }
+
+  @include media($break2) {
+    #main {
+      @include row;
+      padding: 1em;
+    }
+    @include direction-context(right-to-left) {
+      #content {
+        @include span-columns(8);
+      }
+
+      #sidebar-first {
+        display:block;
+        @include span-columns(4);
+      }
+    }
+  }
+
+  @include media($break3) {
+    @include direction-context(right-to-left) {
+
+      #sidebar-first {
+        display:block;
+        @include span-columns(3);
+      }
+
+      #content {
+        @include span-columns(9);
+      }
+    }
+  }
+}

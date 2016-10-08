@@ -18,19 +18,6 @@ function portico_now_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'blog_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-      'teaser' => array(
         'label' => 'hidden',
         'module' => 'smart_trim',
         'settings' => array(
@@ -47,6 +34,20 @@ function portico_now_field_default_field_instances() {
           'trim_type' => 'chars',
         ),
         'type' => 'smart_trim_format',
+        'weight' => 2,
+      ),
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
         'weight' => 2,
       ),
     ),
@@ -77,9 +78,13 @@ function portico_now_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'blog_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '1024-512',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
       'default' => array(
@@ -161,10 +166,11 @@ function portico_now_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'blog_teaser' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 1,
       ),
       'default' => array(
         'label' => 'above',
