@@ -71,3 +71,11 @@ function portico_now_preprocess_field(&$variables) {
     $variables['classes_array'][] = 'term-' . drupal_html_class($variables['items'][0]['#markup']);
 	}
 }
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function portico_now_preprocess_page(&$vars) {
+  dpm($vars);
+  dpm($portico_structure_get_subtype('portico_now'));
+}

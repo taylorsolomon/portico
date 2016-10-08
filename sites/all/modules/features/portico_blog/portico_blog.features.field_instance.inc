@@ -36,7 +36,7 @@ function portico_blog_field_default_field_instances() {
         'settings' => array(
           'more_link' => 0,
           'more_text' => 'Read more',
-          'summary_handler' => 'ignore',
+          'summary_handler' => 'full',
           'trim_length' => 300,
           'trim_link' => 0,
           'trim_options' => array(
@@ -95,6 +95,7 @@ function portico_blog_field_default_field_instances() {
         'module' => 'entityreference',
         'settings' => array(
           'links' => 0,
+          'use_content_language' => TRUE,
           'view_mode' => 'full',
         ),
         'type' => 'entityreference_entity_view',
