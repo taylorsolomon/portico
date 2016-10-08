@@ -1988,6 +1988,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    width: 50%;
   }
   #block-portico-structure-recent-posts .flex-wrapper .section-title {
     display: block;
@@ -1997,6 +1998,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1;
+    width: 100%;
   }
 }
 

@@ -230,6 +230,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title {
       flex: 1;
       display:flex;
       flex-direction: column;
+      width: 50%;
 
       .section-title {
         display:block;
@@ -238,6 +239,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title {
 
       .node-teaser {
         flex:1;
+        width: 100%;
       }
     }
   }
