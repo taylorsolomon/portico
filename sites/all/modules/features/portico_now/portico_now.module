@@ -54,7 +54,7 @@ function portico_now_aggregate_nodes(&$build) {
   }
 
   $keys = array_keys($nids);
-  $loaded = entity_load('node', $keys);
+  $loaded = entity_load('node', $keys, array('status' => 1));
   $viewed = entity_view('node', $loaded, 'teaser');
 
   $build['pnow-nodes'] = $viewed['node'];
@@ -105,7 +105,7 @@ function portico_now_get_pnow_titles($nodes) {
     if (!is_array($node)) {
       continue;
     }
-    
+
     $title = explode('|', $node['#node']->title);
 
     $items[] = l(trim($title[0]), current_path(), array(
