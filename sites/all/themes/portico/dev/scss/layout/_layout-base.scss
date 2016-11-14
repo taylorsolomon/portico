@@ -512,6 +512,10 @@ input[type='submit'] {
         content: '\e90f';
       }
 
+      &.podcast:after {
+        content: '\e91c';
+      }
+
       &:hover {
         border-color: $white;
         &:after {

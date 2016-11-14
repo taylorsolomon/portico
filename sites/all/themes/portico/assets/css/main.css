@@ -673,8 +673,7 @@ a:hover {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?nb9s50");
-  src: url("../fonts/icomoon.eot?nb9s50#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?nb9s50") format("truetype"), url("../fonts/icomoon.woff?nb9s50") format("woff"), url("../fonts/icomoon.svg?nb9s50#icomoon") format("svg");
+  src: url("../fonts/icomoon.ttf?3jxz2") format("truetype"), url("../fonts/icomoon.woff?3jxz2") format("woff"), url("../fonts/icomoon.svg?3jxz2#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -691,46 +690,6 @@ a:hover {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-filter_list:before {
-  content: "\e911";
-}
-
-.icon-bars:before {
-  content: "\f0c9";
-}
-
-.icon-navicon:before {
-  content: "\f0c9";
-}
-
-.icon-reorder:before {
-  content: "\f0c9";
-}
-
-.icon-angle-left:before {
-  content: "\f104";
-}
-
-.icon-angle-right:before {
-  content: "\f105";
-}
-
-.icon-angle-up:before {
-  content: "\f106";
-}
-
-.icon-angle-down:before {
-  content: "\f107";
-}
-
-.icon-circle-o:before {
-  content: "\f10c";
-}
-
-.icon-circle:before {
-  content: "\f111";
 }
 
 .icon-record:before {
@@ -807,6 +766,50 @@ a:hover {
 
 .icon-twitter:before {
   content: "\e910";
+}
+
+.icon-filter_list:before {
+  content: "\e911";
+}
+
+.icon-bars:before {
+  content: "\f0c9";
+}
+
+.icon-angle-left:before {
+  content: "\f104";
+}
+
+.icon-angle-right:before {
+  content: "\f105";
+}
+
+.icon-angle-up:before {
+  content: "\f106";
+}
+
+.icon-angle-down:before {
+  content: "\f107";
+}
+
+.icon-circle-o:before {
+  content: "\f10c";
+}
+
+.icon-circle:before {
+  content: "\f111";
+}
+
+.icon-headphones:before {
+  content: "\e912";
+}
+
+.icon-podcast:before {
+  content: "\e91c";
+}
+
+.icon-mic:before {
+  content: "\e91e";
 }
 
 body {
@@ -1338,6 +1341,10 @@ input[type='submit']:hover {
 
 #footer .social-links a.instagram:after {
   content: '\e90f';
+}
+
+#footer .social-links a.podcast:after {
+  content: '\e91c';
 }
 
 #footer .social-links a:hover {

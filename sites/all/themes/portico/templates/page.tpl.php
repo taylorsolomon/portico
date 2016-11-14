@@ -145,6 +145,12 @@
           </a>
         </li>
 
+        <li>
+          <a class='podcast' href='https://itunes.apple.com/us/podcast/portico-arlington/id1156600906?mt=2' target='_blank'>
+            <span>Podcast</span>
+          </a>
+        </li>
+
       </ul>
 
       <address>
