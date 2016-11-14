@@ -202,6 +202,38 @@
       text-align: right;
     }
   }
+
+  .node-person {
+    margin-top: 40px;
+    border-radius: 5px;
+    border: 1px solid $grey;
+    overflow: hidden;
+
+    .image-wrapper {
+      float:left;
+      width: 30%;
+    }
+
+    .content-wrapper {
+      float:right;
+      width: 70%;
+      padding: 1em;
+    }
+
+    h2 {
+      font-weight: 300;
+    }
+    .field-body p {
+      font-size: 0.8em;
+    }
+
+    @include media($break1) {
+      .field-body p {
+        font-size: 1em;
+      }
+
+    }
+  }
 }
 
 .addthis_sharing_toolbox {

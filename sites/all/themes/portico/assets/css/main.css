@@ -661,6 +661,16 @@ blockquote p, q p {
   }
 }
 
+a {
+  color: #0077C0;
+  -webkit-transition: color 0.2s ease;
+          transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #00578d;
+}
+
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon.eot?nb9s50");
@@ -2564,6 +2574,38 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   color: #fff;
   font-weight: bold;
   text-align: right;
+}
+
+.node-type-blogpost .node-person {
+  margin-top: 40px;
+  border-radius: 5px;
+  border: 1px solid #949494;
+  overflow: hidden;
+}
+
+.node-type-blogpost .node-person .image-wrapper {
+  float: left;
+  width: 30%;
+}
+
+.node-type-blogpost .node-person .content-wrapper {
+  float: right;
+  width: 70%;
+  padding: 1em;
+}
+
+.node-type-blogpost .node-person h2 {
+  font-weight: 300;
+}
+
+.node-type-blogpost .node-person .field-body p {
+  font-size: 0.8em;
+}
+
+@media screen and (min-width: 800px) {
+  .node-type-blogpost .node-person .field-body p {
+    font-size: 1em;
+  }
 }
 
 .addthis_sharing_toolbox {
