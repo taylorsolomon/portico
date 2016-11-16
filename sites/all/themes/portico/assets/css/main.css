@@ -1361,10 +1361,35 @@ input[type='submit']:hover {
   display: inline-block;
 }
 
+#footer .addresses {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 #footer address {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 100%;
+          flex: 1 100%;
   margin-top: 20px;
   font-style: normal;
   text-align: center;
+}
+
+@media screen and (min-width: 720px) {
+  #footer address {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 50%;
+            flex: 1 50%;
+  }
+}
+
+#footer address h4 {
+  color: #fff;
 }
 
 #footer address p {

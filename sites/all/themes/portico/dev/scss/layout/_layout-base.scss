@@ -531,10 +531,25 @@ input[type='submit'] {
     }
   }
 
+  .addresses {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
   address {
+    flex: 1 100%;
+    @include media($sidebar-break) {
+      flex: 1 50%;
+    }
     margin-top: 20px;
     font-style: normal;
     text-align: center;
+
+    h4 {
+      color: $white;
+    }
 
     p {
       color: $white;

@@ -85,6 +85,14 @@ if (empty($content['field_image'])) {
 } else {
   $no_image = '';
 }
+
+$pnow_landing_version_url = url(
+  $portico_now_landing,
+  array(
+    'absolute' => TRUE,
+    'fragment' => "node-" . $node->nid,
+  )
+);
 ?>
 
 <article id="node-<?php print $node->nid; ?>" class="node-teaser <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
@@ -95,13 +103,7 @@ if (empty($content['field_image'])) {
       <?php if ($content['field_portico_now_category']): ?>
         <?php print render($content['field_portico_now_category']); ?>
       <?php endif; ?>
-      <div class='addthis_sharing_toolbox' data-url="<?php print url(
-        $portico_now_landing,
-        array(
-          'absolute' => TRUE,
-          'fragment' => "node-" . $node->nid,
-        )
-      ); ?>" data-title="<?php print $title; ?>"></div>
+      <div class='addthis_sharing_toolbox' data-url="<?php print $pnow_landing_version_url; ?>" data-title="<?php print $title; ?>"></div>
     </div>
   <?php endif; ?>
 
@@ -114,7 +116,7 @@ if (empty($content['field_image'])) {
       }
     ?>
 
-    <h2><?php print $title; ?></h2>
+    <h2><a href="<?php print $pnow_landing_version_url; ?>"><?php print $title; ?></a></h2>
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['links']);

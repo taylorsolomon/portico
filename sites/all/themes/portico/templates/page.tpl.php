@@ -153,10 +153,19 @@
 
       </ul>
 
-      <address>
-        <p>4100 N Vacation Ln</p>
-        <p>Arlington, Virginia 22207</p>
-      </address>
+      <section class='addresses'>
+        <address>
+          <h4>Church Location</h4>
+          <p>4100 N Vacation Ln</p>
+          <p>Arlington, Virginia 22207</p>
+        </address>
+
+        <address>
+          <h4>Office Location</h4>
+          <p>3240 Wilson Blvd. Suite 200</p>
+          <p>Arlington, Virginia 22201</p>
+        </address>
+      </section>
 
       <?php print render($page['footer']); ?>
     </div>
