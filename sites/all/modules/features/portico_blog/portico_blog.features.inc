@@ -50,7 +50,10 @@ function portico_blog_default_search_api_index() {
       "index_directly" : 1,
       "cron_limit" : "50",
       "fields" : {
+        "field_author" : { "type" : "integer", "entity_type" : "node" },
+        "field_category" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_date" : { "type" : "date" },
+        "field_sections:field_body:value" : { "type" : "list\\u003Ctext\\u003E" },
         "search_api_language" : { "type" : "string" },
         "title" : { "type" : "text" }
       },
@@ -149,16 +152,33 @@ function portico_blog_default_search_api_server() {
             "type" : "text",
             "boost" : "1.0"
           },
+          "field_category" : {
+            "table" : "search_api_db_blog_index_field_category",
+            "column" : "value",
+            "type" : "list\\u003Cinteger\\u003E",
+            "boost" : "1.0"
+          },
           "field_date" : {
             "table" : "search_api_db_blog_index",
             "column" : "field_date",
             "type" : "date",
             "boost" : "1.0"
           },
+          "field_author" : {
+            "table" : "search_api_db_blog_index",
+            "column" : "field_author",
+            "type" : "integer",
+            "boost" : "1.0"
+          },
           "search_api_language" : {
             "table" : "search_api_db_blog_index",
             "column" : "search_api_language",
             "type" : "string",
+            "boost" : "1.0"
+          },
+          "field_sections:field_body:value" : {
+            "table" : "search_api_db_blog_index_text",
+            "type" : "list\\u003Ctext\\u003E",
             "boost" : "1.0"
           }
         }
