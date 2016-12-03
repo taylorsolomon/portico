@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file
+ * Code for the portico_resources feature.
+ */
+
+include_once 'portico_resources.features.inc';
+
+/**
+ * Define resource page types.
+ *
+ * @return array
+ *   Resource types.
+ */
+function portico_resources_define_types() {
+  return array(
+    'bible_reading_plan_2017' => t('Bible Reading Plan 2017'),
+    'pray_30' => t('Pray 30'),
+  );
+}
+
+/**
+ * Implements hook_subtype_options_alter().
+ */
+function portico_resources_subtype_options_alter(&$options, $form_state) {
+  switch ($form_state['bundle']) {
+    case 'resource_page':
+      $options = portico_resources_define_types();
+      break;
+  }
+}
+
+/**
+ * Implements hook_bg_alter().
+ */
+function portico_resources_bg_alter(&$output, $entity) {
+  if (!empty($entity->type) && $entity->type == 'resource_page') {
+    $titleImage = field_get_items('node', $entity, 'field_title_image');
+
+    $titleOptions = array(
+      'label' => 'hidden',
+      'type' => 'image',
+    );
+
+    $titleImageRenderable = field_view_value('node', $entity, 'field_title_image', $titleImage[0], $titleOptions);
+
+    $output = array('#markup' => render($titleImageRenderable));
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function portico_resources_theme() {
+  $types = portico_resources_define_types();
+
+  foreach ($types as $key => $type) {
+    $theme['portico_resources_' . $key] = array(
+      'template' => 'portico-resources-' . drupal_html_class($key),
+    );
+  }
+
+  return $theme;
+}
+
+function portico_resources_entity_view_alter(&$build, $type) {
+  if ($type == 'node' && $build['#bundle'] == 'resource_page') {
+    $wrapper = entity_metadata_wrapper($type, $build['#node']);
+    $key = $wrapper->field_subtype->value();
+
+    if (!empty($key)) {
+      $build['footer-area'] = array(
+        '#theme' => 'portico_resources_' . $key,
+      );
+    }
+  }
+}

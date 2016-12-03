@@ -187,7 +187,7 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
         . "' type='video/mp4' />
       </video>";
 
-    return array('#markup' => $markup);
+    $output = array('#markup' => $markup);
 
   }
 
@@ -199,17 +199,13 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
       $subtype = $wrapper->field_subtype->value();
       switch ($subtype) {
         case 'sermons':
-          $return = portico_structure_sermon_promo(TRUE);
-          return $return;
+          $output = portico_structure_sermon_promo(TRUE);
           break;
       }
     }
 
     $image = entity_metadata_yank_raw($wrapper, $field);
-
     $style_name = '1600-500';
-
-    drupal_alter('bg', $style_name, $entity);
 
     if (!empty($image)) {
 
@@ -221,8 +217,9 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
           image_style_create_derivative($style, $image['uri'], $derivative_uri);
         $image_url = file_create_url($derivative_uri);
 
-      } catch (Exception $e) {}
-
+      }
+      catch (Exception $e) {
+      }
 
       $css = '
         body.page-' . drupal_html_class($type) . '-' . $wrapper->getIdentifier() . ' #hero {
@@ -245,14 +242,15 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
 
       $titleImageRenderable = field_view_value('taxonomy_term', $entity, 'field_title_image', $titleImage[0], $titleOptions);
 
-      return array('#markup' => render($titleImageRenderable));
+      $output = array('#markup' => render($titleImageRenderable));
     }
 
-    return;
-
-  } catch(Exception $e) {
-
   }
+  catch (Exception $e) {
+  }
+
+  drupal_alter('bg', $output, $entity);
+  return $output;
 }
 
 function entity_metadata_yank_raw($wrapper, $field) {

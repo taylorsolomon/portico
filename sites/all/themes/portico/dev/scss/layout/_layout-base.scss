@@ -339,18 +339,7 @@ body {
   }
 }
 
-// .hero-short {
-//   height: 250px;
-//   transition: height $ts $te;
-//
-//   @include media($break1) {
-//     height: 350px;
-//     h1 {
-//       font-size: rem(60px);
-//     }
-//   }
-// }
-
+body.node-type-resource-page,
 body.node-type-landing,
 body.page-taxonomy-term,
 body.node-type-page,
@@ -361,13 +350,17 @@ body.node-type-wufoo  {
   }
 }
 
+body.node-type-resource-page,
 body.page-taxonomy-term {
   #hero {
     background-position: center center;
     h1 {
-      font-size:0;
+      font-size: 0;
     }
   }
+}
+
+body.page-taxonomy-term {
   #content {
     padding: 1em;
   }

@@ -1128,7 +1128,8 @@ body {
           transition: font-size 0.2s ease;
 }
 
-.hero-default, body.node-type-landing #hero,
+.hero-default, body.node-type-resource-page #hero,
+body.node-type-landing #hero,
 body.page-taxonomy-term #hero,
 body.node-type-page #hero,
 body.node-type-blogpost #hero,
@@ -1139,14 +1140,16 @@ body.node-type-wufoo #hero, body.front #hero {
 }
 
 @media screen and (min-width: 800px) {
-  .hero-default, body.node-type-landing #hero,
+  .hero-default, body.node-type-resource-page #hero,
+  body.node-type-landing #hero,
   body.page-taxonomy-term #hero,
   body.node-type-page #hero,
   body.node-type-blogpost #hero,
   body.node-type-wufoo #hero, body.front #hero {
     height: 300px;
   }
-  .hero-default h1, body.node-type-landing #hero h1,
+  .hero-default h1, body.node-type-resource-page #hero h1,
+  body.node-type-landing #hero h1,
   body.page-taxonomy-term #hero h1,
   body.node-type-page #hero h1,
   body.node-type-blogpost #hero h1,
@@ -1156,14 +1159,16 @@ body.node-type-wufoo #hero, body.front #hero {
 }
 
 @media screen and (min-width: 960px) {
-  .hero-default, body.node-type-landing #hero,
+  .hero-default, body.node-type-resource-page #hero,
+  body.node-type-landing #hero,
   body.page-taxonomy-term #hero,
   body.node-type-page #hero,
   body.node-type-blogpost #hero,
   body.node-type-wufoo #hero, body.front #hero {
     height: 450px;
   }
-  .hero-default h1, body.node-type-landing #hero h1,
+  .hero-default h1, body.node-type-resource-page #hero h1,
+  body.node-type-landing #hero h1,
   body.page-taxonomy-term #hero h1,
   body.node-type-page #hero h1,
   body.node-type-blogpost #hero h1,
@@ -1173,14 +1178,16 @@ body.node-type-wufoo #hero, body.front #hero {
 }
 
 @media screen and (min-width: 1200px) {
-  .hero-default, body.node-type-landing #hero,
+  .hero-default, body.node-type-resource-page #hero,
+  body.node-type-landing #hero,
   body.page-taxonomy-term #hero,
   body.node-type-page #hero,
   body.node-type-blogpost #hero,
   body.node-type-wufoo #hero, body.front #hero {
     height: 600px;
   }
-  .hero-default h1, body.node-type-landing #hero h1,
+  .hero-default h1, body.node-type-resource-page #hero h1,
+  body.node-type-landing #hero h1,
   body.page-taxonomy-term #hero h1,
   body.node-type-page #hero h1,
   body.node-type-blogpost #hero h1,
@@ -1189,10 +1196,12 @@ body.node-type-wufoo #hero, body.front #hero {
   }
 }
 
+body.node-type-resource-page #hero,
 body.page-taxonomy-term #hero {
   background-position: center center;
 }
 
+body.node-type-resource-page #hero h1,
 body.page-taxonomy-term #hero h1 {
   font-size: 0;
 }
