@@ -1,0 +1,29 @@
+version: '2'
+services:
+  web:
+    image: tayediggs/alpine-drupal:latest
+    container_name: web
+    ports:
+      - "80:80"
+      - "443:443"
+      - "9000:9000"
+    volumes:
+      - ./logs:/var/log
+      - ./docker-php.ini:/etc/php7/php.ini
+      - ./docker-nginx.conf:/etc/nginx/conf.d/drupal.conf
+    volumes_from:
+      - container:portico-rsync-sync:rw # will be mounted on /var/www
+    links:
+      - db:db
+
+  db:
+    image: tayediggs/alpine-db:latest
+    container_name: db
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./data:/var/lib/mysql
+
+volumes:
+  portico-rsync-sync:
+    external: true
