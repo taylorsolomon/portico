@@ -19,7 +19,7 @@ html {
 .button:hover {
   border-color: #0077C0;
   background-color: #0077C0;
-  color: #fff;
+  color: #ffffff;
 }
 
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -458,7 +458,7 @@ ul li, ul.menu li {
 }
 
 #page-wrapper {
-  background: #fff;
+  background: #ffffff;
 }
 
 ul.pager {
@@ -558,7 +558,7 @@ ul.tabs li a {
   vertical-align: middle;
   border: none;
   font-weight: bold;
-  color: #fff;
+  color: #ffffff;
   -webkit-transition: background 0.2s ease;
           transition: background 0.2s ease;
 }
@@ -845,7 +845,7 @@ body {
   text-transform: none;
   line-height: 1.5;
   display: block;
-  color: #fff;
+  color: #ffffff;
   font-weight: 400;
 }
 
@@ -933,7 +933,7 @@ body {
   font-size: 20px;
   font-family: 'icomoon';
   display: block;
-  color: #fff;
+  color: #ffffff;
 }
 
 .home-link {
@@ -977,7 +977,7 @@ body {
 }
 
 .menu-name-main-menu a {
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
   display: block;
 }
@@ -1005,7 +1005,7 @@ body {
 .menu-name-main-menu > ul > li > a, .menu-name-main-menu > ul > li > span {
   display: block;
   padding: 1.2em;
-  color: #fff;
+  color: #ffffff;
   text-align: center;
   -webkit-transition: color 0.2s ease;
           transition: color 0.2s ease;
@@ -1122,7 +1122,7 @@ body {
 #hero h1 {
   text-align: center;
   line-height: 1;
-  color: #fff;
+  color: #ffffff;
   font-size: 2.5rem;
   -webkit-transition: font-size 0.2s ease;
           transition: font-size 0.2s ease;
@@ -1288,7 +1288,7 @@ input[type='submit'] {
   border: 0;
   outline: 0;
   text-transform: uppercase;
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
   -webkit-transition: background-color 0.2s ease;
           transition: background-color 0.2s ease;
@@ -1357,11 +1357,11 @@ input[type='submit']:hover {
 }
 
 #footer .social-links a:hover {
-  border-color: #fff;
+  border-color: #ffffff;
 }
 
 #footer .social-links a:hover:after {
-  color: #fff;
+  color: #ffffff;
 }
 
 #footer .social-links a span {
@@ -1398,11 +1398,11 @@ input[type='submit']:hover {
 }
 
 #footer address h4 {
-  color: #fff;
+  color: #ffffff;
 }
 
 #footer address p {
-  color: #fff;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -1821,7 +1821,7 @@ body.front #hero:after {
 .paragraphs-item-text-and-sidebar > .wrapper-field-sidebars .field-sidebars .paragraphs-item-sidebar-list .field-link a:hover {
   border-color: #0077C0;
   background-color: #0077C0;
-  color: #fff;
+  color: #ffffff;
 }
 
 @media screen and (min-width: 800px) {
@@ -1893,7 +1893,7 @@ div.field-sections:last-child ul.field-sections:before {
 }
 
 #block-portico-structure-location .container {
-  color: #fff;
+  color: #ffffff;
   top: 0;
   left: 20%;
   width: 300px;
@@ -2015,7 +2015,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a 
 body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:hover {
   border-color: #0077C0;
   background-color: #0077C0;
-  color: #fff;
+  color: #ffffff;
 }
 
 @media screen and (min-width: 720px) {
@@ -2075,7 +2075,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 }
 
 #block-portico-structure-recent-posts .section-title {
-  color: #fff;
+  color: #ffffff;
   text-align: center;
   padding: 2em 0;
   font-size: 1.5em;
@@ -2086,18 +2086,18 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   color: #152d40;
   padding: 0.5em 1.5em;
   display: inline-block;
-  border: 2px solid #fff;
+  border: 2px solid #ffffff;
   -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
           transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
   font-weight: bold;
-  color: #fff;
+  color: #ffffff;
   position: relative;
 }
 
 #block-portico-structure-recent-posts .section-title a:hover {
   border-color: #0077C0;
   background-color: #0077C0;
-  color: #fff;
+  color: #ffffff;
 }
 
 #block-portico-structure-recent-posts .node-teaser {
@@ -2186,7 +2186,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 }
 
 .jp-audio .jp-controls a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 .jp-audio .jp-controls a:before {
@@ -2256,7 +2256,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   font-size: 14px;
   line-height: 40px;
   text-align: right;
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -2266,7 +2266,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   border: 1px solid #c7c7c7;
   border-radius: 5px;
   margin: 20px 20px 40px;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .node-portico-now .field-portico-now-category,
@@ -2276,7 +2276,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   padding: 8px 20px;
   font-size: 0.8em;
   background-color: rgba(0, 119, 192, 0.9);
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
   text-align: right;
 }
@@ -2424,11 +2424,11 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 
 .filter-bar.open span {
   background-color: #152d40;
-  color: #fff;
+  color: #ffffff;
 }
 
 .filter-bar.open span:after {
-  color: #fff;
+  color: #ffffff;
 }
 
 .filter-bar span {
@@ -2448,11 +2448,11 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 
 .filter-bar span:hover {
   background-color: #152d40;
-  color: #fff;
+  color: #ffffff;
 }
 
 .filter-bar span:hover:after {
-  color: #fff;
+  color: #ffffff;
 }
 
 .filter-bar span:after {
@@ -2540,7 +2540,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 
 .facet-wrapper.dates .item-list > ul li a {
   font-size: 1.5em;
-  color: #fff;
+  color: #ffffff;
 }
 
 .facet-wrapper.dates .item-list > ul li a:hover {
@@ -2553,7 +2553,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 
 .facet-wrapper.category a {
   display: block;
-  color: #fff;
+  color: #ffffff;
   font-size: 1.5em;
   line-height: 1.3;
 }
@@ -2612,7 +2612,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   padding: 8px 20px;
   font-size: 0.8em;
   background-color: rgba(0, 119, 192, 0.9);
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
   text-align: right;
 }
@@ -2705,11 +2705,90 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   margin-top: 0.6em;
   font-size: 0.6em;
   background: rgba(21, 45, 64, 0.9);
-  color: #fff;
+  color: #ffffff;
 }
 
 #portico-alert .text a:hover {
   border-color: #0077C0;
   background-color: #0077C0;
-  color: #fff;
+  color: #ffffff;
+}
+
+.resources {
+  background: -webkit-radial-gradient(circle, #aeaeae, #ededed);
+  background: radial-gradient(circle, #aeaeae, #ededed);
+  padding: 0 0 4em 0;
+}
+
+.resources h3 {
+  color: #666666;
+  font-size: 2em;
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 3;
+  padding-top: 2em;
+  text-align: center;
+}
+
+.cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+}
+
+.resource-card {
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+  width: 220px;
+  height: 220px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.resource-card-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.resource-card img {
+  border-radius: 5px;
+}
+
+.resource-card:after {
+  content: "";
+  border-radius: 5px;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.resource-card:hover {
+  -webkit-transform: scale(1.08, 1.08);
+          transform: scale(1.08, 1.08);
+}
+
+.resource-card:hover:after {
+  opacity: 1;
 }

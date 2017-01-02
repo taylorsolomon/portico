@@ -25,7 +25,7 @@ function portico_resources_define_types() {
  */
 function portico_resources_subtype_options_alter(&$options, $form_state) {
   switch ($form_state['bundle']) {
-    case 'resource_page':
+    case 'page':
       $options = portico_resources_define_types();
       break;
   }
@@ -35,18 +35,17 @@ function portico_resources_subtype_options_alter(&$options, $form_state) {
  * Implements hook_bg_alter().
  */
 function portico_resources_bg_alter(&$output, $entity) {
-  if (!empty($entity->type) && $entity->type == 'resource_page') {
-    $titleImage = field_get_items('node', $entity, 'field_title_image');
-
-    $titleOptions = array(
-      'label' => 'hidden',
-      'type' => 'image',
-    );
-
-    $titleImageRenderable = field_view_value('node', $entity, 'field_title_image', $titleImage[0], $titleOptions);
-
-    $output = array('#markup' => render($titleImageRenderable));
-  }
+  // if (!empty($entity->type) && $entity->type == 'page') {
+  //   $titleImage = field_get_items('node', $entity, 'field_image');
+  //
+  //   $titleOptions = array(
+  //     'label' => 'hidden',
+  //     'type' => 'image',
+  //   );
+  //
+  //   $titleImageRenderable = field_view_value('node', $entity, 'field_image', $titleImage[0], $titleOptions);
+  //   $output = array('#markup' => render($titleImageRenderable));
+  // }
 }
 
 /**
@@ -65,7 +64,7 @@ function portico_resources_theme() {
 }
 
 function portico_resources_entity_view_alter(&$build, $type) {
-  if ($type == 'node' && $build['#bundle'] == 'resource_page') {
+  if ($type == 'node' && $build['#bundle'] == 'page') {
     $wrapper = entity_metadata_wrapper($type, $build['#node']);
     $key = $wrapper->field_subtype->value();
 
