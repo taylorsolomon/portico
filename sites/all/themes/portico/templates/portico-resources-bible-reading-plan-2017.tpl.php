@@ -126,13 +126,13 @@
 
   <div class='cards'>
     <div class='resource-card'>
-      <?php $href = $url . 'bible-reading-plan-2017/Bookmarks/2017BibleReadingPlan_Bookmarks.pdf'; ?>
+      <?php $href = $url . 'bible-reading-plan-2017/2017BibleReadingPlan_Bookmarks.pdf'; ?>
       <a class='resource-card-link' target="_blank" href="<?php print $href; ?>" ></a>
       <img src="<?php print $url . 'bible-reading-plan-2017/thumbnailBookmarks.jpg';?>" alt='December' />
     </div>
 
     <div class='resource-card'>
-      <?php $href = $url . 'bible-reading-plan-2017/Bookmarks/2017BibleReadingPlan.pdf'; ?>
+      <?php $href = $url . 'bible-reading-plan-2017/2017BibleReadingPlan.pdf'; ?>
       <img src="<?php print $url . 'bible-reading-plan-2017/thumbnailEntire.jpg';?>" alt='December' />
       <a class='resource-card-link' target="_blank" href="<?php print $href; ?>" ></a>
     </div>
