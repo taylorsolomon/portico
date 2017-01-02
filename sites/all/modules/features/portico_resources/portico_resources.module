@@ -26,7 +26,8 @@ function portico_resources_define_types() {
 function portico_resources_subtype_options_alter(&$options, $form_state) {
   switch ($form_state['bundle']) {
     case 'page':
-      $options = portico_resources_define_types();
+      $types = portico_resources_define_types();
+      $options = array_merge($options, $types);
       break;
   }
 }
