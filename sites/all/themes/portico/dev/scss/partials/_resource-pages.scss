@@ -13,12 +13,29 @@
   }
 }
 
-.cards {
+.cards, .notes {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
+}
+
+.notes {
+  .resource-note {
+    width: 100%;
+    padding: 10px;
+
+    @include media($break1) {
+      width: auto;
+      padding: 0 10px;
+    }
+
+    .resource-note-link {
+      width: 100%;
+      text-align: center;
+    }
+  }
 }
 
 .resource-card {
@@ -65,5 +82,12 @@
 
   &:hover:after {
     opacity: 1;
+  }
+}
+
+
+.subtype-pray_30 {
+  h1.title {
+    @include hide-text;
   }
 }

@@ -2730,7 +2730,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   text-align: center;
 }
 
-.cards {
+.cards, .notes {
   max-width: 1200px;
   margin: 0 auto;
   display: -webkit-box;
@@ -2741,6 +2741,23 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
           justify-content: center;
   -ms-flex-flow: row wrap;
       flex-flow: row wrap;
+}
+
+.notes .resource-note {
+  width: 100%;
+  padding: 10px;
+}
+
+@media screen and (min-width: 800px) {
+  .notes .resource-note {
+    width: auto;
+    padding: 0 10px;
+  }
+}
+
+.notes .resource-note .resource-note-link {
+  width: 100%;
+  text-align: center;
 }
 
 .resource-card {
@@ -2791,4 +2808,10 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 
 .resource-card:hover:after {
   opacity: 1;
+}
+
+.subtype-pray_30 h1.title {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
 }
