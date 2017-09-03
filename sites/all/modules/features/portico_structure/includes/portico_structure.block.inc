@@ -20,6 +20,11 @@ function portico_structure_block_info() {
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
 
+  $blocks['sermon_promo_evening'] = array(
+    'info' => t('Most Recent Sermon (Evening Service)'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+
   $blocks['alerts'] = array(
     'info' => t('Alerts Block'),
     'cache' => DRUPAL_CACHE_GLOBAL,
@@ -89,6 +94,12 @@ function portico_structure_block_view($delta = '') {
     case 'sermon_promo':
       $block['subject'] = '';
       $block['content'] = portico_structure_sermon_promo();
+      break;
+
+    case 'sermon_promo_evening':
+      $block['subject'] = '';
+      // No hero, yes evening
+      $block['content'] = portico_structure_sermon_promo(FALSE, 'evening');
       break;
 
     case 'alerts':
@@ -201,6 +212,9 @@ function portico_structure_apply_bg($entity, $type, $field = 'field_image') {
         case 'sermons':
           $output = portico_structure_sermon_promo(TRUE);
           break;
+        case 'evening_sermons':
+          $output = portico_structure_sermon_promo(TRUE, 'evening');
+          break;
       }
     }
 
@@ -272,7 +286,15 @@ function portico_structure_location() {
   $location_markup = '<div class=\'inner\'>
     <span class="heading">Location &amp; Service Time</span>' .
     '<span class=\'address\'>' . $var['address'] . ': ' . $var['service-time'] .
-    '</span></div>';
+    '</span></div>
+    <div class=\'inner\' style="margin-top:20px;">
+    <span class="address">
+      <strong>Evening Location</strong><br/>
+      3240 Wilson Blvd, Suite 200<br/>
+      Arlington, Virginia 22201<br/>
+      Sundays at 5:00 PM
+    </span>
+    </div>';
 
   $map_markup = '<div id="map-canvas"></div>';
 
@@ -316,22 +338,37 @@ function portico_structure_location() {
  * [portico_structure_sermon_promo description]
  * @return [type] [description]
  */
-function portico_structure_sermon_promo($hero = FALSE) {
+function portico_structure_sermon_promo($hero = FALSE, $service = 'morning') {
 
   $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-        ->entityCondition('bundle', 'sermon')
-        ->range(0, 1)
-        ->propertyCondition('status', NODE_PUBLISHED)
-        ->fieldOrderBy('field_date', 'value', 'DESC');
+  $query->entityCondition('entity_type', 'taxonomy_term')
+        ->entityCondition('bundle', 'series')
+        ->fieldCondition('field_service', 'value', $service, '=');
 
   $result = $query->execute();
-  if (empty($result['node'])) {
+
+  if (empty($result['taxonomy_term'])) {
     // Return array('#markup' => '');.
     return FALSE;
   }
 
-  $sermon = reset($result['node']);
+  $result = array_keys($result['taxonomy_term']);
+
+  $node_query = new EntityFieldQuery();
+  $node_query->entityCondition('entity_type', 'node')
+             ->entityCondition('bundle', 'sermon')
+             ->propertyCondition('status', NODE_PUBLISHED)
+             ->fieldCondition('field_series', 'tid', $result, 'IN')
+             ->range(0,1)
+             ->fieldOrderBy('field_date', 'value', 'DESC');
+
+  $node_results = $node_query->execute();
+  if (empty($node_results['node'])) {
+    // Return array('#markup' => '');.
+    return FALSE;
+  }
+
+  $sermon = reset($node_results['node']);
   $sermon = node_load($sermon->nid);
 
   // Series is a required field.

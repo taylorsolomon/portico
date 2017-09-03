@@ -28,7 +28,7 @@ body {
     line-height: 1.5;
     text-transform: uppercase;
 
-    a, a.active {
+    > ul a, > ul a.active {
       text-transform: none;
       line-height: 1.5;
 
@@ -88,7 +88,7 @@ body {
   background: rgba($blue-dark, 0.9);
   height: 54px;
 
-  @include media($break2) {
+  @include media($break2half) {
     display: none;
   }
 
@@ -144,7 +144,7 @@ body {
   right:0;
   background: rgba($blue-dark, 0.9);
 
-  @include media($break2) {
+  @include media($break2half) {
     display:block;
 
     &.sticky {

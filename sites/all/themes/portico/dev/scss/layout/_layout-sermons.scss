@@ -59,7 +59,7 @@
     padding: 2em;
     background-size: cover;
     background-position: center;
-    
+
     img {
       text-align: center;
       margin: 0 auto;
@@ -79,7 +79,7 @@
 
     .sermon-body {
       overflow: hidden;
-      height:0;
+      height: 0;
       transition: height $ts $te;
     }
 
@@ -112,5 +112,24 @@
     .node-sermon {
       margin-bottom: 40px;
     }
+  }
+}
+
+
+
+.node-sermon {
+
+  h2 {
+    margin-right: 50px;
+  }
+
+  .sermon-body {
+    overflow: hidden;
+    height: 0;
+    transition: height $ts $te;
+  }
+
+  .field-body {
+    padding-bottom: 10px;
   }
 }

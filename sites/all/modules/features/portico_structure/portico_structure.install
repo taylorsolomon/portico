@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Give all series a default service value ('morning').
+ */
+function portico_structure_update_7001() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('series');
+  $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
+  foreach ($terms as $taxonomy_term) {
+    if (empty($taxonomy_term->field_service)) {
+      $taxonomy_term->field_service[LANGUAGE_NONE][0]['value'] = 'morning';
+      taxonomy_term_save($taxonomy_term);
+    }
+  }
+}

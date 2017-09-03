@@ -11,8 +11,7 @@ html {
   padding: 0.5em 1.5em;
   display: inline-block;
   border: 2px solid #152d40;
-  -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
-          transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
   font-weight: bold;
 }
 
@@ -559,8 +558,7 @@ ul.tabs li a {
   border: none;
   font-weight: bold;
   color: #ffffff;
-  -webkit-transition: background 0.2s ease;
-          transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 ul.tabs li a:hover {
@@ -663,8 +661,7 @@ blockquote p, q p {
 
 a {
   color: #0077C0;
-  -webkit-transition: color 0.2s ease;
-          transition: color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 a:hover {
@@ -841,7 +838,7 @@ body {
   text-transform: uppercase;
 }
 
-.slideout-menu > ul > li a, .slideout-menu > ul > li a.active {
+.slideout-menu > ul > li > ul a, .slideout-menu > ul > li > ul a.active {
   text-transform: none;
   line-height: 1.5;
   display: block;
@@ -876,12 +873,9 @@ body {
   right: 0;
   bottom: 0;
   z-index: -1;
-  -webkit-transition-property: right, background;
-          transition-property: right, background;
-  -webkit-transition-timing-function: 'ease';
-          transition-timing-function: 'ease';
-  -webkit-transition-duration: 200ms;
-          transition-duration: 200ms;
+  transition-property: right, background;
+  transition-timing-function: 'ease';
+  transition-duration: 200ms;
   background: transparent;
 }
 
@@ -901,7 +895,7 @@ body {
   height: 54px;
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1100px) {
   #mobile-header {
     display: none;
   }
@@ -958,7 +952,7 @@ body {
   background: rgba(21, 45, 64, 0.9);
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1100px) {
   .menu-name-main-menu {
     display: block;
   }
@@ -966,8 +960,7 @@ body {
     display: block;
     visibility: hidden;
     opacity: 0;
-    -webkit-transition: opacity 0.2s ease;
-            transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
     position: fixed;
   }
   .menu-name-main-menu.sticky.down {
@@ -991,8 +984,7 @@ body {
 .menu-name-main-menu > ul > li {
   display: inline-block;
   margin: 0 0.5em;
-  -webkit-transition: margin 0.2s ease;
-          transition: margin 0.2s ease;
+  transition: margin 0.2s ease;
   position: relative;
 }
 
@@ -1007,8 +999,7 @@ body {
   padding: 1.2em;
   color: #ffffff;
   text-align: center;
-  -webkit-transition: color 0.2s ease;
-          transition: color 0.2s ease;
+  transition: color 0.2s ease;
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -1029,8 +1020,7 @@ body {
 
 .menu-name-main-menu > ul > li > ul {
   position: absolute;
-  -webkit-transition: top 0.2s ease, opacity 0.2s ease;
-          transition: top 0.2s ease, opacity 0.2s ease;
+  transition: top 0.2s ease, opacity 0.2s ease;
   top: 85%;
   opacity: 0;
   visibility: hidden;
@@ -1050,8 +1040,7 @@ body {
   display: block;
   content: '';
   background: rgba(255, 255, 255, 0.6);
-  -webkit-transition: width 0.2s ease-out 0.1s;
-          transition: width 0.2s ease-out 0.1s;
+  transition: width 0.2s ease-out 0.1s;
 }
 
 .menu-name-main-menu > ul > li > ul:hover {
@@ -1086,12 +1075,9 @@ body {
   display: block;
   padding: 0.8em 0.8em;
   text-align: left;
-  -webkit-transition-property: color, background;
-          transition-property: color, background;
-  -webkit-transition-duration: 0.2s;
-          transition-duration: 0.2s;
-  -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-property: color, background;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
   font-size: 0.9em;
   letter-spacing: 0.5px;
 }
@@ -1101,8 +1087,6 @@ body {
 }
 
 #hero {
-  background-image: -webkit-linear-gradient( right , #16222A, #3A6073);
-  background-image: -webkit-linear-gradient(right, #16222A, #3A6073);
   background-image: linear-gradient(to left, #16222A, #3A6073);
   min-height: 250px;
   display: -webkit-box;
@@ -1124,8 +1108,7 @@ body {
   line-height: 1;
   color: #ffffff;
   font-size: 2.5rem;
-  -webkit-transition: font-size 0.2s ease;
-          transition: font-size 0.2s ease;
+  transition: font-size 0.2s ease;
 }
 
 .hero-default, body.node-type-resource-page #hero,
@@ -1135,8 +1118,7 @@ body.node-type-page #hero,
 body.node-type-blogpost #hero,
 body.node-type-wufoo #hero, body.front #hero {
   height: 250px;
-  -webkit-transition: height 0.2s ease;
-          transition: height 0.2s ease;
+  transition: height 0.2s ease;
 }
 
 @media screen and (min-width: 800px) {
@@ -1290,8 +1272,7 @@ input[type='submit'] {
   text-transform: uppercase;
   color: #ffffff;
   font-weight: bold;
-  -webkit-transition: background-color 0.2s ease;
-          transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 input[type='submit']:hover {
@@ -1322,8 +1303,7 @@ input[type='submit']:hover {
   border-radius: 50%;
   border: 2px solid #aaa;
   position: relative;
-  -webkit-transition: border 0.2s ease;
-          transition: border 0.2s ease;
+  transition: border 0.2s ease;
 }
 
 #footer .social-links a:after {
@@ -1336,8 +1316,7 @@ input[type='submit']:hover {
   left: 0;
   right: 0;
   top: 13px;
-  -webkit-transition: color 0.2s ease;
-          transition: color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 #footer .social-links a.facebook:after {
@@ -1544,8 +1523,8 @@ body.has-sidebar #sidebar-first .jump-list a:hover {
   z-index: 1;
   -webkit-transform: rotate3d(0, 0, 0, 0deg);
           transform: rotate3d(0, 0, 0, 0deg);
-  -webkit-transition: -webkit-transform 0.2s ease;
-          transition: transform 0.2s ease;
+  transition: -webkit-transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .node-sermon a.sermon-body-toggle.open:after {
@@ -1575,8 +1554,7 @@ body.has-sidebar #sidebar-first .jump-list a:hover {
 .sermons-list .node-sermon .sermon-body {
   overflow: hidden;
   height: 0;
-  -webkit-transition: height 0.2s ease;
-          transition: height 0.2s ease;
+  transition: height 0.2s ease;
 }
 
 .sermons-list .node-sermon .field-body {
@@ -1610,6 +1588,20 @@ body.has-sidebar #sidebar-first .jump-list a:hover {
   .sermons-list .node-sermon {
     margin-bottom: 40px;
   }
+}
+
+.node-sermon h2 {
+  margin-right: 50px;
+}
+
+.node-sermon .sermon-body {
+  overflow: hidden;
+  height: 0;
+  transition: height 0.2s ease;
+}
+
+.node-sermon .field-body {
+  padding-bottom: 10px;
 }
 
 body.front .clearfix:after {
@@ -1812,8 +1804,7 @@ body.front #hero:after {
   padding: 0.5em 1.5em;
   display: inline-block;
   border: 2px solid #152d40;
-  -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
-          transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
   font-weight: bold;
 }
 
@@ -1893,16 +1884,18 @@ div.field-sections:last-child ul.field-sections:before {
 }
 
 #block-portico-structure-location .container {
-  color: #ffffff;
-  top: 0;
-  left: 20%;
+  color: #152d40;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
   width: 300px;
-  height: 100%;
+  height: 80%;
   z-index: 1;
-  background: #152d40;
+  background: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   padding: 30px 20px;
-  -webkit-transition: padding 0.2s ease;
-          transition: padding 0.2s ease;
+  transition: padding 0.2s ease;
 }
 
 @media screen and (min-width: 720px) {
@@ -1915,7 +1908,7 @@ div.field-sections:last-child ul.field-sections:before {
 @media screen and (min-width: 960px) {
   #block-portico-structure-location .container {
     padding: 30px;
-    background: rgba(21, 45, 64, 0.9);
+    background: #ffffff;
   }
 }
 
@@ -1927,7 +1920,7 @@ div.field-sections:last-child ul.field-sections:before {
 }
 
 #block-portico-structure-location .map {
-  height: 300px;
+  height: 400px;
   float: left;
   display: block;
   margin-right: 2.35765%;
@@ -2005,8 +1998,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a 
   padding: 0.5em 1.5em;
   display: inline-block;
   border: 2px solid #152d40;
-  -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
-          transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -2069,8 +2061,6 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   padding-bottom: 40px;
   position: relative;
   overflow: hidden;
-  background-image: -webkit-linear-gradient(#152d40 0, #08121a 100%);
-  background-image: -webkit-linear-gradient(to, #08121a 100%);
   background-image: linear-gradient(to   , #08121a 100%);
 }
 
@@ -2087,8 +2077,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   padding: 0.5em 1.5em;
   display: inline-block;
   border: 2px solid #ffffff;
-  -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
-          transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
   font-weight: bold;
   color: #ffffff;
   position: relative;
@@ -2181,8 +2170,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   text-align: center;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.8);
-  -webkit-transition: color 0.2s ease, background 0.2s ease;
-          transition: color 0.2s ease, background 0.2s ease;
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
 .jp-audio .jp-controls a:hover {
@@ -2435,12 +2423,9 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   position: relative;
   display: block;
   cursor: pointer;
-  -webkit-transition-property: color, background-color;
-          transition-property: color, background-color;
-  -webkit-transition-duration: 0.2s;
-          transition-duration: 0.2s;
-  -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-property: color, background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
   font-size: 1.5em;
   padding: 0.5em;
   text-align: center;
@@ -2459,8 +2444,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   position: relative;
   top: 2px;
   left: 10px;
-  -webkit-transition: color 0.2s ease;
-          transition: color 0.2s ease;
+  transition: color 0.2s ease;
   content: '\e911';
   font-family: 'icomoon';
   font-weight: normal;
@@ -2473,8 +2457,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 .blog-facets-wrapper {
   height: 0;
   overflow: hidden;
-  -webkit-transition: height 0.2s ease;
-          transition: height 0.2s ease;
+  transition: height 0.2s ease;
 }
 
 .blog-facets {
@@ -2699,8 +2682,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   padding: 0.5em 1.5em;
   display: inline-block;
   border: 2px solid #152d40;
-  -webkit-transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
-          transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
   font-weight: bold;
   margin-top: 0.6em;
   font-size: 0.6em;
@@ -2715,7 +2697,6 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
 }
 
 .resources {
-  background: -webkit-radial-gradient(circle, #aeaeae, #ededed);
   background: radial-gradient(circle, #aeaeae, #ededed);
   padding: 0 0 4em 0;
 }
@@ -2770,8 +2751,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   border-radius: 5px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-          transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .resource-card-link {
@@ -2797,8 +2777,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   height: 100%;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
   opacity: 0;
-  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-          transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .resource-card:hover {

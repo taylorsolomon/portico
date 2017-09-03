@@ -77,12 +77,29 @@ function portico_structure_subtype_options(&$form, &$form_state) {
       $options = array(
         'sermons' => t('Sermons'),
         'leadership' => t('Leadership'),
+        'evening' => t('[Evening] Sunday Evening Service'),
+        'evening_sermons' => t('[Evening] Sermons'),
       );
       break;
   }
 
   drupal_alter('subtype_options', $options, $form_state);
 
+  return $options;
+}
+
+
+/**
+ * [portico_structure_service_options description]
+ * @param  [type] $form
+ * @param  [type] $form_state
+ * @return [type]
+ */
+function portico_structure_service_options(&$form, &$form_state) {
+  $options = array(
+    'morning' => t('Morning'),
+    'evening' => t('Evening')
+  );
   return $options;
 }
 
@@ -156,6 +173,29 @@ function portico_structure_preprocess_entity(&$variables, $hook) {
 }
 
 /**
+ * [portico_structure_field_widget_form_alter description]
+ * @param  [type] $element
+ * @param  [type] $form_state
+ * @param  [type] $context
+ * @return [type]
+ */
+ function portico_structure_field_widget_form_alter(&$element, &$form_state, $context) {
+   if ($element['#field_name'] == 'field_series') {
+     foreach ($element['#options'] as $tid => &$title) {
+       if ($tid == "_none") { continue; }
+       $term = taxonomy_term_load($tid);
+       if (!empty($term->field_service)) {
+         $title = '[' . ucwords($term->field_service['und'][0]['value']) . '] ' . $title;
+       } else {
+         $title = '[Morning] ' . $title;
+       }
+     }
+
+     asort($element['#options']);
+   }
+ }
+
+/**
  * [portico_structure_preprocess_entity_paragraphs_item description]
  * @param  [type] &$vars [description]
  * @return [type]        [description]
@@ -203,6 +243,10 @@ function portico_structure_entity_view_alter(&$build, $type) {
           portico_structure_add_sermons($build);
           break;
 
+        case 'evening_sermons':
+          portico_structure_add_sermons($build, 'evening');
+          break;
+
         case 'leadership':
           portico_structure_add_leadership($build);
           break;
@@ -216,9 +260,9 @@ function portico_structure_entity_view_alter(&$build, $type) {
  * @param  [type] &$build [description]
  * @return [type]         [description]
  */
-function portico_structure_add_sermons(&$build) {
+function portico_structure_add_sermons(&$build, $service = 'morning') {
 
-  $nodes = portico_structure_get_sermons();
+  $nodes = portico_structure_get_sermons(TRUE, $service);
   $viewed = _split_and_view_by_series($nodes);
   // $viewed = entity_view('node', $nodes, 'teaser');
   unset($viewed['node']['#sorted']);
@@ -397,9 +441,9 @@ function _split_and_view_by_series($nodes) {
  * Construct an itunes feed.
  * @return [type] [description]
  */
-function portico_feed() {
+function portico_feed($service = 'morning') {
   $output = '';
-  $sermons = portico_structure_get_sermons(FALSE);
+  $sermons = portico_structure_get_sermons(FALSE, $service);
 
   $channel_data = array(
     'title' => 'Portico Arlington',
@@ -470,29 +514,47 @@ function portico_rss_tag_generate($data) {
   return $output;
 }
 
+
 /**
  * [portico_structure_get_sermons description]
  * @return [type] [description]
  */
-function portico_structure_get_sermons($pager = TRUE) {
-  $q = new EntityFieldQuery;
-  $q->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'sermon')
-    ->propertyCondition('status', NODE_PUBLISHED)
-    ->fieldOrderBy('field_date', 'value', 'DESC')
-    ->addTag('portico_structure_sermons');
+function portico_structure_get_sermons($pager = TRUE, $service = 'morning') {
 
-  if ($pager) {
-    $q->pager(10,0);
-  }
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'taxonomy_term')
+        ->entityCondition('bundle', 'series')
+        ->fieldCondition('field_service', 'value', $service, '=');
 
-  $r = $q->execute();
+  $result = $query->execute();
 
-  if (empty($r['node'])) {
+  if (empty($result['taxonomy_term'])) {
     return FALSE;
   }
 
-  $nodes = entity_load('node', array_keys($r['node']));
+  $result = array_keys($result['taxonomy_term']);
+
+  $node_query = new EntityFieldQuery();
+  $node_query->entityCondition('entity_type', 'node')
+             ->entityCondition('bundle', 'sermon')
+             ->fieldCondition('field_series', 'tid', $result, 'IN')
+             ->fieldOrderBy('field_date', 'value', 'DESC')
+             ->propertyCondition('status', NODE_PUBLISHED)
+             ->addTag('portico_structure_sermons');
+
+  if ($pager) {
+    $node_query->pager(10,0);
+  } else {
+    $node_query->range(0, 20);
+  }
+
+  $node_results = $node_query->execute();
+
+  if (empty($node_results['node'])) {
+    return FALSE;
+  }
+
+  $nodes = entity_load('node', array_keys($node_results['node']));
   return $nodes;
 }
 

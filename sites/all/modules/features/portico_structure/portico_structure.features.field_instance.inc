@@ -928,7 +928,7 @@ function portico_structure_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
@@ -1702,7 +1702,43 @@ function portico_structure_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 2,
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-series-field_service'.
+  $field_instances['taxonomy_term-series-field_service'] = array(
+    'bundle' => 'series',
+    'default_value' => array(
+      0 => array(
+        'value' => 'morning',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'fences_wrapper' => 'div',
+    'field_name' => 'field_service',
+    'label' => 'Service',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 1,
     ),
   );
 
@@ -1765,7 +1801,7 @@ function portico_structure_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -1786,6 +1822,7 @@ function portico_structure_field_default_field_instances() {
   t('Role');
   t('Sections');
   t('Series');
+  t('Service');
   t('Sidebars');
   t('Subtype');
   t('Title Image');
