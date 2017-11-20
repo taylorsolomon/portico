@@ -49,6 +49,14 @@ function portico_structure_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['evening-sermon-feed'] = array(
+    'title' => 'Portico Arlington Evening Messages Podcast Feed',
+    'page callback' => 'portico_feed',
+    'page arguments' => ['evening'],
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
 }
 

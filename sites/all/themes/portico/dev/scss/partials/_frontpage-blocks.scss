@@ -161,7 +161,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title {
   position:relative;
   overflow: hidden;
 
-  @include background-image(linear-gradient($blue-dark 0, darken($blue-dark, 10%) 100%));
+  @include background-image(linear-gradient(0deg, $blue-dark 0, $blue-dark-darker 100%));
   // @include background-image(linear-gradient(45deg, $green 0, $tan 100%));
   // &:before,&:after{
   //   content:'';

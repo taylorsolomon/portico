@@ -2061,7 +2061,7 @@ body.node-type-page.subtype-sermons #block-portico-structure-hero-image-title a:
   padding-bottom: 40px;
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(to   , #08121a 100%);
+  background-image: linear-gradient(0deg, #152d40 0, #08121a 100%);
 }
 
 #block-portico-structure-recent-posts .section-title {

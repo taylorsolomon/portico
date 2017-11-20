@@ -285,7 +285,8 @@ function portico_structure_location() {
 
   $location_markup = '<div class=\'inner\'>
     <span class="heading">Location &amp; Service Time</span>' .
-    '<span class=\'address\'>' . $var['address'] . ': ' . $var['service-time'] .
+    '<span class=\'address\'>
+    <strong>Morning Location</strong><br/>' . $var['address'] . ': ' . $var['service-time'] .
     '</span></div>
     <div class=\'inner\' style="margin-top:20px;">
     <span class="address">

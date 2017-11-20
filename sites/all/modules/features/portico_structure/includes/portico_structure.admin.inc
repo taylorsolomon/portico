@@ -189,7 +189,7 @@ function portico_now_table($form, $form_state) {
       ),
       'weight' => array(
         '#type' => 'weight',
-        '#default_value' => empty($weights[$node->nid]['weight']) ? -50 : $weights[$node->nid]['weight'],
+        '#default_value' => $weights[$node->nid]['weight'],
         '#delta' => 50,
       ),
     );
