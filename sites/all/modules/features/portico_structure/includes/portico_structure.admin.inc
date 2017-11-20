@@ -242,6 +242,7 @@ function _weight_form_sort($a,$b) {
  */
 function portico_now_table_submit($form, $form_state) {
   variable_set('portico_structure_portico_now_weights', $form_state['values']['rows']);
+  drupal_flush_all_caches();
 }
 
 /**
