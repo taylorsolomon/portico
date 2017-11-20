@@ -26,3 +26,4 @@ README.txt
 /database
 /.mysql
 /data
+default.conf
